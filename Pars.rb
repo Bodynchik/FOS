@@ -19,23 +19,31 @@ def google_search(link)
       hash_map[heading] = words
     end
 
-    csv_file_path = "data.csv"
-    unless File.exist?(csv_file_path)
-      CSV.open(csv_file_path, 'wb') do |csv|
-        csv << ["Heading", "Words"]
-      end
-    end
-
-
-    CSV.open(csv_file_path, 'w') do |csv|
-      hash_map.each do |key, value|
-        csv << [key, value.join(", ")]
-      end
-    end
-
   rescue StandardError => e
     puts "Error: #{e.message}"
   end
+
+  return hash_map
 end
 
-google_search("https://www.enchantedlearning.com/wordlist/furniture.shtml#wls-id-a")
+def go_to_csv(hash_map)
+  current_directory = __dir__
+  csv_file_path = File.join(current_directory, "data.csv")
+  unless File.exist?(csv_file_path)
+    CSV.open(csv_file_path, 'wb') do |csv|
+      csv << ["Heading", "Words"]
+    end
+  end
+
+
+  CSV.open(csv_file_path, 'w') do |csv|
+    hash_map.each do |key, value|
+      csv << [key, value.join(", ")]
+    end
+  end
+
+end
+
+
+hashh = google_search("https://www.enchantedlearning.com/wordlist/furniture.shtml#wls-id-a")
+go_to_csv(hashh)

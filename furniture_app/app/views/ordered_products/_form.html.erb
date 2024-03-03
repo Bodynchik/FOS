@@ -13,20 +13,20 @@
 
   <div>
     <%= form.label :order_id, style: "display: block" %>
-    <%= form.number_field :order_id %>
+    <%= form.number_field :order_id, required: true %>
   </div>
 
   <div>
     <%= form.label :prod_id, style: "display: block" %>
-    <%= form.number_field :prod_id %>
+    <%= form.number_field :prod_id, required: true %>
   </div>
 
   <div>
     <%= form.label :prod_amount, style: "display: block" %>
-    <%= form.number_field :prod_amount %>
+    <%= form.number_field :prod_amount, required: true %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.button %>
   </div>
 <% end %>

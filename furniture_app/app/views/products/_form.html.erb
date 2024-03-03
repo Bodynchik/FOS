@@ -13,17 +13,17 @@
 
   <div>
     <%= form.label :subcat_id, style: "display: block" %>
-    <%= form.number_field :subcat_id %>
+    <%= form.number_field :subcat_id, required: true %>
   </div>
 
   <div>
     <%= form.label :prod_name, style: "display: block" %>
-    <%= form.text_field :prod_name %>
+    <%= form.text_field :prod_name, required: true %>
   </div>
 
   <div>
     <%= form.label :prod_price, style: "display: block" %>
-    <%= form.text_field :prod_price %>
+    <%= form.text_field :prod_price, required: true %>
   </div>
 
   <div>
@@ -38,10 +38,10 @@
 
   <div>
     <%= form.label :prode_image, style: "display: block" %>
-    <%= form.text_field :prode_image %>
+    <%= form.file_field :prode_image %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.button %>
   </div>
 <% end %>

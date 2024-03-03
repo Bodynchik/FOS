@@ -13,15 +13,15 @@
 
   <div>
     <%= form.label :cat_id, style: "display: block" %>
-    <%= form.number_field :cat_id %>
+    <%= form.number_field :cat_id, required: true %>
   </div>
 
   <div>
     <%= form.label :subcat_name, style: "display: block" %>
-    <%= form.text_field :subcat_name %>
+    <%= form.text_field :subcat_name, required: true %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.button %>
   </div>
 <% end %>

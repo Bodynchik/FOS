@@ -1,0 +1,2 @@
+module ProdRaitingsHelper
+end

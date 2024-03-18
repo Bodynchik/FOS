@@ -1,42 +1,33 @@
 require 'nokogiri'
 require 'open-uri'
-require 'pg'
+require_relative '../../config/environment'
+require_relative '../../app/models/category'
+require_relative '../../app/models/sub_category'
+require_relative '../../app/models/product'
+require_relative '../../app/models/manufacture'
 
 namespace :parse do
-  desc "Парсимо сайт, зберігаємо назви продуктів у таблицю"
+  desc "Парсим сайт и сохраняем названия продуктов в таблицу"
 
-  task :prod_name do
+  task :prod_name => :environment do
     url = 'https://www.enchantedlearning.com/wordlist/furniture.shtml#wls-id-a'
-
     doc = Nokogiri::HTML(URI.open(url))
 
-    conn = PG.connect(dbname: 'myapp_development', user: 'postgres', password: 'root')
-
     begin
-      result = conn.exec_params('INSERT INTO categories (cat_name) VALUES ($1) RETURNING id', ['kitchen'])
-      category_id = result[0]['id'].to_i if result.num_tuples > 0
-
-      result = conn.exec_params('INSERT INTO manufactures (manufacture_country) VALUES ($1) RETURNING id', ['Ukrain'])
-      manufacture_id = result[0]['id'].to_i if result.num_tuples > 0
+      category = Category.create(cat_name: 'kitchen')
+      manufacture = Manufacture.create(manufacture_country: 'Ukraine')
 
       doc.css('.wordlist-section').each do |block|
         sub_category_name = block.css('.wordlist-section__title').text
-
-        result = conn.exec_params('INSERT INTO sub_categories (category_id, subcat_name) VALUES ($1, $2) RETURNING id', [category_id, sub_category_name])
-        sub_category_id = result[0]['id'].to_i if result.num_tuples > 0
+        sub_category = SubCategory.create(category_id: category.id, subcat_name: sub_category_name)
 
         block.css('.wordlist-item').each do |word|
           prod_name = word.text
-          conn.exec_params('INSERT INTO products (sub_category_id, prod_name, manufacture_id) VALUES ($1, $2, $3)', [sub_category_id, prod_name, manufacture_id])
+          Product.create(sub_category_id: sub_category.id, prod_name: prod_name, manufacture_id: manufacture.id)
         end
-
       end
-
-    rescue PG::Error => e
-      puts "Помилка бази даних: #{e.message}"
-    ensure
-      conn.close if conn
+    rescue StandardError => e
+      puts "Помилка: #{e.message}"
     end
-
   end
 end

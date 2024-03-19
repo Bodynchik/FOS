@@ -1,0 +1,32 @@
+<%= form_with(model: prod_raiting) do |form| %>
+  <% if prod_raiting.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(prod_raiting.errors.count, "error") %> prohibited this prod_raiting from being saved:</h2>
+
+      <ul>
+        <% prod_raiting.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :product_id, style: "display: block" %>
+    <%= form.text_field :product_id %>
+  </div>
+
+  <div>
+    <%= form.label :client_id, style: "display: block" %>
+    <%= form.text_field :client_id %>
+  </div>
+
+  <div>
+    <%= form.label :raiting_val, style: "display: block" %>
+    <%= form.number_field :raiting_val %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

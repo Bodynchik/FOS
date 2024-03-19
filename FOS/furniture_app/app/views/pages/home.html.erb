@@ -16,36 +16,21 @@
 <body>
 
 <header>
-
-  <%= link_to "FOS", request.path, id: "fos" %>
-
-  <div class="icons">
-    <% if user_signed_in? %>
-      <div class="hi-text">
-        <p>Welcome <%= current_user.email %></p>
+    <%= link_to "FOS", request.path, id: "fos" %>
+    <div class="icons">
+      <div class="search-container">
+        <input type="search" id="search" placeholder="">
+        <%= image_tag 'header/loupe-search-svgrepo-com.svg', class: "search-icon", alt: "Search Icon" %>
       </div>
-    <% else %>
-        <p>Hi!</p>
-    <% end %>
 
-    <div class="search-container">
-      <input type="search" id="search" placeholder="">
-      <%= image_tag 'header/loupe-search-svgrepo-com.svg', class: "search-icon", alt: "Search Icon" %>
-    </div>
+      <a href="#">
+        <%= image_tag 'header/shopping-cart-svgrepo-com.svg', class: "nav-icons", alt: "Cart icon" %>
+      </a>
 
-    <a href="#">
-      <%= image_tag 'header/shopping-cart-svgrepo-com.svg', class: "nav-icons", alt: "Cart icon" %>
-    </a>
-    <!--<%= button_to "Sign In", new_user_session_path, method: :get, class: "btn" %>
-    <form method="get" action="/users/sign_in" href="<%= new_user_registration_path %>">
       <a href="<%= new_user_registration_path %>">
         <%= image_tag 'header/user-svgrepo-com.svg', class: "nav-icons", alt: "User Icon" %>
-      </a> <link></link>
-    </form>-->
-    <%= link_to new_user_registration_path do %>
-      <button type ="button" class = "btn" >Sign In</button>
-    <% end %>
-  </div>
+      </a>
+    </div>
 </header>
 
 <main>

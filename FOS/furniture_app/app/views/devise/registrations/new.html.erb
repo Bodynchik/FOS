@@ -11,13 +11,7 @@
 
 <body>
 <header>
-  <a href="#">
-    <%= link_to "FOS", root_path, id: "fos" %>
-  </a>
-  <% if user_signed_in? %>
-    <p>Welcome, <%= current_user.email %></p>
-  <% end %>
-
+  <%= link_to "FOS", request.path, id: "fos" %>
   <div class="icons">
     <div class="search-container">
       <input type="search" id="search" placeholder="">
@@ -28,7 +22,7 @@
       <%= image_tag 'header/shopping-cart-svgrepo-com.svg', class: "nav-icons", alt: "Cart icon" %>
     </a>
 
-    <a href="/sign_in">
+    <a href="<%= new_user_registration_path %>">
       <%= image_tag 'header/user-svgrepo-com.svg', class: "nav-icons", alt: "User Icon" %>
     </a>
   </div>
@@ -37,7 +31,7 @@
 <div class="background-image">
   <div class="background-overlay"></div> <!-- Додали оверлей для затемнення -->
   <div class="container-sign">
-  <h2>Registration</h2>
+    <h2>Registration</h2>
     <form class="new_user" id="new_user" action="<%= user_registration_path %>" accept-charset="UTF-8" method="post">
 
       <input type="text"  name="user[name]" id="user_name" placeholder="Ім'я" class="input-field">
@@ -46,12 +40,11 @@
       <input type="email" name="user[email]" id="user_email" placeholder="Пошта" class="input-field" value="">
       <input type="tel"   name="user[phone]" id="user_phone" placeholder="Номер телефону" class="input-field" >
       <input type="password" name="user[password]" id="user_password" placeholder="Пароль" class="input-field" >
-      <input type="submit" name="commit" value="Log in" class="btn" data-disable-with="Log in">
-      <!--<a href="<%= root_path %>">
+      <a href="<%= root_path %>">
         <input type="submit" name="commit" value="Log in" class="btn" data-disable-with="Log in">
-      </a> -->
+      </a>
     </form>
-  <p>Do you have one? <a href="<%= new_user_session_path %>">Log in</a></p>  </div>
+    <p>Do you have one? <a href="<%= new_user_session_path %>">Log in</a></p>  </div>
 </div>
 </body>
 </html>

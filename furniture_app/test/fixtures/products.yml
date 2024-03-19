@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sub_category: one
+  prod_name: MyString
+  prod_price: 9.99
+  manufacture: one
+  prod_desc: MyText
+  prod_avail_amount: 1
+  prod_raiting: 9.99
+
+two:
+  sub_category: two
+  prod_name: MyString
+  prod_price: 9.99
+  manufacture: two
+  prod_desc: MyText
+  prod_avail_amount: 1
+  prod_raiting: 9.99

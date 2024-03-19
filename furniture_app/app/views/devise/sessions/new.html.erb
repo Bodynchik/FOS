@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'registration' %>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link
+  href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"    rel="stylesheet">
+  <title>FOS Log in</title></head>
+</head>
+
+<body>
+<header>
+  <%= link_to "FOS", root_path, id: "fos" %>
+  <% if user_signed_in? %>
+    <p>Welcome, <%= current_user.email %></p>
+  <% end %>
+  <div class="icons">
+    <div class="search-container">
+      <input type="search" id="search" placeholder="">
+      <%= image_tag 'header/loupe-search-svgrepo-com.svg', class: "search-icon", alt: "Search Icon" %>
+    </div>
+
+    <a href="#">
+      <%= image_tag 'header/shopping-cart-svgrepo-com.svg', class: "nav-icons", alt: "Cart icon" %>
+    </a>
+
+    <a href="/sign_in">
+      <%= image_tag 'header/user-svgrepo-com.svg', class: "nav-icons", alt: "User Icon" %>
+    </a>
+  </div>
+</header>
+
+<div class="background-image">
+  <div class="background-overlay"></div> <!-- Додали оверлей для затемнення -->
+  <div class="container-sign">
+  <h2>Log in</h2>
+    <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post">
+
+      <input class="input-field" placeholder="Email" type="email" value="" name="user[email]" id="user_email">
+      <input class="input-field" placeholder="Password" type="password" name="user[password]" id="user_password">
+
+      <a href="<%= root_path %>" >
+        <input type="submit" class="btn" name="commit" value="Log in" data-disable-with="Log in">
+      </a>
+    </form>
+  <p>Don't you have one? <a href="<%= new_user_registration_path %>">Sign Up</a></p>  </div>
+</div>
+</body>
+</html>

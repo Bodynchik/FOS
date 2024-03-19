@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'styles' %>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <title>FOS homepage</title>
+</head>
+
+<body>
+
+<header>
+
+  <%= link_to "FOS", request.path, id: "fos" %>
+
+  <div class="icons">
+    <div class="hi-text">
+      <% if user_signed_in? %>
+        <p>Welcome, <%= current_user.email %></p>
+      <% else %>
+        <p>Hi!</p>
+      <% end %>
+    </div>
+
+    <div class="search-container">
+      <input type="search" id="search" placeholder="">
+      <%= image_tag 'header/loupe-search-svgrepo-com.svg', class: "search-icon", alt: "Search Icon" %>
+    </div>
+
+    <a href="#">
+      <%= image_tag 'header/shopping-cart-svgrepo-com.svg', class: "nav-icons", alt: "Cart icon" %>
+    </a>
+    <form method="post" action="/users/sign_in">
+      <a href="<%= new_user_registration_path %>">
+        <%= image_tag 'header/user-svgrepo-com.svg', class: "nav-icons", alt: "User Icon" %>
+      </a>
+    </form>
+  </div>
+</header>
+
+<main>
+
+  <section id="about-us">
+    <div class="background-image">
+      <div class="container-about">
+        <h1 id="logo-text">FURNITURE ONLIONE STORE</h1>
+        <button class="about-button">Про нас</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="categories">
+    <h1 id="category-title">Знайдіть ідеальне вираження вашого стилю та смаку!</h1>
+
+    <div class="category-grid">
+      <div class="category-column">
+
+        <div class="cat-img-dark">
+          <%= image_tag 'categorys/livingroom.jfif', class: "category-img", alt: "Вітальня" %>
+          <div class="work-text-content">
+            <p>Вітальня</p>
+          </div>
+        </div>
+
+        <div class="cat-img-dark">
+          <%= image_tag 'categorys/workplace.jfif', class: "category-img", alt: "Робоча зона" %>
+          <div class="work-text-content">
+            <p>Робоча зона</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="category-column">
+
+        <div class="cat-img-dark">
+          <%= image_tag 'categorys/kitchen.jfif', class: "category-img", alt: "Кухня" %>
+          <div class="work-text-content">
+            <p>Кухня</p>
+          </div>
+        </div>
+
+        <div class="cat-img-dark">
+          <%= image_tag 'categorys/storage.jfif', class: "category-img", alt: "Зберігання" %>
+          <div class="work-text-content">
+            <p>Зберігання</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="category-column">
+
+        <div class="cat-img-dark">
+          <%= image_tag 'categorys/bedroom.jfif', class: "category-img", alt: "Спальня" %>
+          <div class="work-text-content">
+            <p>Спальня</p>
+          </div>
+        </div>
+
+        <div class="cat-img-dark">
+          <%= image_tag 'categorys/garden.jfif', class: "category-img", alt: "Сад" %>
+          <div class="work-text-content">
+            <p>Сад</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="why-we">
+    <h1 id="why-we-title">Чому саме ми?</h1>
+
+    <div class="why-we-grid">
+      <div class="why-we-column">
+        <%= image_tag 'why we/delivery-truck-truck-svgrepo-com.svg', class: "why-we-icon", alt: "Free shipping icon" %>
+
+        <h2 id="why-we-column-title">Безкоштовна доставка</h2>
+
+        <p>Отримайте свої улюблені меблі без додаткових витрат! Ми забезпечуємо безкоштовну доставку для
+          наших клієнтів, щоб зробити ваше шопінг-враження ще приємнішим.</p>
+      </div>
+
+      <div class="why-we-column">
+        <%= image_tag 'why we/credit-card-payment-svgrepo-com.svg', class: "why-we-icon", alt: "Pro support icon" %>
+
+        <h2 id="why-we-column-title">Професійна підтримка клієнтів</h2>
+
+        <p>Наша дружня команда експертів завжди готова вам допомогти. Ми пропонуємо професійну підтримку
+          клієнтів, готову відповісти на всі ваші питання та надати допомогу на кожному етапі покупки.</p>
+      </div>
+
+      <div class="why-we-column">
+        <%= image_tag 'why we/checked-tick-svgrepo-com.svg', class: "why-we-icon", alt: "Quality guarantee icon" %>
+
+        <h2 id="why-we-column-title">Гарантія якості</h2>
+
+        <p>Відчуйте впевненість у своїй покупці! Ми надаємо гарантію якості на всі наші меблі, щоб ви могли
+          насолоджуватися їхньою довговічністю та елегантністю.</p>
+      </div>
+
+      <div class="why-we-column">
+        <%= image_tag 'why we/shopping-cart-shop-svgrepo-com.svg', class: "why-we-icon", alt: "Easy return icon" %>
+
+        <h2 id="why-we-column-title">Легке повернення</h2>
+
+        <p>Якщо вам не сподобалося або є будь-які проблеми, не переймайтеся! Наша система легкого повернення
+          робить процес заміни або повернення товару максимально зручним та безстресовим.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-column">
+      <p>Слідкуйте за нами</p>
+
+      <div class="footer-icons">
+        <a href="https://www.tiktok.com">
+          <%= image_tag 'footer/tiktok-fill-svgrepo-com.svg', class: "footer-icon", alt: "TikTok icon" %>
+        </a>
+
+        <a href="https://www.facebook.com">
+          <%= image_tag 'footer/facebook-fill-svgrepo-com.svg', class: "footer-icon", alt: "Facebook icon" %>
+        </a>
+
+        <a href="https://www.instagram.com">
+          <%= image_tag 'footer/instagram-fill-svgrepo-com.svg', class: "footer-icon", alt: "Instagram icon" %>
+        </a>
+
+        <a href="https://www.youtube.com">
+          <%= image_tag 'footer/youtube-fill-svgrepo-com.svg', class: "footer-icon", alt: "YouTube icon" %>
+        </a>
+      </div>
+
+      <a href="mailto:denis.kimlyk.of@gmail.com">
+        <p>Зв'язатись з нами</p>
+      </a>
+    </div>
+
+    <div class="footer-column">
+      <h2 id="footer-title">FURNITURE ONLIONE STORE</h2>
+    </div>
+
+    <div class="footer-column">
+      <p>Підписатися на розсилку</p>
+      <input type="email" placeholder="Email"/>
+      <button>Відправити</button>
+    </div>
+  </div>
+
+  </div>
+</footer>
+
+</body>
+
+</html>

@@ -1,13 +1,3 @@
-*{
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
 #fos {
     font-size: 30px;
     font-weight: 300;
@@ -69,7 +59,7 @@ body {
     background: url('header/sample-1.jpg');
     background-size: cover;
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 65px);
     position: relative;
     display: flex;
     justify-content: center;
@@ -103,7 +93,6 @@ body {
 }
 
 .about-button {
-    font-family: 'Roboto', sans-serif;
     width: 219px;
     height: 62px;
     border-radius: 30px;
@@ -121,7 +110,6 @@ body {
 }
 
 #category-title {
-    font-family: 'Roboto', sans-serif;
     display: flex;
     font-size: 45px;
     font-weight: 300;
@@ -197,7 +185,6 @@ body {
 }
 
 #why-we-title {
-    font-family: 'Roboto', sans-serif;
     display: flex;
     font-size: 45px;
     font-weight: 700;
@@ -225,7 +212,6 @@ body {
 }
 
 #why-we-column-title {
-    font-family: 'Roboto', sans-serif;
     font-size: 20px;
     font-weight: 500;
     color: black;
@@ -234,7 +220,6 @@ body {
 }
 
 .why-we-column p {
-    font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: 300;
     color: black;
@@ -262,6 +247,7 @@ footer {
     width: 350px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 15px;
 }
 
@@ -277,7 +263,6 @@ footer {
 }
 
 #footer-title, .footer-column p, a {
-    font-family: 'Roboto', sans-serif;
     font-size: 20px;
     font-weight: 300;
     color: black;
@@ -288,17 +273,15 @@ footer {
     font-weight: 500;
 }
 
-input[type=email] {
+.email-field {
     width: 350px;
     height: 30px;
     border: none;
     border-radius: 30px;
     padding: 0 15px;
-    font-family: 'Roboto', sans-serif;
     font-size: 20px;
     font-weight: 100;
     color: #8B8B8B;
-    justify-content: center;
 }
 
 button {
@@ -308,10 +291,25 @@ button {
     border: none;
     border-radius: 30px;
     color: white;
-    font-family: 'Roboto', sans-serif;
     font-size: 20px;
     font-weight: 300;
     align-self: center;
     margin-top: 15px;
     cursor: pointer;
+}
+
+.button_log_out button {
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 30px;
+    padding: 0;
+}
+
+.button_log_out button img {
+    width: 30px;
+    height: 30px;
+    margin: 0;
 }

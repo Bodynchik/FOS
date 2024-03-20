@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_14_190725) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_19_170720) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,8 +26,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_190725) do
 
   create_table "categories", force: :cascade do |t|
     t.string "cat_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "clients", force: :cascade do |t|
@@ -43,10 +41,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_190725) do
   end
 
   create_table "manufactures", force: :cascade do |t|
-    t.string "manufacture_name"
     t.string "manufacture_country"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "ordered_products", force: :cascade do |t|
@@ -107,8 +102,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_190725) do
     t.text "prod_desc"
     t.integer "prod_avail_amount"
     t.decimal "prod_raiting"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["manufacture_id"], name: "index_products_on_manufacture_id"
     t.index ["sub_category_id"], name: "index_products_on_sub_category_id"
   end
@@ -116,9 +109,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_190725) do
   create_table "sub_categories", force: :cascade do |t|
     t.bigint "category_id", null: false
     t.string "subcat_name"
+    t.index ["category_id"], name: "index_sub_categories_on_category_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_sub_categories_on_category_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "carts", "clients"

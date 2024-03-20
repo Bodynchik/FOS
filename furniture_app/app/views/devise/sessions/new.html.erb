@@ -1,0 +1,37 @@
+<body>
+<header>
+  <%= link_to "FOS", root_path, id: "fos" %>
+
+  <div class="icons">
+    <div class="search-container">
+      <input type="search" id="search" placeholder="">
+      <%= image_tag 'header/loupe-search-svgrepo-com.svg', class: "search-icon", alt: "Search Icon" %>
+    </div>
+
+    <a href="#">
+      <%= image_tag 'header/shopping-cart-svgrepo-com.svg', class: "nav-icons", alt: "Cart icon" %>
+    </a>
+
+    <%= link_to new_user_session_path do %>
+      <%= image_tag 'header/user-svgrepo-com.svg', class: "nav-icons", alt: "User Icon" %>
+    <% end %>
+  </div>
+</header>
+
+<div class="background-image">
+  <div class="container-sign">
+    <h2>Вхід</h2>
+
+    <div class="form-container">
+      <%= form_with(model: resource, url: session_path(resource_name)) do |f| %>
+        <div><%= f.email_field :email, placeholder: "Пошта", class: 'input-field' %></div>
+        <div><%= f.password_field :password, placeholder: "Пароль", class: 'input-field' %></div>
+        <div><%= f.submit "Увійти", class: 'btn' %></div>
+      <% end %>
+    </div>
+
+    <p><%= link_to "Зареєструватися", new_user_registration_path, class: "link-registration" %></p>
+  </div>
+</div>
+
+</body>

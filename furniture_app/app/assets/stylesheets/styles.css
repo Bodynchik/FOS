@@ -1,33 +1,28 @@
-#fos {
-    font-size: 30px;
-    font-weight: 300;
-    position: absolute;
-    margin-top: 13px;
-    margin-bottom: 15px;
-    top: 0;
-    left: 30px;
-    text-decoration: none;
-}
-
-.icons {
+.icons-container {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    height: 100%;
-    margin-bottom: 15px;
+    gap: 30px;
+}
+
+.icons-item {
+    flex: 1 1;
+}
+
+#link-logo {
+    font-size: 30px;
+    font-weight: 300;
+    text-decoration: none;
+    color: #000000;
 }
 
 .search-container {
-    margin-right: 30px;
-    margin-top: 15px;
     position: relative;
 }
 
 #search {
     width: 160px;
     height: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 0 10px;
     border: 1.5px solid #000;
     border-radius: 30px;
 }
@@ -51,8 +46,6 @@
 .nav-icons {
     width: 30px;
     height: 30px;
-    margin-right: 30px;
-    margin-top: 15px;
 }
 
 .background-image {
@@ -298,18 +291,22 @@ button {
     cursor: pointer;
 }
 
+.button_log_out {
+    width: 30px;
+    height: 30px;
+}
+
 .button_log_out button {
     width: 30px;
     height: 30px;
     background: none;
     border: none;
     cursor: pointer;
-    margin-right: 30px;
+    margin: 0;
     padding: 0;
 }
 
 .button_log_out button img {
     width: 30px;
     height: 30px;
-    margin: 0;
 }

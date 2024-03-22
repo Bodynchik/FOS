@@ -1,18 +1,20 @@
 <header>
-  <%= link_to "FOS", root_path, id: "fos" %>
 
-  <div class="icons">
+  <div class="icons-container">
+
+    <div class="icons-item"><%= link_to "FOS", root_path, id: "link-logo" %></div>
+
     <div class="search-container">
       <input type="search" id="search" placeholder="">
-      <%= image_tag 'header/loupe-search-svgrepo-com.svg', class: "search-icon", alt: "Search Icon" %>
+      <%= image_tag "header/loupe-search-svgrepo-com.svg", class: "search-icon", alt: "Search Icon" %>
     </div>
 
-    <a href="#">
-      <%= image_tag 'header/shopping-cart-svgrepo-com.svg', class: "nav-icons", alt: "Cart icon" %>
+    <a href="#" class="nav-icons">
+      <%= image_tag "header/shopping-cart-svgrepo-com.svg", class: "nav-icons", alt: "Cart icon" %>
     </a>
 
-    <%= link_to new_user_registration_path do %>
-      <%= image_tag 'header/user-svgrepo-com.svg', class: "nav-icons", alt: "User Icon" %>
+    <%= link_to new_user_registration_path, class: "nav-icons" do %>
+      <%= image_tag "header/user-svgrepo-com.svg", class: "nav-icons", alt: "User Icon" %>
     <% end %>
   </div>
 </header>

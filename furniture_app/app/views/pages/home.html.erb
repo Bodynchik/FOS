@@ -1,28 +1,28 @@
 <header>
 
-  <%= link_to "FOS", root_path, id: "fos" %>
+  <div class="icons-container">
 
-  <div class="icons">
+    <div class="icons-item"><%= link_to "FOS", root_path, id: "link-logo" %></div>
 
-  <div class="search-container">
-    <input type="search" id="search" placeholder="">
-    <%= image_tag 'header/loupe-search-svgrepo-com.svg', class: "search-icon", alt: "Search Icon" %>
-  </div>
+    <div class="search-container">
+      <input type="search" id="search" placeholder="">
+      <%= image_tag "header/loupe-search-svgrepo-com.svg", class: "search-icon", alt: "Search Icon" %>
+    </div>
 
-  <a href="#">
-    <%= image_tag 'header/shopping-cart-svgrepo-com.svg', class: "nav-icons", alt: "Cart icon" %>
-  </a>
+    <a href="#" class="nav-icons">
+      <%= image_tag "header/shopping-cart-svgrepo-com.svg", class: "nav-icons", alt: "Cart icon" %>
+    </a>
 
-  <% if user_signed_in? %>
+    <% if user_signed_in? %>
       <%= button_to destroy_user_session_path, method: :delete, form_class: "button_log_out" do %>
-        <%= image_tag 'header/logout.svg', class: "nav-icons", alt: "Log Out Icon" %>
+        <%= image_tag "header/logout.svg", class: "nav-icons", alt: "Log Out Icon" %>
       <% end %>
 
-  <% else %>
-      <%= link_to new_user_session_path do %>
-        <%= image_tag 'header/user-svgrepo-com.svg', class: "nav-icons", alt: "User Icon" %>
+    <% else %>
+      <%= link_to new_user_session_path, class: "nav-icons" do %>
+        <%= image_tag "header/user-svgrepo-com.svg", class: "nav-icons", alt: "User Icon" %>
       <% end %>
-  <% end %>
+    <% end %>
 
   </div>
 
@@ -46,14 +46,14 @@
       <div class="category-column">
 
         <div class="cat-img-dark">
-          <%= image_tag 'categorys/livingroom.jfif', class: "category-img", alt: "Вітальня" %>
+          <%= image_tag "categorys/livingroom.jfif", class: "category-img", alt: "Вітальня" %>
           <div class="work-text-content">
             <p>Вітальня</p>
           </div>
         </div>
 
         <div class="cat-img-dark">
-          <%= image_tag 'categorys/workplace.jfif', class: "category-img", alt: "Робоча зона" %>
+          <%= image_tag "categorys/workplace.jfif", class: "category-img", alt: "Робоча зона" %>
           <div class="work-text-content">
             <p>Робоча зона</p>
           </div>
@@ -63,14 +63,14 @@
       <div class="category-column">
 
         <div class="cat-img-dark">
-          <%= image_tag 'categorys/kitchen.jfif', class: "category-img", alt: "Кухня" %>
+          <%= image_tag "categorys/kitchen.jfif", class: "category-img", alt: "Кухня" %>
           <div class="work-text-content">
             <p>Кухня</p>
           </div>
         </div>
 
         <div class="cat-img-dark">
-          <%= image_tag 'categorys/storage.jfif', class: "category-img", alt: "Зберігання" %>
+          <%= image_tag "categorys/storage.jfif", class: "category-img", alt: "Зберігання" %>
           <div class="work-text-content">
             <p>Зберігання</p>
           </div>
@@ -80,14 +80,14 @@
       <div class="category-column">
 
         <div class="cat-img-dark">
-          <%= image_tag 'categorys/bedroom.jfif', class: "category-img", alt: "Спальня" %>
+          <%= image_tag "categorys/bedroom.jfif", class: "category-img", alt: "Спальня" %>
           <div class="work-text-content">
             <p>Спальня</p>
           </div>
         </div>
 
         <div class="cat-img-dark">
-          <%= image_tag 'categorys/garden.jfif', class: "category-img", alt: "Сад" %>
+          <%= image_tag "categorys/garden.jfif", class: "category-img", alt: "Сад" %>
           <div class="work-text-content">
             <p>Сад</p>
           </div>
@@ -102,7 +102,7 @@
 
     <div class="why-we-grid">
       <div class="why-we-column">
-        <%= image_tag 'why we/delivery-truck-truck-svgrepo-com.svg', class: "why-we-icon", alt: "Free shipping icon" %>
+        <%= image_tag "why we/delivery-truck-truck-svgrepo-com.svg", class: "why-we-icon", alt: "Free shipping icon" %>
 
         <h2 id="why-we-column-title">Безкоштовна доставка</h2>
 
@@ -111,7 +111,7 @@
       </div>
 
       <div class="why-we-column">
-        <%= image_tag 'why we/credit-card-payment-svgrepo-com.svg', class: "why-we-icon", alt: "Pro support icon" %>
+        <%= image_tag "why we/credit-card-payment-svgrepo-com.svg", class: "why-we-icon", alt: "Pro support icon" %>
 
         <h2 id="why-we-column-title">Професійна підтримка клієнтів</h2>
 
@@ -120,7 +120,7 @@
       </div>
 
       <div class="why-we-column">
-        <%= image_tag 'why we/checked-tick-svgrepo-com.svg', class: "why-we-icon", alt: "Quality guarantee icon" %>
+        <%= image_tag "why we/checked-tick-svgrepo-com.svg", class: "why-we-icon", alt: "Quality guarantee icon" %>
 
         <h2 id="why-we-column-title">Гарантія якості</h2>
 
@@ -129,7 +129,7 @@
       </div>
 
       <div class="why-we-column">
-        <%= image_tag 'why we/shopping-cart-shop-svgrepo-com.svg', class: "why-we-icon", alt: "Easy return icon" %>
+        <%= image_tag "why we/shopping-cart-shop-svgrepo-com.svg", class: "why-we-icon", alt: "Easy return icon" %>
 
         <h2 id="why-we-column-title">Легке повернення</h2>
 
@@ -148,19 +148,19 @@
 
       <div class="footer-icons">
         <a href="https://www.tiktok.com">
-          <%= image_tag 'footer/tiktok-fill-svgrepo-com.svg', class: "footer-icon", alt: "TikTok icon" %>
+          <%= image_tag "footer/tiktok-fill-svgrepo-com.svg", class: "footer-icon", alt: "TikTok icon" %>
         </a>
 
         <a href="https://www.facebook.com">
-          <%= image_tag 'footer/facebook-fill-svgrepo-com.svg', class: "footer-icon", alt: "Facebook icon" %>
+          <%= image_tag "footer/facebook-fill-svgrepo-com.svg", class: "footer-icon", alt: "Facebook icon" %>
         </a>
 
         <a href="https://www.instagram.com">
-          <%= image_tag 'footer/instagram-fill-svgrepo-com.svg', class: "footer-icon", alt: "Instagram icon" %>
+          <%= image_tag "footer/instagram-fill-svgrepo-com.svg", class: "footer-icon", alt: "Instagram icon" %>
         </a>
 
         <a href="https://www.youtube.com">
-          <%= image_tag 'footer/youtube-fill-svgrepo-com.svg', class: "footer-icon", alt: "YouTube icon" %>
+          <%= image_tag "footer/youtube-fill-svgrepo-com.svg", class: "footer-icon", alt: "YouTube icon" %>
         </a>
       </div>
 

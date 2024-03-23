@@ -1,21 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>FOS</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>FOS</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet">
-    <%= stylesheet_link_tag "application" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_importmap_tags %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+
+<header>
+  <div class="icons-container">
+
+    <div class="icons-item"><%= link_to "FOS", root_path, id: "link-logo" %></div>
+
+    <div class="search-container">
+      <input type="search" id="search" placeholder="">
+      <%= image_tag "header/loupe-search-svgrepo-com.svg", class: "search-icon", alt: "Search Icon" %>
+    </div>
+
+    <a href="#" class="nav-icons">
+      <%= image_tag "header/shopping-cart-svgrepo-com.svg", class: "nav-icons", alt: "Cart icon" %>
+    </a>
+
+    <% if user_signed_in? %>
+      <a href="/new" class="nav-icons">
+        <%= image_tag "header/profile.svg", class: "nav-icons", alt: "Profile" %>
+      </a>
+
+      <%= button_to destroy_user_session_path, method: :delete, form_class: "button_log_out" do %>
+        <%= image_tag "header/logout.svg", class: "nav-icons", alt: "Log Out Icon" %>
+      <% end %>
+
+    <% else %>
+      <%= link_to new_user_session_path, class: "nav-icons" do %>
+        <%= image_tag "header/user-svgrepo-com.svg", class: "nav-icons", alt: "User Icon" %>
+      <% end %>
+    <% end %>
+
+  </div>
+</header>
+
+<%= yield %>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-column">
+
+      <p>Слідкуйте за нами</p>
+
+      <div class="footer-icons">
+        <a href="https://www.tiktok.com">
+          <%= image_tag "footer/tiktok-fill-svgrepo-com.svg", class: "footer-icon", alt: "TikTok icon" %>
+        </a>
+
+        <a href="https://www.facebook.com">
+          <%= image_tag "footer/facebook-fill-svgrepo-com.svg", class: "footer-icon", alt: "Facebook icon" %>
+        </a>
+
+        <a href="https://www.instagram.com">
+          <%= image_tag "footer/instagram-fill-svgrepo-com.svg", class: "footer-icon", alt: "Instagram icon" %>
+        </a>
+
+        <a href="https://www.youtube.com">
+          <%= image_tag "footer/youtube-fill-svgrepo-com.svg", class: "footer-icon", alt: "YouTube icon" %>
+        </a>
+      </div>
+
+      <a href="mailto:denis.kimlyk.of@gmail.com">
+        <p>Зв'язатись з нами</p>
+      </a>
+    </div>
+
+    <div class="footer-column">
+      <h2 id="footer-title">FURNITURE ONLIONE STORE</h2>
+    </div>
+
+    <div class="footer-column">
+      <p>Підписатися на розсилку</p>
+      <input type="email" placeholder="Email" class="email-field"/>
+      <button>Відправити</button>
+    </div>
+
+  </div>
+</footer>
+
+</body>
 </html>

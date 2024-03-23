@@ -1,33 +1,3 @@
-<header>
-
-  <div class="icons-container">
-
-    <div class="icons-item"><%= link_to "FOS", root_path, id: "link-logo" %></div>
-
-    <div class="search-container">
-      <input type="search" id="search" placeholder="">
-      <%= image_tag "header/loupe-search-svgrepo-com.svg", class: "search-icon", alt: "Search Icon" %>
-    </div>
-
-    <a href="#" class="nav-icons">
-      <%= image_tag "header/shopping-cart-svgrepo-com.svg", class: "nav-icons", alt: "Cart icon" %>
-    </a>
-
-    <% if user_signed_in? %>
-      <%= button_to destroy_user_session_path, method: :delete, form_class: "button_log_out" do %>
-        <%= image_tag "header/logout.svg", class: "nav-icons", alt: "Log Out Icon" %>
-      <% end %>
-
-    <% else %>
-      <%= link_to new_user_session_path, class: "nav-icons" do %>
-        <%= image_tag "header/user-svgrepo-com.svg", class: "nav-icons", alt: "User Icon" %>
-      <% end %>
-    <% end %>
-
-  </div>
-
-</header>
-
 <main>
 
   <section id="about-us">
@@ -140,44 +110,3 @@
   </section>
 
 </main>
-
-<footer>
-  <div class="footer-grid">
-    <div class="footer-column">
-      <p>Слідкуйте за нами</p>
-
-      <div class="footer-icons">
-        <a href="https://www.tiktok.com">
-          <%= image_tag "footer/tiktok-fill-svgrepo-com.svg", class: "footer-icon", alt: "TikTok icon" %>
-        </a>
-
-        <a href="https://www.facebook.com">
-          <%= image_tag "footer/facebook-fill-svgrepo-com.svg", class: "footer-icon", alt: "Facebook icon" %>
-        </a>
-
-        <a href="https://www.instagram.com">
-          <%= image_tag "footer/instagram-fill-svgrepo-com.svg", class: "footer-icon", alt: "Instagram icon" %>
-        </a>
-
-        <a href="https://www.youtube.com">
-          <%= image_tag "footer/youtube-fill-svgrepo-com.svg", class: "footer-icon", alt: "YouTube icon" %>
-        </a>
-      </div>
-
-      <a href="mailto:denis.kimlyk.of@gmail.com">
-        <p>Зв'язатись з нами</p>
-      </a>
-    </div>
-
-    <div class="footer-column">
-      <h2 id="footer-title">FURNITURE ONLIONE STORE</h2>
-    </div>
-
-    <div class="footer-column">
-      <p>Підписатися на розсилку</p>
-      <input type="email" placeholder="Email" class="email-field"/>
-      <button>Відправити</button>
-    </div>
-  </div>
-
-</footer>

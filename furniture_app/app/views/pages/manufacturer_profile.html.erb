@@ -1,0 +1,171 @@
+<main class="main-container">
+
+  <section id="category">
+
+      <div class="personal-data-cat">
+        <div class="icon-cat">
+          <%= image_tag "header/user-svgrepo-com.svg", class: "icon-cat-user", alt: "Profile icon" %>
+        </div>
+
+        <div class="text-cat">
+          <p id="user-first-last-name">Manufacturer Name</p>
+          <p id="user-email">manufacturer@karazina.ua</p>
+        </div>
+      </div>
+
+      <div class="item-cat" id="first-cat">
+        <h1 class="item-cat-title">Додати товари</h1>
+      </div>
+
+      <div class="item-cat">
+        <h1 class="item-cat-title">Видалити товари</h1>
+      </div>
+
+      <div class="item-cat" id="last-cat">
+        <h1 class="item-cat-title">Переглянути товари</h1>
+      </div>
+  </section>
+
+  <section id="category-data">
+    <div class="personal-data">
+
+      <h1 class="personal-data-header">Особиста інформація</h1>
+      
+      <div class="personal-data-full-name-grid">
+        <div class="full-name-column">
+          <p class="personal-data-column-title">Прізвище</p>
+          <input type="text" placeholder="Прізвище" class="personal-data-field" />
+        </div>
+
+        <div class="full-name-column">
+          <p class="personal-data-column-title">Ім'я</p>
+          <input type="text" placeholder="Ім'я" class="personal-data-field" />
+        </div>
+
+        <div class="full-name-column">
+          <p class="personal-data-column-title">По батькові</p>
+          <input type="text" placeholder="По батькові" class="personal-data-field" />
+        </div>
+      </div>
+
+      <div class="contact-data-grid">
+        <div class="contact-data-column">
+          <p class="personal-data-column-title">Назва виробника</p>
+          <input type="text" placeholder="Назва виробника" class="contact-data-field" />
+        </div>
+
+        <div class="contact-data-column">
+          <p class="personal-data-column-title">Номер телефону</p>
+          <input type="text" placeholder="Номер телефону" class="contact-data-field" />
+        </div>
+
+        <div class="contact-data-column">
+          <p class="personal-data-column-title">Email</p>
+          <input type="text" placeholder="Email" class="contact-data-field" />
+        </div>
+      </div>
+
+      <button class="change-data-button">Редагувати</button>
+
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const editButton = document.querySelector('.change-data-button');
+        const personalDataFields = document.querySelectorAll('.personal-data-field');
+        const contactDataFields = document.querySelectorAll('.contact-data-field');
+        const saveButton = document.createElement('button');
+        const cancelButton = document.createElement('button');
+        let isEditing = false;
+
+        // Функція для зміни стану полів вводу на активний або неактивний
+        function toggleFieldsActivity(fields) {
+            fields.forEach(field => {
+                field.disabled = !field.disabled;
+            });
+        }
+
+        // Закриття полів вводу за замовчуванням
+        toggleFieldsActivity(personalDataFields);
+        toggleFieldsActivity(contactDataFields);
+
+        // Функція для створення кнопок "Зберегти" та "Скасувати"
+        function createButtons() {
+            saveButton.textContent = 'Зберегти';
+            saveButton.classList.add('save-data-button', 'disabled-button');
+            cancelButton.textContent = 'Скасувати';
+            cancelButton.classList.add('cancel-button');
+            editButton.insertAdjacentElement('afterend', saveButton);
+            saveButton.insertAdjacentElement('afterend', cancelButton);
+
+            // Обробники подій для кнопок
+            saveButton.addEventListener('click', saveData);
+            cancelButton.addEventListener('click', cancelEditing);
+        }
+
+        // Функція для відміни редагування
+        function cancelEditing() {
+            toggleFieldsActivity(personalDataFields);
+            toggleFieldsActivity(contactDataFields);
+            saveButton.remove();
+            cancelButton.remove();
+            editButton.textContent = 'Редагувати';
+            isEditing = false;
+        }
+
+        // Функція для збереження даних
+        function saveData() {
+            personalDataFields.forEach(field => {
+                field.dataset.value = field.value;
+            });
+            contactDataFields.forEach(field => {
+                field.dataset.value = field.value;
+            });
+            cancelEditing();
+        }
+
+        // Функція для перевірки стану полів та активації кнопки "Зберегти"
+        function checkFields() {
+            let isFieldsFilled = false;
+            personalDataFields.forEach(field => {
+                if (field.value.trim() !== '') {
+                    isFieldsFilled = true;
+                }
+            });
+            contactDataFields.forEach(field => {
+                if (field.value.trim() !== '') {
+                    isFieldsFilled = true;
+                }
+            });
+            saveButton.disabled = !isFieldsFilled;
+            if (isFieldsFilled) {
+                saveButton.classList.remove('disabled-button');
+            } else {
+                saveButton.classList.add('disabled-button');
+            }
+        }
+
+        // Обробник події натискання на кнопку "Редагувати"
+        editButton.addEventListener('click', function() {
+            if (!isEditing) {
+                toggleFieldsActivity(personalDataFields);
+                toggleFieldsActivity(contactDataFields);
+                createButtons();
+                editButton.textContent = '';
+                isEditing = true;
+            }
+        });
+
+        // Обробники подій для полів вводу
+        personalDataFields.forEach(field => {
+            field.addEventListener('input', checkFields);
+        });
+        contactDataFields.forEach(field => {
+            field.addEventListener('input', checkFields);
+        });
+    });
+</script>

@@ -52,7 +52,7 @@
     background: url('header/sample-1.jpg');
     background-size: cover;
     width: 100%;
-    height: calc(100vh - 65px);
+    height: calc(100vh - 67px);
     position: relative;
     display: flex;
     justify-content: center;

@@ -13,15 +13,15 @@
         </div>
       </div>
 
-      <div class="item-cat" id="first-cat">
+      <div class="item-cat" id="add-item-cat">
         <h1 class="item-cat-title">Додати товари</h1>
       </div>
 
-      <div class="item-cat">
+      <div class="item-cat" id="remove-item-cat">
         <h1 class="item-cat-title">Видалити товари</h1>
       </div>
 
-      <div class="item-cat" id="last-cat">
+      <div class="item-cat" id="item-list-cat">
         <h1 class="item-cat-title">Переглянути товари</h1>
       </div>
   </section>
@@ -34,38 +34,50 @@
       <div class="personal-data-full-name-grid">
         <div class="full-name-column">
           <p class="personal-data-column-title">Прізвище</p>
-          <input type="text" placeholder="Прізвище" class="personal-data-field" />
+          <p class="personal-data-field">Прізвище</p>
         </div>
 
         <div class="full-name-column">
           <p class="personal-data-column-title">Ім'я</p>
-          <input type="text" placeholder="Ім'я" class="personal-data-field" />
+          <p class="personal-data-field">Ім'я</p>
         </div>
 
         <div class="full-name-column">
           <p class="personal-data-column-title">По батькові</p>
-          <input type="text" placeholder="По батькові" class="personal-data-field" />
+          <p class="personal-data-field">По батькові</p>
         </div>
       </div>
 
       <div class="contact-data-grid">
         <div class="contact-data-column">
           <p class="personal-data-column-title">Назва виробника</p>
-          <input type="text" placeholder="Назва виробника" class="contact-data-field" />
+          <p class="contact-data-field">Назва виробника</p>
         </div>
 
         <div class="contact-data-column">
           <p class="personal-data-column-title">Номер телефону</p>
-          <input type="text" placeholder="Номер телефону" class="contact-data-field" />
+          <p class="contact-data-field">Номер телефону</p>
         </div>
 
         <div class="contact-data-column">
           <p class="personal-data-column-title">Email</p>
-          <input type="text" placeholder="Email" class="contact-data-field" />
+          <p class="contact-data-field">Email</p>
         </div>
       </div>
 
       <button class="change-data-button">Редагувати</button>
+
+    </div>
+
+    <div class="add-item">
+
+    </div>
+
+    <div class="remove-item">
+
+    </div>
+
+    <div class="item-list">
 
     </div>
 
@@ -75,92 +87,200 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+
+        // Категорії
+        const personalDataCat = document.querySelector('.personal-data-cat');
+        const addItemCat = document.querySelector('#add-item-cat');
+        const removeItemCat = document.querySelector('#remove-item-cat');
+        const itemListCat = document.querySelector('#item-list-cat');
+
+        // Блоки даних
+        const personalData = document.querySelector('.personal-data');
+        const addItem = document.querySelector('.add-item');
+        const removeItem = document.querySelector('.remove-item');
+        const itemList = document.querySelector('.item-list');
+
+        // Обробники подій для категорій
+
+        // При кліку на категорію "Особиста інформація"
+        personalDataCat.addEventListener('click', function() {
+            // Приховати всі блоки даних крім personalData
+            personalData.style.display = 'block';
+            addItem.style.display = 'none';
+            removeItem.style.display = 'none';
+            itemList.style.display = 'none';
+        });
+
+        // При кліку на категорію "Додати товари"
+        addItemCat.addEventListener('click', function() {
+            // Приховати всі блоки даних крім addItem
+            personalData.style.display = 'none';
+            addItem.style.display = 'block';
+            removeItem.style.display = 'none';
+            itemList.style.display = 'none';
+        });
+
+        // При кліку на категорію "Видалити товари"
+        removeItemCat.addEventListener('click', function() {
+            // Приховати всі блоки даних крім removeItem
+            personalData.style.display = 'none';
+            addItem.style.display = 'none';
+            removeItem.style.display = 'block';
+            itemList.style.display = 'none';
+        });
+
+        // При кліку на категорію "Переглянути товари"
+        itemListCat.addEventListener('click', function() {
+            // Приховати всі блоки даних крім itemList
+            personalData.style.display = 'none';
+            addItem.style.display = 'none';
+            removeItem.style.display = 'none';
+            itemList.style.display = 'block';
+        });
+
+        // Логіка редагування даних
+
         const editButton = document.querySelector('.change-data-button');
         const personalDataFields = document.querySelectorAll('.personal-data-field');
         const contactDataFields = document.querySelectorAll('.contact-data-field');
-        const saveButton = document.createElement('button');
-        const cancelButton = document.createElement('button');
         let isEditing = false;
 
-        // Функція для зміни стану полів вводу на активний або неактивний
-        function toggleFieldsActivity(fields) {
+        // Функція, що змінює активність полів редагування
+        function toggleFieldsActivity(fields, isEditable) {
             fields.forEach(field => {
-                field.disabled = !field.disabled;
+                if (field.tagName === 'INPUT') {
+                    field.disabled = !isEditable;
+                } else {
+                    field.contentEditable = isEditable;
+                    if (isEditable) {
+                        field.textContent = field.dataset.value || '';
+                    } else {
+                        field.dataset.value = field.textContent;
+                    }
+                }
             });
         }
 
-        // Закриття полів вводу за замовчуванням
-        toggleFieldsActivity(personalDataFields);
-        toggleFieldsActivity(contactDataFields);
+        // Вимкнення редагування для всіх полів при завантаженні сторінки
+        toggleFieldsActivity(personalDataFields, false);
+        toggleFieldsActivity(contactDataFields, false);
 
-        // Функція для створення кнопок "Зберегти" та "Скасувати"
+        // Створення кнопок "Зберегти" та "Скасувати"
         function createButtons() {
+
+            const saveButton = document.createElement('button');
+            const cancelButton = document.createElement('button');
+
             saveButton.textContent = 'Зберегти';
-            saveButton.classList.add('save-data-button', 'disabled-button');
+            saveButton.classList.add('save-data-button');
+
             cancelButton.textContent = 'Скасувати';
             cancelButton.classList.add('cancel-button');
+
+            editButton.style.display = 'none'; // Приховуємо кнопку "Редагувати"
+
+            // Додаємо кнопки "Зберегти" та "Скасувати"
             editButton.insertAdjacentElement('afterend', saveButton);
             saveButton.insertAdjacentElement('afterend', cancelButton);
 
             // Обробники подій для кнопок
             saveButton.addEventListener('click', saveData);
             cancelButton.addEventListener('click', cancelEditing);
+
+            // Додаємо клас editable до полів, щоб застосувати стилі для активного редагування
+            personalDataFields.forEach(field => field.classList.add('editable'));
+            contactDataFields.forEach(field => field.classList.add('editable'));
         }
 
-        // Функція для відміни редагування
+        // Функція скасування редагування
         function cancelEditing() {
-            toggleFieldsActivity(personalDataFields);
-            toggleFieldsActivity(contactDataFields);
+            const saveButton = document.querySelector('.save-data-button');
+            const cancelButton = document.querySelector('.cancel-button');
+
+            // Повертаємо попередні значення полів
+            personalDataFields.forEach(field => {
+                if (field.tagName === 'INPUT') {
+                    field.value = field.dataset.value || '';
+                } else {
+                    field.textContent = field.dataset.value || '';
+                }
+            });
+
+            contactDataFields.forEach(field => {
+                if (field.tagName === 'INPUT') {
+                    field.value = field.dataset.value || '';
+                } else {
+                    field.textContent = field.dataset.value || '';
+                }
+            });
+
+            toggleFieldsActivity(personalDataFields, false);
+            toggleFieldsActivity(contactDataFields, false);
+
+            // Видаляємо кнопки "Зберегти" та "Скасувати"
             saveButton.remove();
             cancelButton.remove();
+
+            // Показуємо кнопку "Редагувати" та змінюємо текст на неї
+            editButton.style.display = 'inline-block'; // Показуємо кнопку "Редагувати"
             editButton.textContent = 'Редагувати';
             isEditing = false;
+
+            // Видаляємо клас для стилізації полів
+            personalDataFields.forEach(field => field.classList.remove('editable'));
+            contactDataFields.forEach(field => field.classList.remove('editable'));
         }
 
-        // Функція для збереження даних
+        // Функція збереження даних
         function saveData() {
             personalDataFields.forEach(field => {
-                field.dataset.value = field.value;
+                if (field.tagName === 'INPUT') {
+                    field.dataset.value = field.value;
+                } else {
+                    field.dataset.value = field.textContent;
+                }
             });
             contactDataFields.forEach(field => {
-                field.dataset.value = field.value;
+                if (field.tagName === 'INPUT') {
+                    field.dataset.value = field.value;
+                } else {
+                    field.dataset.value = field.textContent;
+                }
             });
             cancelEditing();
         }
 
-        // Функція для перевірки стану полів та активації кнопки "Зберегти"
+        // Функція перевірки заповнення всіх полів перед активацією кнопки "Зберегти"
         function checkFields() {
             let isFieldsFilled = false;
             personalDataFields.forEach(field => {
-                if (field.value.trim() !== '') {
+                if (field.textContent.trim() !== '') {
                     isFieldsFilled = true;
                 }
             });
             contactDataFields.forEach(field => {
-                if (field.value.trim() !== '') {
+                if (field.textContent.trim() !== '') {
                     isFieldsFilled = true;
                 }
             });
+            const saveButton = document.querySelector('.save-data-button');
             saveButton.disabled = !isFieldsFilled;
-            if (isFieldsFilled) {
-                saveButton.classList.remove('disabled-button');
-            } else {
-                saveButton.classList.add('disabled-button');
-            }
         }
 
-        // Обробник події натискання на кнопку "Редагувати"
+        // Додаємо обробники подій для кнопки "Редагувати"
         editButton.addEventListener('click', function() {
             if (!isEditing) {
-                toggleFieldsActivity(personalDataFields);
-                toggleFieldsActivity(contactDataFields);
+                toggleFieldsActivity(personalDataFields, true);
+                toggleFieldsActivity(contactDataFields, true);
+
                 createButtons();
+
                 editButton.textContent = '';
                 isEditing = true;
             }
         });
 
-        // Обробники подій для полів вводу
+        // Додаємо обробники подій для всіх полів вводу
         personalDataFields.forEach(field => {
             field.addEventListener('input', checkFields);
         });

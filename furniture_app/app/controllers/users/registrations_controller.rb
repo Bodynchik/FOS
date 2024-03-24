@@ -3,6 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
+  before_action :check_info_users, only: [:create]
 
   # GET /resource/sign_up
   # def new
@@ -37,6 +38,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
+
+  private
+
+  def check_info_users
+    email = params[:user][:email]
+    if User.exists?(email: email)
+      redirect_to new_user_registration_path, alert: 'Цей email вже зареєстрований'
+    else
+      redirect_to new_user_registration_path, alert: 'Цей номер телефону вже зареєстрований'
+    end
+  end
 
   protected
 

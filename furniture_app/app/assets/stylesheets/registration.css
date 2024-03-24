@@ -5,7 +5,6 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     z-index: 2;
     text-align: center;
@@ -60,4 +59,16 @@
 
 .link-registration:hover {
     color: #ff7878;
+}
+
+.flash {
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.alert {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
 }

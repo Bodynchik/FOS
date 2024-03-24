@@ -8,8 +8,8 @@
         </div>
 
         <div class="text-cat">
-          <p id="user-first-last-name">Manufacturer Name</p>
-          <p id="user-email">manufacturer@karazina.ua</p>
+          <p id="user-first-last-name"><%= current_manufacturer.title_manufacturer %></p>
+          <p id="user-email"><%= current_manufacturer.email %></p>
         </div>
       </div>
 
@@ -34,34 +34,34 @@
       <div class="personal-data-full-name-grid">
         <div class="full-name-column">
           <p class="personal-data-column-title">Прізвище</p>
-          <p class="personal-data-field">Прізвище</p>
+          <p class="personal-data-field"><%= current_manufacturer.person_last_name %></p>
         </div>
 
         <div class="full-name-column">
           <p class="personal-data-column-title">Ім'я</p>
-          <p class="personal-data-field">Ім'я</p>
+          <p class="personal-data-field"><%= current_manufacturer.person_name %></p>
         </div>
 
         <div class="full-name-column">
           <p class="personal-data-column-title">По батькові</p>
-          <p class="personal-data-field">По батькові</p>
+          <p class="personal-data-field"><%= current_manufacturer.person_middle_name %></p>
         </div>
       </div>
 
       <div class="contact-data-grid">
         <div class="contact-data-column">
           <p class="personal-data-column-title">Назва виробника</p>
-          <p class="contact-data-field">Назва виробника</p>
+          <p class="contact-data-field"><%= current_manufacturer.title_manufacturer %></p>
         </div>
 
         <div class="contact-data-column">
           <p class="personal-data-column-title">Номер телефону</p>
-          <p class="contact-data-field">Номер телефону</p>
+          <p class="contact-data-field"><%= current_manufacturer.phone_number %></p>
         </div>
 
         <div class="contact-data-column">
           <p class="personal-data-column-title">Email</p>
-          <p class="contact-data-field">Email</p>
+          <p class="contact-data-field"><%= current_manufacturer.email %></p>
         </div>
       </div>
 

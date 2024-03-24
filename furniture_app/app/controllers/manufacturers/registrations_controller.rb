@@ -51,11 +51,12 @@ class Manufacturers::RegistrationsController < Devise::RegistrationsController
   def check_info_manufacturers
     email = params[:manufacturer][:email]
     title_manufacturer = params[:manufacturer][:title_manufacturer]
+    phone_number = params[:manufacturer][:phone_number]
     if Manufacturer.exists?(email: email)
       redirect_to new_manufacturer_registration_path, alert: 'Цей email вже зареєстрований'
     elsif Manufacturer.exists?(title_manufacturer: title_manufacturer)
       redirect_to new_manufacturer_registration_path, alert: 'Ця назва вже зареєстрована'
-    else
+    elsif Manufacturer.exists?(phone_number: phone_number)
       redirect_to new_manufacturer_registration_path, alert: 'Цей номер телефону вже зареєстрований'
     end
   end

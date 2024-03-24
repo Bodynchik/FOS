@@ -32,6 +32,14 @@ gem "open-uri"
 
 gem "devise"
 
+group :development do
+  gem 'letter_opener'
+end
+
+
+gem 'letter_opener_web'
+
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 

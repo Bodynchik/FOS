@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_22_182551) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_23_164104) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_182551) do
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "manufacturers", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "person_name", default: "", null: false
+    t.string "person_last_name", default: "", null: false
+    t.string "person_middle_name"
+    t.string "title_manufacturer", default: "", null: false
+    t.string "phone_number", default: "", null: false
+    t.index ["email"], name: "index_manufacturers_on_email", unique: true
+    t.index ["phone_number"], name: "index_manufacturers_on_phone_number", unique: true
+    t.index ["reset_password_token"], name: "index_manufacturers_on_reset_password_token", unique: true
+    t.index ["title_manufacturer"], name: "index_manufacturers_on_title_manufacturer", unique: true
   end
 
   create_table "manufactures", force: :cascade do |t|

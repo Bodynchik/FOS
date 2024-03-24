@@ -10,6 +10,10 @@
       <% end %>
     </div>
 
-    <p><%= link_to "Зареєструватися", new_user_registration_path, class: "link-registration" %></p>
+    <div class="container-sign-item-link">
+      <p><%= link_to "Зареєструватися", new_manufacturer_registration_path, class: "link-registration" %></p>
+      <p><%= link_to "Я користувач", new_user_session_path, class: "link-registration" %></p>
+    </div>
+
   </div>
 </div>

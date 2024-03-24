@@ -32,11 +32,20 @@
     </a>
 
     <% if user_signed_in? %>
-      <a href="/new" class="nav-icons">
+      <a href="/users/profiles" class="nav-icons">
         <%= image_tag "header/profile.svg", class: "nav-icons", alt: "Profile" %>
       </a>
 
       <%= button_to destroy_user_session_path, method: :delete, form_class: "button_log_out" do %>
+        <%= image_tag "header/logout.svg", class: "nav-icons", alt: "Log Out Icon" %>
+      <% end %>
+
+    <% elsif manufacturer_signed_in? %>
+      <a href="#" class="nav-icons">
+        <%= image_tag "header/profile.svg", class: "nav-icons", alt: "Profile" %>
+      </a>
+
+      <%= button_to destroy_manufacturer_session_path, method: :delete, form_class: "button_log_out" do %>
         <%= image_tag "header/logout.svg", class: "nav-icons", alt: "Log Out Icon" %>
       <% end %>
 

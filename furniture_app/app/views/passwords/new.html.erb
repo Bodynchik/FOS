@@ -1,0 +1,18 @@
+<div class="background-image">
+    <div class="container-sign">
+        <h2>Вхід</h2>
+
+        <div class="form-container">
+            <%= form_with(model: resource, url: password_path(resource_name)) do |f| %>
+                <div><%= f.email_field :email, placeholder: "Пошта", class: 'input-field' %></div>
+                <div><%= f.submit "Збросити пароль", class: 'btn' %></div>
+            <% end %>
+        </div>
+
+        <div class="container-sign-item-link">
+            <p><%= link_to "Зареєструватися", new_user_registration_path, class: "link-registration" %></p>
+            <p><%= link_to "Увійти", new_user_session_path, class: "link-registration" %></p>
+        </div>
+
+    </div>
+</div>

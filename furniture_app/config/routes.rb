@@ -5,13 +5,15 @@ Rails.application.routes.draw do
   #Шлях до реєстрації користувача
   devise_for :users, controllers: {
     sessions: 'users/sessions',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    passwords: 'users/passwords'
   }
 
   #Шлях до реєстрації виробника
   devise_for :manufacturers, controllers: {
     sessions: 'manufacturers/sessions',
-    registrations: 'manufacturers/registrations'
+    registrations: 'manufacturers/registrations',
+    passwords: 'users/passwords'
   }
 
   get 'pages/home'
@@ -37,6 +39,7 @@ Rails.application.routes.draw do
   namespace :manufacturers do
     get '/profiles', to: 'profiles#show'
   end
+
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

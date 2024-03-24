@@ -1,0 +1,2 @@
+module Manufacturers::ProfileHelper
+end

@@ -2,53 +2,51 @@
 
   <section id="category">
 
-      <div class="personal-data-cat">
-        <div class="icon-cat">
-          <%= image_tag "header/user-svgrepo-com.svg", class: "icon-cat-user", alt: "Profile icon" %>
-        </div>
-
-        <div class="text-cat">
-          <p id="user-first-last-name"><%= current_manufacturer.title_manufacturer %></p>
-          <p id="user-email"><%= current_manufacturer.email %></p>
-        </div>
+    <div class="personal-data-cat">
+      <div class="icon-cat">
+        <%= image_tag "header/user-svgrepo-com.svg", class: "icon-cat-user", alt: "Profile icon" %>
       </div>
 
-      <div class="item-cat" id="add-item-cat">
-        <h1 class="item-cat-title">Додати товари</h1>
+      <div class="text-cat">
+        <p id="user-first-last-name"><%= current_manufacturer.title_manufacturer %></p>
+        <p id="user-email"><%= current_manufacturer.email %></p>
       </div>
+    </div>
 
-      <div class="item-cat" id="remove-item-cat">
-        <h1 class="item-cat-title">Видалити товари</h1>
-      </div>
+    <div class="item-cat" id="add-item-cat">
+      <h1 class="item-cat-title">Додати товари</h1>
+    </div>
 
-      <div class="item-cat" id="item-list-cat">
-        <h1 class="item-cat-title">Переглянути товари</h1>
-      </div>
+    <div class="item-cat" id="remove-item-cat">
+      <h1 class="item-cat-title">Видалити товари</h1>
+    </div>
+
+    <div class="item-cat" id="item-list-cat">
+      <h1 class="item-cat-title">Переглянути товари</h1>
+    </div>
   </section>
 
   <section id="category-data">
     <div class="personal-data">
 
       <h1 class="personal-data-header">Особиста інформація</h1>
-      
+
       <div class="personal-data-full-name-grid">
-        <div class="full-name-column">
+        <div class="contact-data-column">
           <p class="personal-data-column-title">Прізвище</p>
           <p class="personal-data-field"><%= current_manufacturer.person_last_name %></p>
         </div>
 
-        <div class="full-name-column">
+        <div class="contact-data-column">
           <p class="personal-data-column-title">Ім'я</p>
           <p class="personal-data-field"><%= current_manufacturer.person_name %></p>
         </div>
 
-        <div class="full-name-column">
+        <div class="contact-data-column">
           <p class="personal-data-column-title">По батькові</p>
           <p class="personal-data-field"><%= current_manufacturer.person_middle_name %></p>
         </div>
-      </div>
 
-      <div class="contact-data-grid">
         <div class="contact-data-column">
           <p class="personal-data-column-title">Назва виробника</p>
           <p class="contact-data-field"><%= current_manufacturer.title_manufacturer %></p>
@@ -65,7 +63,9 @@
         </div>
       </div>
 
-      <button class="change-data-button">Редагувати</button>
+      <div class="button-container">
+        <button class="change-data-button">Редагувати</button>
+      </div>
 
     </div>
 
@@ -83,7 +83,7 @@
 </main>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
 
         // Категорії
         const personalDataCat = document.querySelector('.personal-data-cat');
@@ -100,7 +100,7 @@
         // Обробники подій для категорій
 
         // При кліку на категорію "Особиста інформація"
-        personalDataCat.addEventListener('click', function() {
+        personalDataCat.addEventListener('click', function () {
             // Приховати всі блоки даних крім personalData
             personalData.style.display = 'block';
             addItem.style.display = 'none';
@@ -109,7 +109,7 @@
         });
 
         // При кліку на категорію "Додати товари"
-        addItemCat.addEventListener('click', function() {
+        addItemCat.addEventListener('click', function () {
             // Приховати всі блоки даних крім addItem
             personalData.style.display = 'none';
             addItem.style.display = 'block';
@@ -118,7 +118,7 @@
         });
 
         // При кліку на категорію "Видалити товари"
-        removeItemCat.addEventListener('click', function() {
+        removeItemCat.addEventListener('click', function () {
             // Приховати всі блоки даних крім removeItem
             personalData.style.display = 'none';
             addItem.style.display = 'none';
@@ -127,7 +127,7 @@
         });
 
         // При кліку на категорію "Переглянути товари"
-        itemListCat.addEventListener('click', function() {
+        itemListCat.addEventListener('click', function () {
             // Приховати всі блоки даних крім itemList
             personalData.style.display = 'none';
             addItem.style.display = 'none';
@@ -265,7 +265,7 @@
         }
 
         // Додаємо обробники подій для кнопки "Редагувати"
-        editButton.addEventListener('click', function() {
+        editButton.addEventListener('click', function () {
             if (!isEditing) {
                 toggleFieldsActivity(personalDataFields, true);
                 toggleFieldsActivity(contactDataFields, true);

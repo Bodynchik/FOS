@@ -1,0 +1,88 @@
+<main class="main-container">
+
+  <section id="category">
+
+    <div class="personal-data-cat">
+
+      <div class="icon-cat">
+        <%= image_tag "header/user-svgrepo-com.svg", class: "icon-cat-user", alt: "Profile icon" %>
+      </div>
+
+      <div class="text-cat">
+        <p id="user-first-last-name"><%= "#{current_user.first_name} #{current_user.last_name}" %></p>
+        <p id="user-email"><%= current_user.email %></p>
+      </div>
+
+    </div>
+
+    <div class="item-cat" id="add-item-cat">
+      <p class="item-cat-title">Додати товари</p>
+    </div>
+
+    <div class="item-cat" id="remove-item-cat">
+      <p class="item-cat-title">Видалити товари</p>
+    </div>
+
+    <div class="item-cat" id="item-list-cat">
+      <p class="item-cat-title">Переглянути товари</p>
+    </div>
+
+  </section>
+
+  <section id="category-data">
+    <div class="personal-data">
+
+      <h1 class="personal-data-header">Особиста інформація</h1>
+
+      <div class="personal-data-full-name-grid">
+
+        <div class="contact-data-column">
+          <p class="personal-data-column-title">Прізвище</p>
+          <p class="personal-data-field"><%= current_user.last_name %></p>
+        </div>
+
+        <div class="contact-data-column">
+          <p class="personal-data-column-title">Ім'я</p>
+          <p class="personal-data-field"><%= current_user.first_name %></p>
+        </div>
+
+        <div class="contact-data-column">
+          <p class="personal-data-column-title">По батькові</p>
+          <p class="personal-data-field"><%= current_user.middle_name %></p>
+        </div>
+<!--      </div>-->
+
+<!--      <div class="contact-data-grid">-->
+
+        <div class="contact-data-column">
+          <p class="personal-data-column-title">Номер телефону</p>
+          <p class="contact-data-field"><%= current_user.phone_number %></p>
+        </div>
+
+        <div class="contact-data-column">
+          <p class="personal-data-column-title">Email</p>
+          <p class="contact-data-field"><%= current_user.email %></p>
+        </div>
+
+<!--      </div>-->
+      </div>
+
+      <div class="button-container">
+        <button class="change-data-button">Редагувати</button>
+      </div>
+
+
+    </div>
+
+    <div class="add-item">
+    </div>
+
+    <div class="remove-item">
+    </div>
+
+    <div class="item-list">
+    </div>
+
+  </section>
+
+</main>

@@ -1,5 +1,8 @@
 furniture_app/.idea/
 
+furniture_app/.gitignore
+furniture_app/.gitattributes
+
 .idea/
 
 furniture_app/config/master.key

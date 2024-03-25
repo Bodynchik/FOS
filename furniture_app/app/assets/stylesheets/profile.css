@@ -71,6 +71,12 @@
     /*align-items: center;*/
 }
 
+@media (max-width: 1286px) {
+    .main-container {
+        height: calc(100vh + 67px + 250px);
+    }
+}
+
 .personal-data {
     padding: 40px 90px;
 }
@@ -88,7 +94,7 @@
     flex-wrap: wrap;
     /*justify-content: center;*/
     margin-top: 50px;
-    gap: 50px 140px;
+    gap: 50px 110px;
 }
 
 .contact-data-grid {
@@ -115,26 +121,26 @@
 }
 
 .personal-data-field {
-    width: 220px;
+    width: 250px;
     height: 30px;
     /*border: 0.5px solid black;*/
     border-radius: 10px;
     background-color: #fff;
     font-weight: 200;
-    font-size: 20px;
+    font-size: 18px;
     color: #000;
     /*padding: 0 7px;*/
     margin-top: 15px;
 }
 
 .contact-data-field {
-    width: 220px;
+    width: 250px;
     height: 30px;
     /*border: 0.5px solid black;*/
     border-radius: 10px;
     background-color: #fff;
     font-weight: 200;
-    font-size: 20px;
+    font-size: 18px;
     color: #000;
     /*padding: 0 7px;*/
     margin-top: 15px;
@@ -156,6 +162,7 @@
 .button-container {
     display: flex;
     justify-content: center;
+    gap: 30px;
 }
 
 .change-data-button, .save-data-button, .cancel-button {
@@ -171,7 +178,7 @@
     margin-top: 50px;
     cursor: pointer;
     transition: background-color 0.4s ease;
-    margin-right: 30px;
+    /*margin-right: 30px;*/
 }
 
 .change-data-button:hover, .save-data-button:hover, .cancel-button:hover {

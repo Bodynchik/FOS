@@ -1,8 +1,0 @@
-<div id="products">
-  <% @sub_categories.each do |sub_category| %>
-    <% case sub_category.subcat_name %>
-      <% when 'Крісла' %>
-        <%= link_to sub_category.subcat_name, pages_armchair_path %>
-    <% end %>
-  <% end %>
-</div>

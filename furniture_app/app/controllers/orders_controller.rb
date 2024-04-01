@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        flash[:success] = "Товар успішно замовлено. Количество: #{@order.quantity}, Сумма заказа: #{@order.total_price}"
+        flash[:success] = "Товар успішно замовлено. Кількість: #{@order.quantity}, Сума замовлення: #{@order.total_price}"
         format.html { redirect_to product_path(@product), notice: "Order was successfully created." }
         format.json { render :show, status: :created, location: @order }
       else

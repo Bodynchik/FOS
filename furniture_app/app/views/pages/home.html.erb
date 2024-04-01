@@ -15,53 +15,65 @@
     <div class="category-grid">
       <div class="category-column">
 
-        <div class="cat-img-dark">
-          <%= image_tag "categorys/livingroom.jfif", class: "category-img", alt: "Вітальня" %>
-          <div class="work-text-content">
-            <p>Вітальня</p>
+        <%= link_to sub_categories_path(category_name: "Вітальня") do %>
+          <div class="cat-img-dark">
+            <%= image_tag "categorys/livingroom.jfif", class: "category-img", alt: "Вітальня" %>
+            <div class="work-text-content">
+              <p>Вітальня</p>
+            </div>
           </div>
-        </div>
+        <% end %>
 
-        <div class="cat-img-dark">
-          <%= image_tag "categorys/workplace.jfif", class: "category-img", alt: "Робоча зона" %>
-          <div class="work-text-content">
-            <p>Робоча зона</p>
+        <%= link_to sub_categories_path(category_name: "Робоча зона") do %>
+          <div class="cat-img-dark">
+            <%= image_tag "categorys/workplace.jfif", class: "category-img", alt: "Робоча зона" %>
+            <div class="work-text-content">
+              <p>Робоча зона</p>
+            </div>
           </div>
-        </div>
+        <% end %>
 
       </div>
       <div class="category-column">
 
-        <div class="cat-img-dark">
-          <%= image_tag "categorys/kitchen.jfif", class: "category-img", alt: "Кухня" %>
-          <div class="work-text-content">
-            <p>Кухня</p>
+        <%= link_to sub_categories_path(category_name: "Кухня") do %>
+          <div class="cat-img-dark">
+            <%= image_tag "categorys/kitchen.jfif", class: "category-img", alt: "Кухня" %>
+            <div class="work-text-content">
+              <p>Кухня</p>
+            </div>
           </div>
-        </div>
+        <% end %>
 
-        <div class="cat-img-dark">
-          <%= image_tag "categorys/storage.jfif", class: "category-img", alt: "Зберігання" %>
-          <div class="work-text-content">
-            <p>Зберігання</p>
+        <%= link_to sub_categories_path(category_name: "Зберігання") do %>
+          <div class="cat-img-dark">
+            <%= image_tag "categorys/storage.jfif", class: "category-img", alt: "Зберігання" %>
+            <div class="work-text-content">
+              <p>Зберігання</p>
+            </div>
           </div>
-        </div>
+        <% end %>
 
       </div>
       <div class="category-column">
 
-        <div class="cat-img-dark">
-          <%= image_tag "categorys/bedroom.jfif", class: "category-img", alt: "Спальня" %>
-          <div class="work-text-content">
-            <p>Спальня</p>
+        <%= link_to sub_categories_path(category_name: "Спальня") do %>
+          <div class="cat-img-dark">
+            <%= image_tag "categorys/bedroom.jfif", class: "category-img", alt: "Спальня" %>
+            <div class="work-text-content">
+              <p>Спальня</p>
+            </div>
           </div>
-        </div>
+        <% end %>
 
-        <div class="cat-img-dark">
-          <%= image_tag "categorys/garden.jfif", class: "category-img", alt: "Сад" %>
-          <div class="work-text-content">
-            <p>Сад</p>
+        <%= link_to sub_categories_path(category_name: "Сад") do %>
+          <div class="cat-img-dark">
+            <%= image_tag "categorys/garden.jfif", class: "category-img", alt: "Сад" %>
+            <div class="work-text-content">
+              <p>Сад</p>
+            </div>
           </div>
-        </div>
+        <% end %>
 
       </div>
     </div>

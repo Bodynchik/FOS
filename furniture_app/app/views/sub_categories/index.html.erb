@@ -1,14 +1,20 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Sub categories</h1>
+<!--<h1>Sub categories</h1>-->
 
-<div id="sub_categories">
-  <% @sub_categories.each do |sub_category| %>
-    <%= render sub_category %>
-    <p>
-      <%= link_to "Show this sub category", sub_category %>
-    </p>
-  <% end %>
-</div>
+<!--<div id="sub_categories">-->
+  <%# @sub_categories.each do |sub_category| %>
+    <%#= render sub_category %>
+<!--    <p>-->
+      <%#= link_to "Show this sub category", sub_category %>
+<!--    </p>-->
+  <%# end %>
+<!--</div>-->
 
-<%= link_to "New sub category", new_sub_category_path %>
+<%#= link_to "New sub category", new_sub_category_path %>
+
+<% @sub_categories.each do |sub_category| %>
+  <div>
+    <%= link_to sub_category.subcat_name, products_path(sub_category_id: sub_category.id) %>
+  </div>
+<% end %>

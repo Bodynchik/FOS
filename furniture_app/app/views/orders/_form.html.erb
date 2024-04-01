@@ -12,28 +12,18 @@
   <% end %>
 
   <div>
-    <%= form.label :client_id, style: "display: block" %>
-    <%= form.text_field :client_id %>
+    <%= form.label :product_id, style: "display: block" %>
+    <%= form.text_field :product_id %>
   </div>
 
   <div>
-    <%= form.label :order_date, style: "display: block" %>
-    <%= form.datetime_field :order_date %>
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.number_field :quantity %>
   </div>
 
   <div>
-    <%= form.label :postcode, style: "display: block" %>
-    <%= form.text_field :postcode %>
-  </div>
-
-  <div>
-    <%= form.label :order_total_val, style: "display: block" %>
-    <%= form.number_field :order_total_val %>
-  </div>
-
-  <div>
-    <%= form.label :order_status, style: "display: block" %>
-    <%= form.text_field :order_status %>
+    <%= form.label :total_price, style: "display: block" %>
+    <%= form.text_field :total_price %>
   </div>
 
   <div>

@@ -1,0 +1,5 @@
+<div id="products">
+  <% @products.each do |product| %>
+    <%= link_to product.prod_model, product_path(product) %>
+  <% end %>
+</div>

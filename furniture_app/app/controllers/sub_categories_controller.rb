@@ -3,7 +3,9 @@ class SubCategoriesController < ApplicationController
 
   # GET /sub_categories or /sub_categories.json
   def index
-    @sub_categories = SubCategory.all
+    @category = Category.find_by(cat_name: params[:category_name])
+    @sub_categories = @category.sub_categories
+    # @sub_categories = SubCategory.all
   end
 
   # GET /sub_categories/1 or /sub_categories/1.json

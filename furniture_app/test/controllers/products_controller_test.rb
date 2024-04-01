@@ -17,7 +17,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create product" do
     assert_difference("Product.count") do
-      post products_url, params: { product: { manufacture_id: @product.manufacture_id, prod_avail_amount: @product.prod_avail_amount, prod_desc: @product.prod_desc, prod_name: @product.prod_name, prod_price: @product.prod_price, prod_raiting: @product.prod_raiting, sub_category_id: @product.sub_category_id } }
+      post products_url, params: { product: { description: @product.description, furniture_id: @product.furniture_id, manufacturer_id: @product.manufacturer_id, price: @product.price, prod_model: @product.prod_model, sub_category_id: @product.sub_category_id } }
     end
 
     assert_redirected_to product_url(Product.last)
@@ -34,7 +34,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update product" do
-    patch product_url(@product), params: { product: { manufacture_id: @product.manufacture_id, prod_avail_amount: @product.prod_avail_amount, prod_desc: @product.prod_desc, prod_name: @product.prod_name, prod_price: @product.prod_price, prod_raiting: @product.prod_raiting, sub_category_id: @product.sub_category_id } }
+    patch product_url(@product), params: { product: { description: @product.description, furniture_id: @product.furniture_id, manufacturer_id: @product.manufacturer_id, price: @product.price, prod_model: @product.prod_model, sub_category_id: @product.sub_category_id } }
     assert_redirected_to product_url(@product)
   end
 

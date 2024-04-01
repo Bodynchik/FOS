@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :orders
+  resources :products
+  resources :furnitures
   # devise_for :manufacturers
   # devise_for :users
 
@@ -18,17 +21,8 @@ Rails.application.routes.draw do
 
   get 'pages/home'
 
-  resources :ordered_products
-  resources :carts
-  resources :prod_raitings
-  resources :prod_reviews
-  resources :payments
-  resources :orders
-  resources :clients
-  resources :products
   resources :sub_categories
   resources :categories
-  resources :manufactures
 
   root 'pages#home'
 

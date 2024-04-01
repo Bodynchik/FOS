@@ -24,7 +24,7 @@
     </div>
 
     <div class="item-cat" id="item-list-cat">
-      <p class="item-cat-title">Переглянути товари</p>
+      <p class="item-cat-title">Мої замовлення</p>
     </div>
 
   </section>
@@ -80,7 +80,15 @@
     <div class="remove-item">
     </div>
 
-    <div class="item-list">
+    <div class="item-list" style="display: none">
+      <% @orders.each do |order| %>
+        <div>
+          <p>Замовлення: <%= order.id %></p>
+          <p>Товар: <%= order.product.prod_model %></p>
+          <p>Кількість: <%= order.quantity %></p>
+          <p>Сума замовлення: <%= order.total_price %></p>
+        </div>
+      <% end %>
     </div>
 
   </section>

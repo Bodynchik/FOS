@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
+    @product = Product.find(params[:product_id])
     @order = Order.new
   end
 
@@ -21,11 +22,15 @@ class OrdersController < ApplicationController
 
   # POST /orders or /orders.json
   def create
+    @product = Product.find(params[:order][:product_id])
     @order = Order.new(order_params)
+    @order.user_id = current_user.id if current_user
+    @order.total_price = @product.price * @order.quantity
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
+        flash[:success] = "Товар успішно замовлено. Количество: #{@order.quantity}, Сумма заказа: #{@order.total_price}"
+        format.html { redirect_to product_path(@product), notice: "Order was successfully created." }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +70,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:client_id, :order_date, :postcode, :order_total_val, :order_status)
+      params.require(:order).permit(:product_id, :quantity, :total_price)
     end
 end

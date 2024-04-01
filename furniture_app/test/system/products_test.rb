@@ -14,12 +14,11 @@ class ProductsTest < ApplicationSystemTestCase
     visit products_url
     click_on "New product"
 
-    fill_in "Manufacture", with: @product.manufacture_id
-    fill_in "Prod avail amount", with: @product.prod_avail_amount
-    fill_in "Prod desc", with: @product.prod_desc
-    fill_in "Prod name", with: @product.prod_name
-    fill_in "Prod price", with: @product.prod_price
-    fill_in "Prod raiting", with: @product.prod_raiting
+    fill_in "Description", with: @product.description
+    fill_in "Furniture", with: @product.furniture_id
+    fill_in "Manufacturer", with: @product.manufacturer_id
+    fill_in "Price", with: @product.price
+    fill_in "Prod model", with: @product.prod_model
     fill_in "Sub category", with: @product.sub_category_id
     click_on "Create Product"
 
@@ -31,12 +30,11 @@ class ProductsTest < ApplicationSystemTestCase
     visit product_url(@product)
     click_on "Edit this product", match: :first
 
-    fill_in "Manufacture", with: @product.manufacture_id
-    fill_in "Prod avail amount", with: @product.prod_avail_amount
-    fill_in "Prod desc", with: @product.prod_desc
-    fill_in "Prod name", with: @product.prod_name
-    fill_in "Prod price", with: @product.prod_price
-    fill_in "Prod raiting", with: @product.prod_raiting
+    fill_in "Description", with: @product.description
+    fill_in "Furniture", with: @product.furniture_id
+    fill_in "Manufacturer", with: @product.manufacturer_id
+    fill_in "Price", with: @product.price
+    fill_in "Prod model", with: @product.prod_model
     fill_in "Sub category", with: @product.sub_category_id
     click_on "Update Product"
 

@@ -2,7 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("turbo:load", function() {
     // Категорії
     const personalDataCat = document.querySelector('#category .personal-data-cat');
     const addItemCat = document.querySelector('#add-item-cat');
@@ -201,5 +201,42 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     contactDataFields.forEach(field => {
         field.addEventListener('input', checkFields);
+    });
+
+    document.addEventListener("turbo:click", function(event) {
+        const target = event.target;
+        if (target.classList.contains('save-data-button')) {
+            // Обробка кліку на кнопку "Зберегти"
+            saveData();
+        }
+        if (target.classList.contains('cancel-button')) {
+            // Обробка кліку на кнопку "Скасувати"
+            cancelEditing();
+        }
+        if (target === personalDataCat) {
+            // При кліку на категорію "Особиста інформація"
+            personalData.style.display = 'block';
+            addItem.style.display = 'none';
+            removeItem.style.display = 'none';
+            itemList.style.display = 'none';
+        } else if (target === addItemCat) {
+            // При кліку на категорію "Додати товари"
+            personalData.style.display = 'none';
+            addItem.style.display = 'block';
+            removeItem.style.display = 'none';
+            itemList.style.display = 'none';
+        } else if (target === removeItemCat) {
+            // При кліку на категорію "Видалити товари"
+            personalData.style.display = 'none';
+            addItem.style.display = 'none';
+            removeItem.style.display = 'block';
+            itemList.style.display = 'none';
+        } else if (target === itemListCat) {
+            // При кліку на категорію "Переглянути товари"
+            personalData.style.display = 'none';
+            addItem.style.display = 'none';
+            removeItem.style.display = 'none';
+            itemList.style.display = 'block';
+        }
     });
 });

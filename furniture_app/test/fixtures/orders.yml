@@ -1,15 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  client: one
-  order_date: 2024-03-14 21:06:55
-  postcode: MyString
-  order_total_val: 1
-  order_status: MyString
+  product: one
+  quantity: 1
+  total_price: 9.99
 
 two:
-  client: two
-  order_date: 2024-03-14 21:06:55
-  postcode: MyString
-  order_total_val: 1
-  order_status: MyString
+  product: two
+  quantity: 1
+  total_price: 9.99

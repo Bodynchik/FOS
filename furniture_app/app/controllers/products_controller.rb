@@ -3,7 +3,9 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    @sub_category = SubCategory.find(params[:sub_category_id])
+    @products = @sub_category.products
+    # @products = Product.all
   end
 
   # GET /products/1 or /products/1.json
@@ -25,7 +27,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to product_url(@product), notice: "Product was successfully created." }
+        format.html { redirect_to '/profiles' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +67,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:sub_category_id, :prod_name, :prod_price, :manufacture_id, :prod_desc, :prod_avail_amount, :prod_raiting)
+      params.require(:product).permit(:furniture_id, :manufacturer_id, :sub_category_id, :prod_model, :price, :description)
     end
 end

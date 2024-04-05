@@ -41,7 +41,26 @@
     <%= form.text_area :description %>
   </div>
 
+  <!-- Додати поля для кількості днів на виробництво та дні тижня для доставки -->
+  <div>
+    <%= form.label :production_days, style: "display: block" %>
+    <%= form.number_field :production_days %>
+  </div>
+
+  <div style="display: flex;">
+    <div style="flex: 1;">
+      <% [ 'Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П\'ятниця', 'Субота', 'Неділя'].each do |day| %>
+        <%= form.check_box :delivery_days, { multiple: true }, day, id: "#{day.parameterize}" %>
+        <%= form.label day, for: "#{day.parameterize}", style: "margin-right: 10px;" %>
+      <% end %>
+    </div>
+  </div>
+
+
+
   <div>
     <%= form.submit %>
   </div>
+
 <% end %>
+

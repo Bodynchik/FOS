@@ -3,9 +3,29 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @sub_category = SubCategory.find(params[:sub_category_id])
-    @products = @sub_category.products
-    # @products = Product.all
+    sort_by = params[:sort] || 'name'
+    direction = params[:direction] || 'asc'
+
+    if params[:sub_category_id].present?
+      sub_category = SubCategory.find(params[:sub_category_id])
+      if sort_by == 'name'
+        @products = sub_category.products.order(prod_model: direction.to_sym)
+      elsif sort_by == 'price'
+        @products = sub_category.products.order(price: direction.to_sym)
+      else
+        @products = sub_category.products
+      end
+    else
+      if sort_by == 'name'
+        @products = Product.order(prod_model: direction.to_sym)
+      elsif sort_by == 'price'
+        @products = Product.order(price: direction.to_sym)
+      else
+        @products = Product.all
+      end
+    end
+
+    @sort_direction = direction == 'asc' ? 'desc' : 'asc'
   end
 
   # GET /products/1 or /products/1.json

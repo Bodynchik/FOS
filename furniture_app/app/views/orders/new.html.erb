@@ -1,3 +1,19 @@
+<div class="page-container">
+  <div class="order-dialog">
+    <h1>Замовлення товара "<%= @product.prod_model %>"</h1>
+    <%= form_with(model: @order, url: orders_path) do |form| %>
+      <%= form.hidden_field :product_id, value: @product.id %>
+      <div class="field">
+        <%= form.label :quantity, 'Кількість:' %>
+        <%= form.number_field :quantity, min: 1, value: 1 %>
+      </div>
+      <div class="actions">
+        <%= form.submit 'Замовити' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
 <!--<h1>New order</h1>-->
 
 <%#= render "form", order: @order %>
@@ -5,17 +21,17 @@
 <!--<br>-->
 
 <!--<div>-->
-  <%#= link_to "Back to orders", orders_path %>
+<%#= link_to "Back to orders", orders_path %>
 <!--</div>-->
 
-<h1>Замовлення товара "<%= @product.prod_model %>"</h1>
-<%= form_with(model: @order) do |form| %>
-  <%= form.hidden_field :product_id, value: @product.id %>
-  <div class="field">
-    <%= form.label :quantity, 'Кількість:' %>
-    <%= form.number_field :quantity, min: 1, value: 1 %>
-  </div>
-  <div class="actions">
-    <%= form.submit 'Замовити' %>
-  </div>
-<% end %>
+<!--<h1>Замовлення товара "<%#= @product.prod_model %>"</h1>-->
+<%#= form_with(model: @order) do |form| %>
+  <%#= form.hidden_field :product_id, value: @product.id %>
+<!--  <div class="field">-->
+    <%#= form.label :quantity, 'Кількість:' %>
+    <%#= form.number_field :quantity, min: 1, value: 1 %>
+<!--  </div>-->
+<!--  <div class="actions">-->
+    <%#= form.submit 'Замовити' %>
+<!--  </div>-->
+<%# end %>

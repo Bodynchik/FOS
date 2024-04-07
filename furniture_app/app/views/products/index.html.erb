@@ -13,8 +13,28 @@
 
 <%#= link_to "New product", new_product_path %>
 
-<% @products.each do |product| %>
-  <div>
-    <%= link_to product.prod_model, product_path(product) %>
+<%# @products.each do |product| %>
+<!--  <div>-->
+    <%#= link_to product.prod_model, product_path(product) %>
+<!--  </div>-->
+<%# end %>
+
+<section id="products">
+  <div class="products-container">
+
+    <div class="sorting-buttons">
+      <%= link_to "Сортувати за назвою", products_path(sort: 'name', direction: @sort_direction), class: "sort-button" %>
+      <%= link_to "Сортувати за ціною", products_path(sort: 'price', direction: @sort_direction), class: "sort-button" %>
+    </div>
+
+    <% @products.each do |product| %>
+      <%= link_to product_path(product), class: "product" do %>
+        <div class="grey-square"></div>
+        <div class="product-info">
+          <p class="product-name"><%= product.prod_model %></p>
+          <p class="product-price"><%= number_to_currency(product.price, unit: "₴") %></p>
+        </div>
+      <% end %>
+    <% end %>
   </div>
-<% end %>
+</section>

@@ -1,21 +1,39 @@
-<!--<p style="color: green"><%#= notice %></p>-->
+<div class="product-container">
+  <div class="grey-square-img"></div>
 
-<%#= render @product %>
+  <div class="product-details">
 
-<!--<div>-->
-<!--  <%#= link_to "Edit this product", edit_product_path(@product) %> |-->
-  <%#= link_to "Back to products", products_path %>
+    <h2><%= @product.prod_model %></h2>
+    <div class="price-order">
+      <p class="price"><%= number_to_currency(@product.price, unit: "₴") %></p>
+      <%= link_to "Замовити", new_order_path(product_id: @product.id), class: "order-button" %>
+    </div>
 
-  <%#= button_to "Destroy this product", @product, method: :delete %>
-<!--</div>-->
-
-<h1>"<%= @product.prod_model %>"</h1>
-<p>Опис: <%= @product.description %></p>
-<p>Ціна: <%= @product.price %></p>
-<%= link_to "Замовити", new_order_path(product_id: @product.id) %>
+    <div class="description-container">
+      <h1>Опис</h1>
+      <p class="description"><%= @product.description %></p>
+    </div>
+  </div>
+</div>
 
 <% if flash[:success].present? %>
   <div class="alert alert-success">
     <%= flash[:success] %>
   </div>
 <% end %>
+
+<!--<p style="color: green"><%#= notice %></p>-->
+
+<%#= render @product %>
+
+<!--<div>-->
+<!--  <%#= link_to "Edit this product", edit_product_path(@product) %> |-->
+<%#= link_to "Back to products", products_path %>
+
+<%#= button_to "Destroy this product", @product, method: :delete %>
+<!--</div>-->
+
+<!--<h1>"<%#= @product.prod_model %>"</h1>-->
+<!--<p>Опис: <%#= @product.description %></p>-->
+<!--<p>Ціна: <%#= @product.price %></p>-->
+<%#= link_to "Замовити", new_order_path(product_id: @product.id) %>

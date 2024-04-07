@@ -7,7 +7,6 @@
       <p class="price"><%= number_to_currency(@product.price, unit: "₴") %></p>
       <%= link_to "Замовити", new_order_path(product_id: @product.id), class: "order-button" %>
       <% if current_user.present? %>
-        <%= link_to "Створити сет", new_prod_set_path(user_id: current_user.id), class: "create-set-button" %>
         <a href="#" class="add-to-set-button">Додати до сету</a>
       <% end %>
     </div>
@@ -43,10 +42,10 @@
 
 <script>
     document.addEventListener('turbo:load', function() {
-        var addButton = document.querySelector(".add-to-set-button");
-        var formDiv = document.getElementById("addProductToSetForm");
-        var overlay = document.getElementById("addProductToSetForm-overlay");
-        var closeButton = document.querySelector(".close-button");
+        let addButton = document.querySelector(".add-to-set-button");
+        let formDiv = document.getElementById("addProductToSetForm");
+        let overlay = document.getElementById("addProductToSetForm-overlay");
+        let closeButton = document.querySelector(".close-button");
 
         addButton.addEventListener("click", function(event) {
             event.preventDefault(); // Уникнення стандартної дії посилання

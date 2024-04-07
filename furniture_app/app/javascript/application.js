@@ -219,51 +219,111 @@ document.addEventListener("turbo:load", function() {
         field.addEventListener('input', checkFields);
     });
 
+    // Додаємо обробник подій для кліків на .order-header
+    const orders = document.querySelectorAll('.item-list .order');
+    orders.forEach(order => {
+        const orderHeader = order.querySelector('.order-header');
+        orderHeader.addEventListener('click', function() {
+            order.classList.toggle('expanded');
+        });
+    });
+
+    // Додаємо обробник подій для кліків на .order-header
+    const sets = document.querySelectorAll('.user-sets .prod-set');
+    sets.forEach(set => {
+        const setName = set.querySelector('.set-name');
+        setName.addEventListener('click', function() {
+            set.classList.toggle('expanded');
+        });
+    });
+
+    // Додаємо обробник подій для кліків на кожен блок order
+    // const orders = document.querySelectorAll('.item-list .order');
+    // orders.forEach(order => {
+    //     order.addEventListener('click', function() {
+    //         order.classList.toggle('expanded');
+    //         // adjustMainContainerHeight();
+    //     });
+    // });
+
     document.addEventListener("turbo:click", function(event) {
         const target = event.target;
+
+        // // Перевірка, чи був клікнутий .order-header
+        // if (target.classList.contains('order-header')) {
+        //     const order = target.closest('.order');
+        //     if (order) {
+        //         order.classList.toggle('expanded');
+        //         adjustMainContainerHeight();
+        //     }
+        // }
+
+        // Перевірка, чи була клікнута категорія
+        const categories = ['personal-data-cat', 'add-item-cat', 'user-sets-cat', 'remove-item-cat', 'item-list-cat'];
+        if (categories.includes(target.id)) {
+            const categoryId = target.id.replace('-cat', '');
+            const categoryData = document.querySelector(`#${categoryId}`);
+            const otherCategories = document.querySelectorAll('.item-cat');
+            otherCategories.forEach(cat => {
+                if (cat !== categoryData) {
+                    cat.classList.remove('active');
+                }
+            });
+            categoryData.classList.add('active');
+
+            // Відображення відповідного блоку даних
+            const dataBlocks = document.querySelectorAll('.personal-data, .add-item, .user-sets, .remove-item, .item-list');
+            dataBlocks.forEach(block => {
+                const blockId = block.classList[0]; // Отримання класу першого блоку
+                if (blockId.includes(categoryId)) {
+                    block.style.display = 'block';
+                } else {
+                    block.style.display = 'none';
+                }
+            });
+        }
+
+        // Перевірка, чи було клікнуто кнопку редагування
+        if (target.classList.contains('change-data-button')) {
+            toggleFieldsActivity(personalDataFields, true);
+            toggleFieldsActivity(contactDataFields, true);
+            createButtons();
+            target.textContent = '';
+            isEditing = true;
+        }
+
+        // Перевірка, чи було клікнуто кнопку "Зберегти"
         if (target.classList.contains('save-data-button')) {
-            // Обробка кліку на кнопку "Зберегти"
             saveData();
         }
+
+        // Перевірка, чи було клікнуто кнопку "Скасувати"
         if (target.classList.contains('cancel-button')) {
-            // Обробка кліку на кнопку "Скасувати"
             cancelEditing();
         }
-        if (target === personalDataCat) {
-            // При кліку на категорію "Особиста інформація"
-            personalData.style.display = 'block';
-            addItem.style.display = 'none';
-            userSets.style.display = 'none'
-            removeItem.style.display = 'none';
-            itemList.style.display = 'none';
-        } else if (target === addItemCat) {
-            // При кліку на категорію "Додати товари"
-            personalData.style.display = 'none';
-            addItem.style.display = 'block';
-            userSets.style.display = 'none'
-            removeItem.style.display = 'none';
-            itemList.style.display = 'none';
-        } else if (target === userSetsCat) {
-            // Прик кліку на категорію "Мої сети"
-            personalData.style.display = 'none';
-            addItem.style.display = 'none';
-            userSets.style.display = 'block'
-            removeItem.style.display = 'none';
-            itemList.style.display = 'none';
-        } else if (target === removeItemCat) {
-            // При кліку на категорію "Видалити товари"
-            personalData.style.display = 'none';
-            addItem.style.display = 'none';
-            userSets.style.display = 'none'
-            removeItem.style.display = 'block';
-            itemList.style.display = 'none';
-        } else if (target === itemListCat) {
-            // При кліку на категорію "Переглянути товари"
-            personalData.style.display = 'none';
-            addItem.style.display = 'none';
-            userSets.style.display = 'none'
-            removeItem.style.display = 'none';
-            itemList.style.display = 'block';
+
+        // Перевірка, чи була клікнута категорія в основному меню
+        if (target.classList.contains('item-cat-title')) {
+            const categoryData = target.parentElement;
+            const categoryId = categoryData.id.replace('-cat', '');
+            const otherCategories = document.querySelectorAll('.item-cat');
+            otherCategories.forEach(cat => {
+                if (cat !== categoryData) {
+                    cat.classList.remove('active');
+                }
+            });
+            categoryData.classList.add('active');
+
+            // Відображення відповідного блоку даних
+            const dataBlocks = document.querySelectorAll('.personal-data, .add-item, .user-sets, .remove-item, .item-list');
+            dataBlocks.forEach(block => {
+                const blockId = block.classList[0]; // Отримання класу першого блоку
+                if (blockId.includes(categoryId)) {
+                    block.style.display = 'block';
+                } else {
+                    block.style.display = 'none';
+                }
+            });
         }
     });
 });

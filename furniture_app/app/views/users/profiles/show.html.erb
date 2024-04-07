@@ -19,11 +19,11 @@
       <p class="item-cat-title">Мої сети</p>
     </div>
 
-    <div class="item-cat" id="add-item-cat">
+    <div class="item-cat" id="add-item-cat" style="display: none">
       <h1 class="item-cat-title">Додати товари</h1>
     </div>
 
-    <div class="item-cat" id="remove-item-cat">
+    <div class="item-cat" id="remove-item-cat" style="display: none">
       <p class="item-cat-title">Видалити товари</p>
     </div>
 
@@ -79,38 +79,75 @@
     <div class="user-sets" style="display: none">
       <div id="prod_sets">
         <% @prod_sets.each do |prod_set| %>
-          <div>
-            <p>Назва сету: <%= prod_set.set_name %></p>
-            <% if prod_set.prod_data.present? %>
-              <% prod_set.prod_data.each do |product_id, quantity| %>
-                <% product = Product.find(product_id) %>
-                <p>Продукт: <%= product.prod_model %></p>
-                <p>Кількість: <%= quantity %></p>
+          <div class="prod-set">
+            <p class="set-name"><%= prod_set.set_name %></p>
+            <div class="product-list">
+              <% if prod_set.prod_data.present? %>
+                <% prod_set.prod_data.each do |product_id, quantity| %>
+                  <% product = Product.find(product_id) %>
+                  <div class="prod">
+                    <p><%= product.prod_model %> x<%= quantity %></p>
+                  </div>
+                <% end %>
+              <% else %>
+                <p>В цьому сеті немає продуктів.</p>
               <% end %>
-            <% else %>
-              <p>В цьому сеті немає продуктів.</p>
-            <% end %>
+            </div>
           </div>
         <% end %>
+        <div class="button-container">
+          <%= link_to "Створити сет", new_prod_set_path(user_id: current_user.id), class: "create-set-button" %>
+<!--          <a href="#" class="create-set-button">Створити сет</a>-->
+        </div>
       </div>
+
+<!--      Діалогове вікно для створення нового сету -->
+<!--      <div id="createSetForm" style="display: none;">-->
+        <%#= form_with(model: ProdSet.new) do |form| %>
+          <%# if form.object.errors.any? %>
+<!--            <div style="color: red">-->
+<!--              <h2><%#= pluralize(form.object.errors.count, "error") %> prohibited this prod_set from being saved:</h2>-->
+<!--              <ul>-->
+                <%# form.object.errors.full_messages.each do |message| %>
+<!--                  <li><%#= message %></li>-->
+                <%# end %>
+<!--              </ul>-->
+<!--            </div>-->
+          <%# end %>
+
+<!--          <div style="display: none;">-->
+            <%#= form.label :user_id, style: "display: block" %>
+            <%#= form.text_field :user_id, value: current_user.id %>
+<!--          </div>-->
+
+<!--          <div>-->
+            <%#= form.label :set_name, style: "display: block" %>
+            <%#= form.text_field :set_name %>
+<!--          </div>-->
+
+<!--          <div>-->
+            <%#= form.submit %>
+<!--          </div>-->
+        <%# end %>
+<!--      </div>-->
+<!--      <div id="createSetForm-overlay" style="display: none;"></div>-->
+
     </div>
 
-
-
     <div class="add-item">
-
     </div>
 
     <div class="remove-item">
     </div>
 
-    <div class="item-list" style="display: none">
+    <div class="item-list">
       <% @orders.each do |order| %>
-        <div>
-          <p>Замовлення: <%= order.id %></p>
-          <p>Товар: <%= order.product.prod_model %></p>
-          <p>Кількість: <%= order.quantity %></p>
-          <p>Сума замовлення: <%= order.total_price %></p>
+        <div class="order">
+          <p class="order-header">Замовлення №<%= order.id %></p>
+          <div class="order-details">
+            <p><%= order.product.prod_model %> x<%= order.quantity %></p>
+            <p>Сума замовлення: <%= number_to_currency(order.total_price, unit: "₴") %></p>
+          </div>
         </div>
       <% end %>
     </div>
@@ -118,3 +155,23 @@
   </section>
 
 </main>
+
+<!--<script>-->
+<!--    document.addEventListener('turbo:load', function() {-->
+<!--        let createButton = document.querySelector(".create-set-button");-->
+<!--        let formDiv = document.getElementById("createSetForm");-->
+<!--        let overlay = document.getElementById("createSetForm-overlay");-->
+<!--        let closeButton = document.querySelector(".close-button");-->
+
+<!--        createButton.addEventListener("click", function(event) {-->
+<!--            event.preventDefault();-->
+<!--            formDiv.style.display = "block";-->
+<!--            overlay.style.display = "block";-->
+<!--        });-->
+
+<!--        closeButton.addEventListener("click", function() {-->
+<!--            formDiv.style.display = "none";-->
+<!--            overlay.style.display = "none";-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->

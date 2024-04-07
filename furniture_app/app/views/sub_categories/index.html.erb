@@ -13,8 +13,34 @@
 
 <%#= link_to "New sub category", new_sub_category_path %>
 
-<% @sub_categories.each do |sub_category| %>
-  <div>
-    <%= link_to sub_category.subcat_name, products_path(sub_category_id: sub_category.id) %>
+
+<section id="subcategories">
+  <h1 id="category-title">Оберіть бажану підкатегорію товарів:</h1>
+
+  <div class="category-grid">
+    <div class="category-column">
+      <% @sub_categories.each_slice(3) do |sub_categories_row| %>
+        <div class="sub-categories-row">
+          <% sub_categories_row.each do |sub_category| %>
+            <%= link_to products_path(sub_category_id: sub_category.id), class: "sub-cat-link" do %>
+              <div class="cat-img-dark">
+                <div class="category-img black-square"></div>
+                <div class="work-text-content">
+                  <p><%= sub_category.subcat_name %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</section>
+
+<!--<section class="subcategories-container">-->
+  <%# @sub_categories.each do |sub_category| %>
+<!--    <div class="sub-cat-link">-->
+      <%#= link_to sub_category.subcat_name, products_path(sub_category_id: sub_category.id) %>
+<!--    </div>-->
+  <%# end %>
+<!--</section>-->

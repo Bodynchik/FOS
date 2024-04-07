@@ -310,3 +310,17 @@ button {
     width: 30px;
     height: 30px;
 }
+
+/*Стилі для підкатегорій*/
+
+.sub-categories-row {
+    display: flex;
+    gap: 23px;
+    justify-content: center;
+}
+
+.black-square {
+    width: 400px;
+    height: 400px;
+    background-color: black;
+}

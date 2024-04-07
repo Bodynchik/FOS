@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_31_204436) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_07_095315) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
@@ -43,6 +44,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_204436) do
     t.index ["title_manufacturer"], name: "index_manufacturers_on_title_manufacturer", unique: true
   end
 
+  create_table "order_sets", force: :cascade do |t|
+    t.bigint "prod_set_id", null: false
+    t.decimal "total_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prod_set_id"], name: "index_order_sets_on_prod_set_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.integer "quantity"
@@ -54,6 +63,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_204436) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "prod_sets", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "set_name"
+    t.hstore "prod_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_prod_sets_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.bigint "furniture_id", null: false
     t.bigint "manufacturer_id", null: false
@@ -63,6 +81,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_204436) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "production_days"
+    t.text "delivery_days"
     t.index ["furniture_id"], name: "index_products_on_furniture_id"
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
     t.index ["sub_category_id"], name: "index_products_on_sub_category_id"
@@ -95,8 +115,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_204436) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "order_sets", "prod_sets"
   add_foreign_key "orders", "products"
   add_foreign_key "orders", "users"
+  add_foreign_key "prod_sets", "users"
   add_foreign_key "products", "furnitures"
   add_foreign_key "products", "manufacturers"
   add_foreign_key "products", "sub_categories"

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Prod sets</h1>
+
+<div id="prod_sets">
+  <% @prod_sets.each do |prod_set| %>
+    <%= render prod_set %>
+    <p>
+      <%= link_to "Show this prod set", prod_set %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New prod set", new_prod_set_path %>

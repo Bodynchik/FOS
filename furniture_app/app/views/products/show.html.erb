@@ -2,13 +2,32 @@
   <div class="grey-square-img"></div>
 
   <div class="product-details">
-
     <h2><%= @product.prod_model %></h2>
     <div class="price-order">
       <p class="price"><%= number_to_currency(@product.price, unit: "₴") %></p>
       <%= link_to "Замовити", new_order_path(product_id: @product.id), class: "order-button" %>
+      <% if current_user.present? %>
+        <%= link_to "Створити сет", new_prod_set_path(user_id: current_user.id), class: "create-set-button" %>
+        <a href="#" class="add-to-set-button">Додати до сету</a>
+      <% end %>
     </div>
+    <div id="addProductToSetForm" style="display: none;">
 
+      <!-- Форма для додавання товару до сету -->
+      <%= form_tag(add_product_to_set_path, method: :post, remote: true) do %>
+        <%= hidden_field_tag :product_id, @product.id %>
+        <label for="prod_set">Виберіть сет:</label>
+        <%= select_tag(:prod_set, options_for_select(ProdSet.all.map { |ps| [ps.set_name, ps.id] })) %>
+        <br>
+        <label for="quantity">Кількість товару:</label>
+        <%= number_field_tag :quantity, 1, min: 1 %>
+        <br>
+        <%= submit_tag "Додати", class: "add-to-set-submit" %>
+        <button type="button" class="close-button">Закрити</button>
+      <% end %>
+
+    </div>
+    <div id="addProductToSetForm-overlay" style="display: none;"></div>
     <div class="description-container">
       <h1>Опис</h1>
       <p class="description"><%= @product.description %></p>
@@ -22,18 +41,36 @@
   </div>
 <% end %>
 
-<!--<p style="color: green"><%#= notice %></p>-->
+<script>
+    document.addEventListener('turbo:load', function() {
+        var addButton = document.querySelector(".add-to-set-button");
+        var formDiv = document.getElementById("addProductToSetForm");
+        var overlay = document.getElementById("addProductToSetForm-overlay");
+        var closeButton = document.querySelector(".close-button");
 
-<%#= render @product %>
+        addButton.addEventListener("click", function(event) {
+            event.preventDefault(); // Уникнення стандартної дії посилання
+            formDiv.style.display = "block";
+            overlay.style.display = "block"; // Показуємо overlay
+        });
 
-<!--<div>-->
-<!--  <%#= link_to "Edit this product", edit_product_path(@product) %> |-->
-<%#= link_to "Back to products", products_path %>
+        closeButton.addEventListener("click", function() {
+            formDiv.style.display = "none";
+            overlay.style.display = "none"; // Приховуємо overlay
+        });
 
-<%#= button_to "Destroy this product", @product, method: :delete %>
-<!--</div>-->
+        document.addEventListener('turbo:click', function (event) {
+            addButton.addEventListener("click", function(event) {
+                event.preventDefault(); // Уникнення стандартної дії посилання
+                formDiv.style.display = "block";
+                overlay.style.display = "block"; // Показуємо overlay
+            });
 
-<!--<h1>"<%#= @product.prod_model %>"</h1>-->
-<!--<p>Опис: <%#= @product.description %></p>-->
-<!--<p>Ціна: <%#= @product.price %></p>-->
-<%#= link_to "Замовити", new_order_path(product_id: @product.id) %>
+            closeButton.addEventListener("click", function() {
+                formDiv.style.display = "none";
+                overlay.style.display = "none"; // Приховуємо overlay
+            });
+        })
+    });
+
+</script>

@@ -6,12 +6,14 @@ document.addEventListener("turbo:load", function() {
     // Категорії
     const personalDataCat = document.querySelector('#category .personal-data-cat');
     const addItemCat = document.querySelector('#add-item-cat');
+    const userSetsCat = document.querySelector('#user-sets-cat');
     const removeItemCat = document.querySelector('#remove-item-cat');
     const itemListCat = document.querySelector('#item-list-cat');
 
     // Блоки даних
     const personalData = document.querySelector('.personal-data');
     const addItem = document.querySelector('.add-item');
+    const userSets = document.querySelector('.user-sets');
     const removeItem = document.querySelector('.remove-item');
     const itemList = document.querySelector('.item-list');
 
@@ -22,6 +24,7 @@ document.addEventListener("turbo:load", function() {
         // Приховати всі блоки даних крім personalData
         personalData.style.display = 'block';
         addItem.style.display = 'none';
+        userSets.style.display = 'none'
         removeItem.style.display = 'none';
         itemList.style.display = 'none';
     });
@@ -31,6 +34,17 @@ document.addEventListener("turbo:load", function() {
         // Приховати всі блоки даних крім addItem
         personalData.style.display = 'none';
         addItem.style.display = 'block';
+        userSets.style.display = 'none'
+        removeItem.style.display = 'none';
+        itemList.style.display = 'none';
+    });
+
+    // При кліку на категорію "Мої сети"
+    userSetsCat.addEventListener('click', function() {
+        // Приховати всі блоки даних крім userSets
+        personalData.style.display = 'none';
+        addItem.style.display = 'none';
+        userSets.style.display = 'block'
         removeItem.style.display = 'none';
         itemList.style.display = 'none';
     });
@@ -40,6 +54,7 @@ document.addEventListener("turbo:load", function() {
         // Приховати всі блоки даних крім removeItem
         personalData.style.display = 'none';
         addItem.style.display = 'none';
+        userSets.style.display = 'none'
         removeItem.style.display = 'block';
         itemList.style.display = 'none';
     });
@@ -49,6 +64,7 @@ document.addEventListener("turbo:load", function() {
         // Приховати всі блоки даних крім itemList
         personalData.style.display = 'none';
         addItem.style.display = 'none';
+        userSets.style.display = 'none'
         removeItem.style.display = 'none';
         itemList.style.display = 'block';
     });
@@ -217,24 +233,35 @@ document.addEventListener("turbo:load", function() {
             // При кліку на категорію "Особиста інформація"
             personalData.style.display = 'block';
             addItem.style.display = 'none';
+            userSets.style.display = 'none'
             removeItem.style.display = 'none';
             itemList.style.display = 'none';
         } else if (target === addItemCat) {
             // При кліку на категорію "Додати товари"
             personalData.style.display = 'none';
             addItem.style.display = 'block';
+            userSets.style.display = 'none'
+            removeItem.style.display = 'none';
+            itemList.style.display = 'none';
+        } else if (target === userSetsCat) {
+            // Прик кліку на категорію "Мої сети"
+            personalData.style.display = 'none';
+            addItem.style.display = 'none';
+            userSets.style.display = 'block'
             removeItem.style.display = 'none';
             itemList.style.display = 'none';
         } else if (target === removeItemCat) {
             // При кліку на категорію "Видалити товари"
             personalData.style.display = 'none';
             addItem.style.display = 'none';
+            userSets.style.display = 'none'
             removeItem.style.display = 'block';
             itemList.style.display = 'none';
         } else if (target === itemListCat) {
             // При кліку на категорію "Переглянути товари"
             personalData.style.display = 'none';
             addItem.style.display = 'none';
+            userSets.style.display = 'none'
             removeItem.style.display = 'none';
             itemList.style.display = 'block';
         }

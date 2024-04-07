@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @prod_set %>
+
+<div>
+  <%= link_to "Edit this prod set", edit_prod_set_path(@prod_set) %> |
+  <%= link_to "Back to prod sets", prod_sets_path %>
+
+  <%= button_to "Destroy this prod set", @prod_set, method: :delete %>
+</div>

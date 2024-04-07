@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :order_sets
+  resources :prod_sets
   resources :orders
   resources :products
   resources :furnitures
@@ -44,5 +46,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   mount LetterOpenerWeb::Engine, at: "/letter_opener"
+
+  # Add this route for adding product to set
+  post 'add_product_to_set', to: 'prod_sets#add_product_to_set'
 end
 

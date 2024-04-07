@@ -1,0 +1,32 @@
+<%= form_with(model: prod_set) do |form| %>
+  <% if prod_set.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(prod_set.errors.count, "error") %> prohibited this prod_set from being saved:</h2>
+
+      <ul>
+        <% prod_set.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div style="display: none">
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id, value: @user.id %>
+  </div>
+
+  <div>
+    <%= form.label :set_name, style: "display: block" %>
+    <%= form.text_field :set_name %>
+  </div>
+
+  <div style="display: none">
+    <%= form.label :prod_data, style: "display: block" %>
+    <%= form.text_field :prod_data %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

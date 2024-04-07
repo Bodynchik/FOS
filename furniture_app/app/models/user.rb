@@ -9,4 +9,5 @@ class User < ApplicationRecord
   validates :phone_number, presence: true
 
   has_many :orders
+  has_many :prod_sets
 end

@@ -15,8 +15,12 @@
 
     </div>
 
+    <div class="item-cat" id="user-sets-cat">
+      <p class="item-cat-title">Мої сети</p>
+    </div>
+
     <div class="item-cat" id="add-item-cat">
-      <p class="item-cat-title">Додати товари</p>
+      <h1 class="item-cat-title">Додати товари</h1>
     </div>
 
     <div class="item-cat" id="remove-item-cat">
@@ -70,11 +74,31 @@
       <div class="button-container">
         <button class="change-data-button">Редагувати</button>
       </div>
-
-
     </div>
 
+    <div class="user-sets" style="display: none">
+      <div id="prod_sets">
+        <% @prod_sets.each do |prod_set| %>
+          <div>
+            <p>Назва сету: <%= prod_set.set_name %></p>
+            <% if prod_set.prod_data.present? %>
+              <% prod_set.prod_data.each do |product_id, quantity| %>
+                <% product = Product.find(product_id) %>
+                <p>Продукт: <%= product.prod_model %></p>
+                <p>Кількість: <%= quantity %></p>
+              <% end %>
+            <% else %>
+              <p>В цьому сеті немає продуктів.</p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+
+
     <div class="add-item">
+
     </div>
 
     <div class="remove-item">

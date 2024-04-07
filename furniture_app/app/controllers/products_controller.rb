@@ -26,6 +26,7 @@ class ProductsController < ApplicationController
     end
 
     @sort_direction = direction == 'asc' ? 'desc' : 'asc'
+    @user = current_user
   end
 
   # GET /products/1 or /products/1.json

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_07_095315) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_09_200906) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
   enable_extension "plpgsql"
@@ -42,6 +42,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_07_095315) do
     t.index ["phone_number"], name: "index_manufacturers_on_phone_number", unique: true
     t.index ["reset_password_token"], name: "index_manufacturers_on_reset_password_token", unique: true
     t.index ["title_manufacturer"], name: "index_manufacturers_on_title_manufacturer", unique: true
+  end
+
+  create_table "manufactures", force: :cascade do |t|
+    t.string "manufacture_name"
+    t.string "manufacture_country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "order_sets", force: :cascade do |t|
@@ -81,8 +88,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_07_095315) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "delivery_days", default: [], array: true
     t.integer "production_days"
-    t.text "delivery_days"
     t.index ["furniture_id"], name: "index_products_on_furniture_id"
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
     t.index ["sub_category_id"], name: "index_products_on_sub_category_id"
@@ -100,15 +107,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_07_095315) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
     t.string "middle_name"
     t.string "phone_number", default: "", null: false
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["phone_number"], name: "index_users_on_phone_number", unique: true

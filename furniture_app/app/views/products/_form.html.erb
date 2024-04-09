@@ -47,15 +47,15 @@
     <%= form.number_field :production_days %>
   </div>
 
-  <div style="display: flex;">
-    <div style="flex: 1;">
-      <% [ 'Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П\'ятниця', 'Субота', 'Неділя'].each do |day| %>
-        <%= form.check_box :delivery_days, { multiple: true }, day, id: "#{day.parameterize}" %>
-        <%= form.label day, for: "#{day.parameterize}", style: "margin-right: 10px;" %>
-      <% end %>
-    </div>
-  </div>
 
+
+  <div>
+    <%= form.label :delivery_days, "Можливі дні доставки", style: "display: block" %>
+    <% [ 'Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П\'ятниця', 'Субота', 'Неділя'].each do |day| %>
+      <%= check_box_tag 'product[delivery_days][]', day, @product.delivery_days.include?(day), id: day.parameterize %>
+      <%= label_tag day, day, for: day.parameterize, style: "margin-right: 10px;" %>
+    <% end %>
+  </div>
 
 
   <div>

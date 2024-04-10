@@ -2,7 +2,8 @@
   <div class="grey-square-img"></div>
 
   <div class="product-details">
-    <h2><%= @product.prod_model %></h2>
+    <% furniture = Furniture.find(@product.furniture_id) %>
+    <h2><%= "#{furniture.name} (#{@product.prod_model})" %></h2>
     <div class="price-order">
       <p class="price"><%= number_to_currency(@product.price, unit: "₴") %></p>
       <%= link_to "Замовити", new_order_path(product_id: @product.id), class: "order-button" %>
@@ -30,6 +31,8 @@
     <div class="description-container">
       <h1>Опис</h1>
       <p class="description"><%= @product.description %></p>
+      <p class="description">Виробництво продукта: <%= @product.production_days %> днів</p>
+      <p class="description">Можлива доставка: <%= @product.delivery_days.join(', ') %></p>
     </div>
   </div>
 </div>

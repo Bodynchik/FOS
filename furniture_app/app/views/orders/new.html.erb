@@ -3,6 +3,14 @@
     <h1>Замовлення товара "<%= @product.prod_model %>"</h1>
     <%= form_with(model: @order, url: orders_path) do |form| %>
       <%= form.hidden_field :product_id, value: @product.id %>
+
+
+      <div class="field">
+        <% ready_date = Date.today + @product.production_days.days %>
+        <p>Дата готовності товару: <%= ready_date.strftime("%Y-%m-%d") %></p>
+      </div>
+
+
       <div class="field">
         <%= form.label :quantity, 'Кількість:' %>
         <%= form.number_field :quantity, min: 1, value: 1 %>

@@ -28,13 +28,15 @@
     </div>
 
     <% @products.each do |product| %>
+      <% furniture = Furniture.find(product.furniture_id) %>
       <%= link_to product_path(product), class: "product" do %>
         <div class="grey-square"></div>
         <div class="product-info">
-          <p class="product-name"><%= product.prod_model %></p>
+          <p class="product-name"><%= "#{furniture.name} (#{product.prod_model})" %></p>
           <p class="product-price"><%= number_to_currency(product.price, unit: "₴") %></p>
         </div>
       <% end %>
     <% end %>
   </div>
 </section>
+

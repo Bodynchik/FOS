@@ -15,6 +15,15 @@ class ProductsController < ApplicationController
       else
         @products = sub_category.products
       end
+    elsif params[:manufacturer_id].present?
+      manufacturer = Manufacturer.find(params[:manufacturer_id])
+      if sort_by == 'name'
+        @products = manufacturer.products.order(prod_model: direction.to_sym)
+      elsif sort_by == 'price'
+        @products = manufacturer.products.order(price: direction.to_sym)
+      else
+        @products = manufacturer.products
+      end
     else
       if sort_by == 'name'
         @products = Product.order(prod_model: direction.to_sym)

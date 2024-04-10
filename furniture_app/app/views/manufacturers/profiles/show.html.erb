@@ -17,12 +17,14 @@
       <h1 class="item-cat-title">Додати товари</h1>
     </div>
 
-    <div class="item-cat" id="remove-item-cat">
-      <h1 class="item-cat-title">Видалити товари</h1>
+    <div class="item-cat" id="item-list-cat" style="display: block">
+      <%= link_to manufacturer_products_path(current_manufacturer), class: "view-products-link" do %>
+        <h1 class="item-cat-title">Переглянути товари</h1>
+      <% end %>
     </div>
 
-    <div class="item-cat" id="item-list-cat">
-      <h1 class="item-cat-title">Переглянути товари</h1>
+    <div class="item-cat" id="remove-item-cat">
+      <h1 class="item-cat-title">Видалити товари</h1>
     </div>
   </section>
 
@@ -73,11 +75,15 @@
       <%= render 'products/form', product: @product %>
     </div>
 
+
+    <div class="item-list" style="display: none">
+
+
+    </div>
+
     <div class="remove-item">
     </div>
 
-    <div class="item-list">
-    </div>
 
   </section>
 

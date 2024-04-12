@@ -6,7 +6,9 @@
     <h2><%= "#{furniture.name} (#{@product.prod_model})" %></h2>
     <div class="price-order">
       <p class="price"><%= number_to_currency(@product.price, unit: "₴") %></p>
-      <%= link_to "Замовити", new_order_path(product_id: @product.id), class: "order-button" %>
+      <% if current_user.is_a?(Manufacturer) %>
+        <%= link_to "Замовити", new_order_path(product_id: @product.id), class: "order-button" %>
+      <% end %>
       <% if current_user.present? %>
         <a href="#" class="add-to-set-button">Додати до сету</a>
       <% end %>
@@ -28,11 +30,30 @@
 
     </div>
     <div id="addProductToSetForm-overlay" style="display: none;"></div>
+    <% possible_delivery_days = { "Понеділок" => 1,"Вівторок" => 2, "Середа" => 3, "Четвер" => 4, "П'ятниця" => 5, "Субота" => 6, "Неділя" => 7 } %>
+    <% closest_delivery_dates = {} %>
+    <% today = Date.today + @product.production_days%>
+    <% current_day = today.wday%>
+
+    <% @product.delivery_days.each do |day| %>
+      <% days_difference = (possible_delivery_days[day]  - current_day).to_i %>
+      <% days_difference += 7 if days_difference < 0 %>
+      <% closest_delivery_dates[day] = today + days_difference %>
+  <% end %>
+
+
     <div class="description-container">
       <h1>Опис</h1>
       <p class="description"><%= @product.description %></p>
-      <p class="description">Виробництво продукта: <%= @product.production_days %> днів</p>
+      <p class="description">Виробництво продукта: <%= @product.production_days %> днів </p>
       <p class="description">Можлива доставка: <%= @product.delivery_days.join(', ') %></p>
+      <p class="description">Найближчі дні доставки:</p>
+      <ul class="delivery-list">
+        <% sorted_delivery_dates = closest_delivery_dates.sort_by { |day, date| date } %>
+        <% sorted_delivery_dates.each do |day, date| %>
+          <li> <%= date.strftime("%Y-%m-%d") %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>

@@ -71,9 +71,8 @@
       <% end %>
       <% if current_user.present? %>
         <a href="#" class="add-to-set-button">Додати до сету</a>
-        <%= link_to "Написати виробнику", chat_path %>
+        <%= button_to "Написати виробнику", chats_path(manufacturer_id: @product.manufacturer.id), method: :post%>
       <% end %>
-
 
     </div>
   </div>

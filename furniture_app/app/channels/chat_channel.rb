@@ -1,18 +1,25 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
-    user_id = params[:user_id]
-    if user_id.present?
-      stream_from "chat_channel"
-      logger.info "User #{user_id} subscribed to chat channel"
+    if params[:manufacturer_id].present?
+      stream_from "chat_channel_#{params[:manufacturer_id]}"
     else
       reject
     end
   end
 
   def receive(data)
-    user = User.find(params[:user_id])
-    message_data = { username: user.username, message: data['message'] }
-    ActionCable.server.broadcast("chat_channel", message_data)
+    sender_id = data["sender_id"]
+    sender_type = data["sender_type"]
+
+    sender_model = sender_type == "Производитель" ? Manufacturer : User
+    sender = sender_model.find_by(id: sender_id)
+
+    if sender.present?
+      message_data = { username: sender.username, message: data["message"] }
+      ActionCable.server.broadcast("chat_channel_#{sender_id}", message_data)
+    else
+      # Handle error
+    end
   end
 
   def unsubscribed

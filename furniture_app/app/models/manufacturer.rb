@@ -8,5 +8,11 @@ class Manufacturer < ApplicationRecord
   validates :person_last_name, presence: true
   validates :title_manufacturer, presence: true
   validates :phone_number, presence: true
+
   has_many :products
+  has_many :chats
+
+  def username
+    "#{title_manufacturer}"
+  end
 end

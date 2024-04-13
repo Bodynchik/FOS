@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :orders
   has_many :prod_sets
+  has_many :chats
 
   def username
     "#{first_name} #{last_name}"

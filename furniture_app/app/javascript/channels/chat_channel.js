@@ -2,29 +2,34 @@ import consumer from "channels/consumer"
 
 document.addEventListener('DOMContentLoaded', function() {
   const chatMessages = document.getElementById('chat-messages');
+  const manufacturerId = chatMessages.dataset.manufacturerId;
   const userId = chatMessages.dataset.userId;
+  const userType = chatMessages.dataset.userType; // Определение типа отправителя
+  console.log(manufacturerId);
+  console.log(userId);
+  console.log(userType); // Проверяем, получили ли тип отправителя
 
-  consumer.subscriptions.create({ channel: "ChatChannel", user_id: userId }, {
+  consumer.subscriptions.create({ channel: "ChatChannel", manufacturer_id: manufacturerId, user_id: userId, user_type: userType }, {
     connected() {
-      // Called when the subscription is ready for use on the server
       console.log("Connected to chat channel");
     },
 
     disconnected() {
-      // Called when the subscription has been terminated by the server
     },
 
     received(data) {
-      // Called when there's incoming data on the websocket for this channel
       const chatMessages = document.getElementById('chat-messages');
       console.log("Sending message:", chatMessages);
       chatMessages.insertAdjacentHTML('beforeend', `<div class="message"><strong>${data.username}:</strong> ${data.message}</div>`);
     },
 
     send_message(message) {
+      console.log("Manufacturer:", manufacturerId);
       console.log("User:", userId);
+      console.log("User Type:", userType); // Добавили вывод типа отправителя
       console.log("Sending message:", message);
-      this.perform('receive', { message: message });
+      const senderId = userType === 'Производитель' ? manufacturerId : userId;
+      this.perform('receive', { message: message, sender_id: senderId, sender_type: String(userType) }); // Передаем тип отправителя вместе с сообщением
     }
   });
 });

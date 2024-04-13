@@ -31,6 +31,10 @@
       <p class="item-cat-title">Мої замовлення</p>
     </div>
 
+    <div class="item-cat" id="chat-cat">
+      <h1 class="item-cat-title">Чати</h1>
+    </div>
+
   </section>
 
   <section id="category-data">
@@ -149,6 +153,12 @@
           </div>
         </div>
       <% end %>
+    </div>
+
+    <div class="chat-list" style="display: none">
+        <% @user_chats.chats.each do |chat| %>
+          <%= link_to "Чат з #{chat.manufacturer.username}", chat_path(chat) %><br>
+        <% end %>
     </div>
 
   </section>

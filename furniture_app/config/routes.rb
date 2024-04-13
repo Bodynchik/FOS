@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chat/index'
   resources :order_sets
   resources :prod_sets
   resources :orders
@@ -22,6 +23,8 @@ Rails.application.routes.draw do
   }
 
   get 'pages/home'
+  mount ActionCable.server => '/cable'
+  get 'chat', to: 'chat#index'
 
   resources :sub_categories
   resources :categories

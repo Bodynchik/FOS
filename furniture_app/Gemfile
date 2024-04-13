@@ -32,6 +32,8 @@ gem "open-uri"
 
 gem "devise"
 
+gem "actioncable"
+
 group :development do
   gem 'letter_opener'
 end

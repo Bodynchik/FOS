@@ -1,0 +1,12 @@
+<!-- app/views/chat/index.html.erb -->
+<h1>Чат</h1>
+
+<div id="chat-messages" data-user-id="<%= current_user.id %>">
+  <!-- Область для вывода сообщений чата -->
+  <%= current_user.id %>
+</div>
+
+<form id="message-form">
+  <input type="text" id="message-input" placeholder="Повідомлення...">
+  <button type="submit">Відправити</button>
+</form>

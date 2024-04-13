@@ -21,9 +21,9 @@ def create
     @user = @chat.user
 
     if user_signed_in?
-      @user_type = 'Пользователь'
+      @user_type = 'Користувач'
     else
-      @user_type = 'Производитель'
+      @user_type = 'Виробник'
     end
   end
 

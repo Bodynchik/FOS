@@ -11,14 +11,13 @@ class ChatChannel < ApplicationCable::Channel
     sender_id = data["sender_id"]
     sender_type = data["sender_type"]
 
-    sender_model = sender_type == "Производитель" ? Manufacturer : User
+    sender_model = sender_type == "Виробник" ? Manufacturer : User
     sender = sender_model.find_by(id: sender_id)
 
     if sender.present?
       message_data = { username: sender.username, message: data["message"] }
       ActionCable.server.broadcast("chat_channel_#{sender_id}", message_data)
     else
-      # Handle error
     end
   end
 

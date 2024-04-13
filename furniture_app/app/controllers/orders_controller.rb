@@ -13,6 +13,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @product = Product.find(params[:product_id])
+    @closest_delivery_dates = params[:delivery_dates]
     @order = Order.new
   end
 
@@ -70,6 +71,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:product_id, :quantity, :total_price)
+      params.require(:order).permit(:product_id, :quantity, :total_price, :delivery_day)
     end
 end

@@ -19,8 +19,8 @@
       <p class="item-cat-title">Мої сети</p>
     </div>
 
-    <div class="item-cat" id="add-item-cat" style="display: none">
-      <h1 class="item-cat-title">Додати товари</h1>
+    <div class="item-cat" id="add-item-cat">
+      <p class="item-cat-title">Додати товари</p>
     </div>
 
     <div class="item-cat" id="remove-item-cat" style="display: none">
@@ -54,9 +54,7 @@
           <p class="personal-data-column-title">По батькові</p>
           <p class="personal-data-field"><%= current_user.middle_name %></p>
         </div>
-<!--      </div>-->
 
-<!--      <div class="contact-data-grid">-->
 
         <div class="contact-data-column">
           <p class="personal-data-column-title">Номер телефону</p>
@@ -68,7 +66,7 @@
           <p class="contact-data-field"><%= current_user.email %></p>
         </div>
 
-<!--      </div>-->
+
       </div>
 
       <div class="button-container">
@@ -97,45 +95,46 @@
         <% end %>
         <div class="button-container">
           <%= link_to "Створити сет", new_prod_set_path(user_id: current_user.id), class: "create-set-button" %>
-<!--          <a href="#" class="create-set-button">Створити сет</a>-->
         </div>
       </div>
-
-<!--      Діалогове вікно для створення нового сету -->
-<!--      <div id="createSetForm" style="display: none;">-->
-        <%#= form_with(model: ProdSet.new) do |form| %>
-          <%# if form.object.errors.any? %>
-<!--            <div style="color: red">-->
-<!--              <h2><%#= pluralize(form.object.errors.count, "error") %> prohibited this prod_set from being saved:</h2>-->
-<!--              <ul>-->
-                <%# form.object.errors.full_messages.each do |message| %>
-<!--                  <li><%#= message %></li>-->
-                <%# end %>
-<!--              </ul>-->
-<!--            </div>-->
-          <%# end %>
-
-<!--          <div style="display: none;">-->
-            <%#= form.label :user_id, style: "display: block" %>
-            <%#= form.text_field :user_id, value: current_user.id %>
-<!--          </div>-->
-
-<!--          <div>-->
-            <%#= form.label :set_name, style: "display: block" %>
-            <%#= form.text_field :set_name %>
-<!--          </div>-->
-
-<!--          <div>-->
-            <%#= form.submit %>
-<!--          </div>-->
-        <%# end %>
-<!--      </div>-->
-<!--      <div id="createSetForm-overlay" style="display: none;"></div>-->
-
     </div>
 
     <div class="add-item">
+      <div>
+        <% if @sub_categories.present? %>
+          <%= label_tag :sub_category_id, "Оберіть категорію", style: "display: block" %>
+          <%= select_tag :sub_category_id, options_for_select(@sub_categories.map { |sub_category| [sub_category.subcat_name, sub_category.id] }), id: "sub_category_select" %>
+        <% else %>
+          <p>Немає доступних товарів</p>
+        <% end %>
+      </div>
+
+      <div id="products-dropdown">
+        <table class="product-table">
+          <thead>
+          <tr>
+            <th></th>
+            <th>Модель</th>
+            <th>Ціна</th>
+            <th>Опис</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% if @products.present? %>
+          <% @products.each do |product| %>
+            <tr>
+              <td><%= check_box_tag "product_ids[]", product.id %></td>
+              <td><%= product.prod_model %></td>
+              <td><%= product.price %></td>
+              <td><%= product.description %></td>
+            </tr>
+          <% end %>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
+
 
     <div class="remove-item">
     </div>

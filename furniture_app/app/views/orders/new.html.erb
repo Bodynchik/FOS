@@ -15,12 +15,22 @@
         <%= form.label :quantity, 'Кількість:' %>
         <%= form.number_field :quantity, min: 1, value: 1 %>
       </div>
+
+
+      <div class="field">
+        <%= form.label :delivery_day, 'Дата доставки:' %>
+        <%= form.select :delivery_day, options_for_select(@closest_delivery_dates.each_slice(2).map(&:last)) %>
+      </div>
+
+
       <div class="actions">
         <%= form.submit 'Замовити' %>
       </div>
     <% end %>
   </div>
 </div>
+
+
 
 <!--<h1>New order</h1>-->
 

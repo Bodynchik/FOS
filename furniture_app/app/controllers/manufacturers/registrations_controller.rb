@@ -7,9 +7,9 @@ class Manufacturers::RegistrationsController < Devise::RegistrationsController
   before_action :check_info_manufacturers, only: [:create]
 
   # GET /resource/sign_up
-  #def new
+  # def new
   #  super
-  #end
+  # end
 
   # POST /resource
   # def create
@@ -43,20 +43,20 @@ class Manufacturers::RegistrationsController < Devise::RegistrationsController
   private
 
   def check_email_domain
-    unless params[:manufacturer][:email].end_with?('@karazin.ua')
-      redirect_to new_manufacturer_registration_path, alert: 'Реєстрація доступна тільки с доменом karazin.ua'
-    end
+    return if params[:manufacturer][:email].end_with?('@karazin.ua')
+
+    redirect_to new_manufacturer_registration_path, alert: 'Реєстрація доступна тільки с доменом karazin.ua'
   end
 
   def check_info_manufacturers
     email = params[:manufacturer][:email]
     title_manufacturer = params[:manufacturer][:title_manufacturer]
     phone_number = params[:manufacturer][:phone_number]
-    if Manufacturer.exists?(email: email)
+    if Manufacturer.exists?(email:)
       redirect_to new_manufacturer_registration_path, alert: 'Цей email вже зареєстрований'
-    elsif Manufacturer.exists?(title_manufacturer: title_manufacturer)
+    elsif Manufacturer.exists?(title_manufacturer:)
       redirect_to new_manufacturer_registration_path, alert: 'Ця назва вже зареєстрована'
-    elsif Manufacturer.exists?(phone_number: phone_number)
+    elsif Manufacturer.exists?(phone_number:)
       redirect_to new_manufacturer_registration_path, alert: 'Цей номер телефону вже зареєстрований'
     end
   end
@@ -65,12 +65,16 @@ class Manufacturers::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:person_name, :person_last_name, :person_middle_name, :title_manufacturer, :phone_number])
+    devise_parameter_sanitizer.permit(:sign_up,
+                                      keys: %i[person_name person_last_name person_middle_name title_manufacturer
+                                               phone_number])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:person_name, :person_last_name, :person_middle_name, :title_manufacturer, :phone_number])
+    devise_parameter_sanitizer.permit(:account_update,
+                                      keys: %i[person_name person_last_name person_middle_name title_manufacturer
+                                               phone_number])
   end
 
   # The path used after sign up.

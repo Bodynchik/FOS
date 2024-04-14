@@ -44,23 +44,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def check_info_users
     email = params[:user][:email]
     phone_number = params[:user][:phone_number]
-    if User.exists?(email: email)
+    if User.exists?(email:)
       redirect_to new_user_registration_path, alert: 'Цей email вже зареєстрований'
-    elsif User.exists?(phone_number: phone_number)
+    elsif User.exists?(phone_number:)
       redirect_to new_user_registration_path, alert: 'Цей номер телефону вже зареєстрований'
     end
   end
 
   protected
 
-  #If you have extra params to permit, append them to the sanitizer.
+  # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :middle_name, :phone_number])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name middle_name phone_number])
   end
 
-  #If you have extra params to permit, append them to the sanitizer.
+  # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :middle_name, :phone_number])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name middle_name phone_number])
   end
 
   # The path used after sign up.

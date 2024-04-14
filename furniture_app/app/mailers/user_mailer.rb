@@ -1,5 +1,4 @@
 class UserMailer < ApplicationMailer
-
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -11,9 +10,9 @@ class UserMailer < ApplicationMailer
   end
 
   def create_notification
-    @greeting = "Hi"
+    @greeting = 'Hi'
 
-    mail to: "to@example.org"
+    mail to: 'to@example.org'
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -22,9 +21,9 @@ class UserMailer < ApplicationMailer
   #   en.user_mailer.update_notification.subject
   #
   def update_notification
-    @greeting = "Hi"
+    @greeting = 'Hi'
 
-    mail to: "to@example.org"
+    mail to: 'to@example.org'
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -33,8 +32,8 @@ class UserMailer < ApplicationMailer
   #   en.user_mailer.delete_notification.subject
   #
   def delete_notification
-    @greeting = "Hi"
+    @greeting = 'Hi'
 
-    mail to: "to@example.org"
+    mail to: 'to@example.org'
   end
 end

@@ -6,23 +6,23 @@ require_relative '../../app/models/category'
 require_relative '../../app/models/sub_category'
 
 namespace :parse do
-  desc "Парсимо сайт і зберігаємо назву продуктів"
+  desc 'Парсимо сайт і зберігаємо назву продуктів'
 
-  task :name => :environment do
+  task name: :environment do
     url = 'https://www.enchantedlearning.com/wordlist/furniture.shtml#wls-id-a'
     doc = Nokogiri::HTML(URI.open(url))
 
     begin
       doc.css('.wordlist-item').each do |word|
-          name = word.text
-          Furniture.create(name: name)
-        end
+        name = word.text
+        Furniture.create(name:)
+      end
     rescue StandardError => e
       puts "Помилка: #{e.message}"
     end
   end
 
-  task :categories => :environment do
+  task categories: :environment do
     Category.create([
                       { cat_name: 'Вітальня' },
                       { cat_name: 'Кухня' },
@@ -31,10 +31,10 @@ namespace :parse do
                       { cat_name: 'Зберігання' },
                       { cat_name: 'Сад' }
                     ])
-    puts "Категорії вставлено успішно!"
+    puts 'Категорії вставлено успішно!'
   end
 
-  task :sub_categories => :environment do
+  task sub_categories: :environment do
     categories = Category.all
     sub_categories_data = [
       { category_id: categories.find_by(cat_name: 'Вітальня').id, subcat_name: 'Крісла' },
@@ -73,6 +73,6 @@ namespace :parse do
       { category_id: categories.find_by(cat_name: 'Сад').id, subcat_name: 'Шезлонги' }
     ]
     SubCategory.create(sub_categories_data)
-    puts "Підкатегорії вставлено успішно!"
+    puts 'Підкатегорії вставлено успішно!'
   end
 end

@@ -7,14 +7,14 @@ Rails.application.routes.draw do
   # devise_for :manufacturers
   # devise_for :users
 
-  #Шлях до реєстрації користувача
+  # Шлях до реєстрації користувача
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
     passwords: 'users/passwords'
   }
 
-  #Шлях до реєстрації виробника
+  # Шлях до реєстрації виробника
   devise_for :manufacturers, controllers: {
     sessions: 'manufacturers/sessions',
     registrations: 'manufacturers/registrations',
@@ -44,15 +44,14 @@ Rails.application.routes.draw do
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  get 'up' => 'rails/health#show', as: :rails_health_check
 
   # get "sign_in" => "devise/registrations#new", as: :sign_in_page
 
   # Defines the root path route ("/")
   # root "posts#index"
-  mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  mount LetterOpenerWeb::Engine, at: '/letter_opener'
 
   # Add this route for adding product to set
   post 'add_product_to_set', to: 'prod_sets#add_product_to_set'
 end
-

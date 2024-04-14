@@ -1,5 +1,5 @@
 class ProdSetsController < ApplicationController
-  before_action :set_prod_set, only: %i[ show edit update destroy ]
+  before_action :set_prod_set, only: %i[show edit update destroy]
 
   # GET /prod_sets or /prod_sets.json
   def index
@@ -7,8 +7,7 @@ class ProdSetsController < ApplicationController
   end
 
   # GET /prod_sets/1 or /prod_sets/1.json
-  def show
-  end
+  def show; end
 
   # GET /prod_sets/new
   def new
@@ -17,8 +16,7 @@ class ProdSetsController < ApplicationController
   end
 
   # GET /prod_sets/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /prod_sets or /prod_sets.json
   def create
@@ -26,7 +24,7 @@ class ProdSetsController < ApplicationController
 
     respond_to do |format|
       if @prod_set.save
-        format.html { redirect_to prod_set_url(@prod_set), notice: "Prod set was successfully created." }
+        format.html { redirect_to prod_set_url(@prod_set), notice: 'Prod set was successfully created.' }
         format.json { render :show, status: :created, location: @prod_set }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -47,10 +45,10 @@ class ProdSetsController < ApplicationController
 
     if prod_set.save
       # Успішна обробка
-      flash[:success] = "Продукт успішно додано до сету."
+      flash[:success] = 'Продукт успішно додано до сету.'
     else
       # Обробка помилок
-      flash[:error] = "Не вдалося додати продукт до сету."
+      flash[:error] = 'Не вдалося додати продукт до сету.'
     end
     redirect_back(fallback_location: root_path)
   end
@@ -59,7 +57,7 @@ class ProdSetsController < ApplicationController
   def update
     respond_to do |format|
       if @prod_set.update(prod_set_params)
-        format.html { redirect_to prod_set_url(@prod_set), notice: "Prod set was successfully updated." }
+        format.html { redirect_to prod_set_url(@prod_set), notice: 'Prod set was successfully updated.' }
         format.json { render :show, status: :ok, location: @prod_set }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -73,12 +71,13 @@ class ProdSetsController < ApplicationController
     @prod_set.destroy!
 
     respond_to do |format|
-      format.html { redirect_to prod_sets_url, notice: "Prod set was successfully destroyed." }
+      format.html { redirect_to prod_sets_url, notice: 'Prod set was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_prod_set
     @prod_set = ProdSet.find(params[:id])

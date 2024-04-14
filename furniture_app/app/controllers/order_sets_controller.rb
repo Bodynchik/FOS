@@ -1,5 +1,5 @@
 class OrderSetsController < ApplicationController
-  before_action :set_order_set, only: %i[ show edit update destroy ]
+  before_action :set_order_set, only: %i[show edit update destroy]
 
   # GET /order_sets or /order_sets.json
   def index
@@ -7,8 +7,7 @@ class OrderSetsController < ApplicationController
   end
 
   # GET /order_sets/1 or /order_sets/1.json
-  def show
-  end
+  def show; end
 
   # GET /order_sets/new
   def new
@@ -16,8 +15,7 @@ class OrderSetsController < ApplicationController
   end
 
   # GET /order_sets/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /order_sets or /order_sets.json
   def create
@@ -25,7 +23,7 @@ class OrderSetsController < ApplicationController
 
     respond_to do |format|
       if @order_set.save
-        format.html { redirect_to order_set_url(@order_set), notice: "Order set was successfully created." }
+        format.html { redirect_to order_set_url(@order_set), notice: 'Order set was successfully created.' }
         format.json { render :show, status: :created, location: @order_set }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +36,7 @@ class OrderSetsController < ApplicationController
   def update
     respond_to do |format|
       if @order_set.update(order_set_params)
-        format.html { redirect_to order_set_url(@order_set), notice: "Order set was successfully updated." }
+        format.html { redirect_to order_set_url(@order_set), notice: 'Order set was successfully updated.' }
         format.json { render :show, status: :ok, location: @order_set }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +50,20 @@ class OrderSetsController < ApplicationController
     @order_set.destroy!
 
     respond_to do |format|
-      format.html { redirect_to order_sets_url, notice: "Order set was successfully destroyed." }
+      format.html { redirect_to order_sets_url, notice: 'Order set was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order_set
-      @order_set = OrderSet.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def order_set_params
-      params.require(:order_set).permit(:prodset_id, :total_price)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order_set
+    @order_set = OrderSet.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def order_set_params
+    params.require(:order_set).permit(:prodset_id, :total_price)
+  end
 end

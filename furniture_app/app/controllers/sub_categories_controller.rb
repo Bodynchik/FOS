@@ -1,5 +1,5 @@
 class SubCategoriesController < ApplicationController
-  before_action :set_sub_category, only: %i[ show edit update destroy ]
+  before_action :set_sub_category, only: %i[show edit update destroy]
 
   # GET /sub_categories or /sub_categories.json
   def index
@@ -9,8 +9,7 @@ class SubCategoriesController < ApplicationController
   end
 
   # GET /sub_categories/1 or /sub_categories/1.json
-  def show
-  end
+  def show; end
 
   # GET /sub_categories/new
   def new
@@ -18,8 +17,7 @@ class SubCategoriesController < ApplicationController
   end
 
   # GET /sub_categories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /sub_categories or /sub_categories.json
   def create
@@ -27,7 +25,7 @@ class SubCategoriesController < ApplicationController
 
     respond_to do |format|
       if @sub_category.save
-        format.html { redirect_to sub_category_url(@sub_category), notice: "Sub category was successfully created." }
+        format.html { redirect_to sub_category_url(@sub_category), notice: 'Sub category was successfully created.' }
         format.json { render :show, status: :created, location: @sub_category }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +38,7 @@ class SubCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @sub_category.update(sub_category_params)
-        format.html { redirect_to sub_category_url(@sub_category), notice: "Sub category was successfully updated." }
+        format.html { redirect_to sub_category_url(@sub_category), notice: 'Sub category was successfully updated.' }
         format.json { render :show, status: :ok, location: @sub_category }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,19 +52,20 @@ class SubCategoriesController < ApplicationController
     @sub_category.destroy!
 
     respond_to do |format|
-      format.html { redirect_to sub_categories_url, notice: "Sub category was successfully destroyed." }
+      format.html { redirect_to sub_categories_url, notice: 'Sub category was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_sub_category
-      @sub_category = SubCategory.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def sub_category_params
-      params.require(:sub_category).permit(:category_id, :subcat_name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_sub_category
+    @sub_category = SubCategory.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def sub_category_params
+    params.require(:sub_category).permit(:category_id, :subcat_name)
+  end
 end

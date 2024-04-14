@@ -108,7 +108,12 @@
     color: #4d4d4d;
 }
 
-.order-button, .add-to-set-button {
+.product-button-con {
+    display: flex;
+    gap: 10px;
+}
+
+.order-button, .add-to-set-button, .chat-button {
     display: inline-block;
     padding: 10px 20px;
     background-color: #6a6460;
@@ -118,9 +123,11 @@
     font-size: 24px;
     border-radius: 20px;
     transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: none;
 }
 
-.order-button:hover, .add-to-set-button:hover {
+.order-button:hover, .add-to-set-button:hover, .chat-button:hover {
     background-color: #504b49;
 }
 

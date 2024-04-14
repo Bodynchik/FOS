@@ -307,6 +307,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  actioncable
   bootsnap
   capybara
   debug
@@ -322,9 +323,9 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.2)
-  rubocop (~> 1.63)
-  rubocop-performance (~> 1.11)
-  rubocop-rails (~> 2.11)
+  rubocop
+  rubocop-performance
+  rubocop-rails
   selenium-webdriver
   sprockets-rails
   stimulus-rails

@@ -52,6 +52,7 @@
 }
 
 .item-cat-title {
+    text-align: start;
     font-weight: 400;
     font-size: 40px;
     color: #000;

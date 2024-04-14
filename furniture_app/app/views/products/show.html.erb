@@ -66,13 +66,15 @@
         <% end %>
       </ul>
 
-      <% if current_user.is_a?(User) %>
-        <%= link_to "Замовити", new_order_path(product_id: @product.id, delivery_dates: @closest_delivery_dates), class: "order-button" %>
-      <% end %>
-      <% if current_user.present? %>
-        <a href="#" class="add-to-set-button">Додати до сету</a>
-      <% end %>
-
+      <div class="product-button-con">
+        <% if current_user.is_a?(User) %>
+          <%= link_to "Замовити", new_order_path(product_id: @product.id, delivery_dates: @closest_delivery_dates), class: "order-button" %>
+        <% end %>
+        <% if current_user.present? %>
+          <a href="#" class="add-to-set-button">Додати до сету</a>
+          <%= button_to "Написати виробнику", chats_path(manufacturer_id: @product.manufacturer.id), method: :post, class: "chat-button"%>
+        <% end %>
+      </div>
 
     </div>
   </div>

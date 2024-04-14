@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chat/index'
   resources :order_sets
   resources :prod_sets
   resources :orders
@@ -23,6 +24,8 @@ Rails.application.routes.draw do
 
   get 'pages/home'
 
+  resources :chats, only: [:create, :show]
+
   resources :sub_categories
   resources :categories
 
@@ -40,8 +43,6 @@ Rails.application.routes.draw do
     resources :products, only: [:index], controller: 'products'
   end
 
-
-
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get 'up' => 'rails/health#show', as: :rails_health_check
@@ -50,7 +51,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
   mount LetterOpenerWeb::Engine, at: '/letter_opener'
+  mount ActionCable.server => '/cable'
 
   # Add this route for adding product to set
   post 'add_product_to_set', to: 'prod_sets#add_product_to_set'

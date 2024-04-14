@@ -1,0 +1,13 @@
+<div class="chat_wrapper">
+  <div class="chat-container">
+    <h1 class="chat-header">Чат</h1>
+
+    <div id="chat-messages" class="chat-messages" data-manufacturer-id="<%= @manufacturer.id %>" data-user-id="<%= @user.id %>" data-user-type="<%= @user_type %>">
+    </div>
+
+    <form id="message-form" class="chat-form">
+      <input type="text" id="message-input" class="message-input" placeholder="Повідомлення...">
+      <button type="submit" class="chat-submit">Відправити</button>
+    </form>
+  </div>
+</div>

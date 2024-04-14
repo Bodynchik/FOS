@@ -9,6 +9,7 @@ document.addEventListener("turbo:load", function() {
     const userSetsCat = document.querySelector('#user-sets-cat');
     const removeItemCat = document.querySelector('#remove-item-cat');
     const itemListCat = document.querySelector('#item-list-cat');
+    const chatCat = document.querySelector('#chat-cat');
 
     // Блоки даних
     const personalData = document.querySelector('.personal-data');
@@ -16,6 +17,7 @@ document.addEventListener("turbo:load", function() {
     const userSets = document.querySelector('.user-sets');
     const removeItem = document.querySelector('.remove-item');
     const itemList = document.querySelector('.item-list');
+    const chatList = document.querySelector('.chat-list');
 
     // Обробники подій для категорій
 
@@ -27,6 +29,7 @@ document.addEventListener("turbo:load", function() {
         userSets.style.display = 'none'
         removeItem.style.display = 'none';
         itemList.style.display = 'none';
+        chatList.style.display = 'none';
     });
 
     // При кліку на категорію "Додати товари"
@@ -37,6 +40,7 @@ document.addEventListener("turbo:load", function() {
         userSets.style.display = 'none'
         removeItem.style.display = 'none';
         itemList.style.display = 'none';
+        chatList.style.display = 'none';
     });
 
     // При кліку на категорію "Мої сети"
@@ -47,6 +51,7 @@ document.addEventListener("turbo:load", function() {
         userSets.style.display = 'block'
         removeItem.style.display = 'none';
         itemList.style.display = 'none';
+        chatList.style.display = 'none';
     });
 
     // При кліку на категорію "Видалити товари"
@@ -57,6 +62,7 @@ document.addEventListener("turbo:load", function() {
         userSets.style.display = 'none'
         removeItem.style.display = 'block';
         itemList.style.display = 'none';
+        chatList.style.display = 'none';
     });
 
     // При кліку на категорію "Переглянути товари"
@@ -67,6 +73,17 @@ document.addEventListener("turbo:load", function() {
         userSets.style.display = 'none'
         removeItem.style.display = 'none';
         itemList.style.display = 'block';
+        chatList.style.display = 'none';
+    });
+
+    chatCat.addEventListener('click', function() {
+        // Приховати всі блоки даних крім itemList
+        personalData.style.display = 'none';
+        addItem.style.display = 'none';
+        userSets.style.display = 'none'
+        removeItem.style.display = 'none';
+        itemList.style.display = 'none';
+        chatList.style.display = 'block';
     });
 
     // Логіка редагування даних
@@ -259,7 +276,7 @@ document.addEventListener("turbo:load", function() {
         // }
 
         // Перевірка, чи була клікнута категорія
-        const categories = ['personal-data-cat', 'add-item-cat', 'user-sets-cat', 'remove-item-cat', 'item-list-cat'];
+        const categories = ['personal-data-cat', 'add-item-cat', 'user-sets-cat', 'remove-item-cat', 'item-list-cat', 'chat-cat'];
         if (categories.includes(target.id)) {
             const categoryId = target.id.replace('-cat', '');
             const categoryData = document.querySelector(`#${categoryId}`);
@@ -272,7 +289,7 @@ document.addEventListener("turbo:load", function() {
             categoryData.classList.add('active');
 
             // Відображення відповідного блоку даних
-            const dataBlocks = document.querySelectorAll('.personal-data, .add-item, .user-sets, .remove-item, .item-list');
+            const dataBlocks = document.querySelectorAll('.personal-data, .add-item, .user-sets, .remove-item, .item-list, .chat-list');
             dataBlocks.forEach(block => {
                 const blockId = block.classList[0]; // Отримання класу першого блоку
                 if (blockId.includes(categoryId)) {
@@ -315,7 +332,7 @@ document.addEventListener("turbo:load", function() {
             categoryData.classList.add('active');
 
             // Відображення відповідного блоку даних
-            const dataBlocks = document.querySelectorAll('.personal-data, .add-item, .user-sets, .remove-item, .item-list');
+            const dataBlocks = document.querySelectorAll('.personal-data, .add-item, .user-sets, .remove-item, .item-list, .chat-list');
             dataBlocks.forEach(block => {
                 const blockId = block.classList[0]; // Отримання класу першого блоку
                 if (blockId.includes(categoryId)) {
@@ -326,4 +343,4 @@ document.addEventListener("turbo:load", function() {
             });
         }
     });
-});
+});import "channels"

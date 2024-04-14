@@ -19,7 +19,7 @@
       <p class="item-cat-title">Мої сети</p>
     </div>
 
-    <div class="item-cat" id="add-item-cat">
+    <div class="item-cat" id="add-item-cat" style="display: none">
       <p class="item-cat-title">Додати товари</p>
     </div>
 
@@ -29,6 +29,10 @@
 
     <div class="item-cat" id="item-list-cat">
       <p class="item-cat-title">Мої замовлення</p>
+    </div>
+
+    <div class="item-cat" id="chat-cat">
+      <h1 class="item-cat-title">Чати</h1>
     </div>
 
   </section>
@@ -74,7 +78,7 @@
       </div>
     </div>
 
-    <div class="user-sets" style="display: none">
+    <div class="user-sets">
       <div id="prod_sets">
         <% @prod_sets.each do |prod_set| %>
           <div class="prod-set">
@@ -100,39 +104,39 @@
     </div>
 
     <div class="add-item">
-      <div>
-        <% if @sub_categories.present? %>
-          <%= label_tag :sub_category_id, "Оберіть категорію", style: "display: block" %>
-          <%= select_tag :sub_category_id, options_for_select(@sub_categories.map { |sub_category| [sub_category.subcat_name, sub_category.id] }), id: "sub_category_select" %>
-        <% else %>
-          <p>Немає доступних товарів</p>
-        <% end %>
-      </div>
+<!--      <div>-->
+        <%# if @sub_categories.present? %>
+          <%#= label_tag :sub_category_id, "Оберіть категорію", style: "display: block" %>
+          <%#= select_tag :sub_category_id, options_for_select(@sub_categories.map { |sub_category| [sub_category.subcat_name, sub_category.id] }), id: "sub_category_select" %>
+        <%# else %>
+<!--          <p>Немає доступних товарів</p>-->
+        <%# end %>
+<!--      </div>-->
 
-      <div id="products-dropdown">
-        <table class="product-table">
-          <thead>
-          <tr>
-            <th></th>
-            <th>Модель</th>
-            <th>Ціна</th>
-            <th>Опис</th>
-          </tr>
-          </thead>
-          <tbody>
-          <% if @products.present? %>
-          <% @products.each do |product| %>
-            <tr>
-              <td><%= check_box_tag "product_ids[]", product.id %></td>
-              <td><%= product.prod_model %></td>
-              <td><%= product.price %></td>
-              <td><%= product.description %></td>
-            </tr>
-          <% end %>
-          <% end %>
-          </tbody>
-        </table>
-      </div>
+<!--      <div id="products-dropdown">-->
+<!--        <table class="product-table">-->
+<!--          <thead>-->
+<!--          <tr>-->
+<!--            <th></th>-->
+<!--            <th>Модель</th>-->
+<!--            <th>Ціна</th>-->
+<!--            <th>Опис</th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          <tbody>-->
+          <%# if @products.present? %>
+          <%# @products.each do |product| %>
+<!--            <tr>-->
+<!--              <td><%#= check_box_tag "product_ids[]", product.id %></td>-->
+<!--              <td><%#= product.prod_model %></td>-->
+<!--              <td><%#= product.price %></td>-->
+<!--              <td><%#= product.description %></td>-->
+<!--            </tr>-->
+          <%# end %>
+          <%# end %>
+<!--          </tbody>-->
+<!--        </table>-->
+<!--      </div>-->
     </div>
 
 
@@ -149,6 +153,12 @@
           </div>
         </div>
       <% end %>
+    </div>
+
+    <div class="chat-list" style="display: none">
+        <% @user_chats.chats.each do |chat| %>
+          <%= link_to "Чат з #{chat.manufacturer.username}", chat_path(chat) %><br>
+        <% end %>
     </div>
 
   </section>

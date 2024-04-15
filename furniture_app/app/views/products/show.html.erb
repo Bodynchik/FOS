@@ -2,8 +2,8 @@
   <div class="grey-square-img"></div>
 
   <div class="product-details">
-    <% furniture = Furniture.find(@product.furniture_id) %>
-    <h2><%= "#{furniture.name} (#{@product.prod_model})" %></h2>
+    <%# furniture = Furniture.find(@product.furniture_id) %>
+    <h2><%= "#{@product.prod_model}" %></h2>
     <div class="price-order">
       <p class="price"><%= number_to_currency(@product.price, unit: "₴") %></p>
     </div>
@@ -55,10 +55,10 @@
 
     <div class="description-container">
       <h1>Опис</h1>
-      <p class="description"><%= @product.description %></p>
+      <p class="description" id="description-text"><%= @product.description %></p>
       <p class="description">Виробництво продукта: <%= @product.production_days %> днів </p>
       <p class="description">Можлива доставка: <%= @product.delivery_days.join(', ') %></p>
-      <p class="description">Найближчі дні доставки:</p>
+      <p class="description" id="last-description">Найближчі дні доставки:</p>
       <ul class="delivery-list">
         <% sorted_delivery_dates = closest_delivery_dates_4.sort_by { |day, date| date } %>
         <% sorted_delivery_dates.each do |day, date| %>

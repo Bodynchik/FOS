@@ -72,10 +72,12 @@
 /* Стилі для сторінки продукту show */
 
 .product-container {
-    height: 100vh;
+    height: auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /*align-items: center;*/
+    margin-top: 120px;
+    margin-bottom: 120px;
 }
 
 .product-details {
@@ -106,6 +108,7 @@
     font-size: 36px;
     font-weight: bold;
     color: #4d4d4d;
+    margin-bottom: 0;
 }
 
 .product-button-con {
@@ -132,14 +135,29 @@
 }
 
 .description-container {
-    margin-top: 60px;
+    margin-top: 0;
 }
 
 .description-container h1 {
-    margin: 0;
+    margin-top: 60px;
+    margin-bottom: 0;
     font-size: 36px;
 }
 
 .description {
     font-size: 24px;
+}
+
+#description-text {
+    margin-top: 16px;
+    margin-bottom: 60px;
+}
+
+.delivery-list {
+    margin-top: 16px;
+    margin-bottom: 24px;
+}
+
+#last-description {
+    margin-bottom: 0;
 }

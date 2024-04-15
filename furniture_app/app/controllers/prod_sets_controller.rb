@@ -24,7 +24,7 @@ class ProdSetsController < ApplicationController
 
     respond_to do |format|
       if @prod_set.save
-        format.html { redirect_to prod_set_url(@prod_set), notice: 'Prod set was successfully created.' }
+        format.html { redirect_to users_profiles_path, notice: 'Prod set was successfully created.' }
         format.json { render :show, status: :created, location: @prod_set }
       else
         format.html { render :new, status: :unprocessable_entity }

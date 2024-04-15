@@ -1,5 +1,5 @@
 class ChatsController < ApplicationController
-def create
+  def create
     @manufacturer = Manufacturer.find(params[:manufacturer_id])
     @chat = Chat.find_by(user_id: current_user.id, manufacturer_id: @manufacturer.id)
 
@@ -17,13 +17,14 @@ def create
 
   def show
     @chat = Chat.find(params[:id])
+    @messages = @chat.messages.order(created_at: :asc)
     @manufacturer = @chat.manufacturer
     @user = @chat.user
 
     if user_signed_in?
-      @user_type = 'Користувач'
+      @user_type = "Користувач"
     else
-      @user_type = 'Виробник'
+      @user_type = "Виробник"
     end
   end
 

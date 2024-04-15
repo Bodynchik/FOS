@@ -24,7 +24,9 @@ Rails.application.routes.draw do
 
   get 'pages/home'
 
-  resources :chats, only: [:create, :show]
+  resources :chats, only: [:create, :show] do
+    resources :messages, only: [:create]
+  end
 
   resources :sub_categories
   resources :categories

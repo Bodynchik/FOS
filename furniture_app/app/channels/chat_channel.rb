@@ -1,7 +1,7 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
-    if params[:manufacturer_id].present?
-      stream_from "chat_channel_#{params[:manufacturer_id]}"
+    if params[:chat_id].present?
+      stream_from "chat_channel_#{params[:chat_id]}"
     else
       reject
     end
@@ -16,7 +16,7 @@ class ChatChannel < ApplicationCable::Channel
 
     if sender.present?
       message_data = { username: sender.username, message: data["message"] }
-      ActionCable.server.broadcast("chat_channel_#{sender_id}", message_data)
+      ActionCable.server.broadcast("chat_channel_#{params[:chat_id]}", message_data)
     else
     end
   end

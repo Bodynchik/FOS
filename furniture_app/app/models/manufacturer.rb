@@ -11,6 +11,7 @@ class Manufacturer < ApplicationRecord
 
   has_many :products
   has_many :chats
+  has_many :messages
 
   def username
     "#{title_manufacturer}"

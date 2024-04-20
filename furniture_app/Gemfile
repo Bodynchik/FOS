@@ -32,7 +32,11 @@ gem 'open-uri'
 
 gem 'devise'
 
-gem "actioncable"
+gem 'actioncable'
+
+gem 'activeadmin'
+
+gem 'sassc-rails'
 
 group :development do
   gem 'letter_opener'

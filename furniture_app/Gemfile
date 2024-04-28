@@ -36,6 +36,8 @@ gem 'actioncable'
 
 gem 'activeadmin'
 
+gem 'rss'
+
 gem 'sassc-rails'
 
 group :development do

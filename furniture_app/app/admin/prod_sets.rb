@@ -1,5 +1,4 @@
 ActiveAdmin.register ProdSet do
-
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -34,18 +33,17 @@ ActiveAdmin.register ProdSet do
     actions
   end
 
-  filter :user_id, as: :select, collection: User.all.map {|u| [u.username, u.id]}
+  filter :user_id, as: :select, collection: User.all.map { |u| [u.username, u.id] }
   filter :set_name
   filter :created_at
 
   form do |f|
     f.inputs do
-      f.input :user_id, as: :select, collection: User.all.map {|u| [u.username, u.id]}
+      f.input :user_id, as: :select, collection: User.all.map { |u| [u.username, u.id] }
       f.input :set_name
       f.input :prod_data, as: :text, input_html: { rows: 5 }
     end
 
     f.actions
   end
-  
 end

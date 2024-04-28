@@ -1,5 +1,4 @@
 ActiveAdmin.register Chat do
-
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -28,8 +27,7 @@ ActiveAdmin.register Chat do
     actions
   end
 
-  filter :user_id, as: :select, collection: User.all.map {|u| [u.username, u.id]}
-  filter :manufacturer_id, as: :select, collection: Manufacturer.all.map {|m| [m.username, m.id]}
+  filter :user_id, as: :select, collection: User.all.map { |u| [u.username, u.id] }
+  filter :manufacturer_id, as: :select, collection: Manufacturer.all.map { |m| [m.username, m.id] }
   filter :created_at
-  
 end

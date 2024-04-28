@@ -14,14 +14,15 @@ class Manufacturer < ApplicationRecord
   has_many :messages
 
   def username
-    "#{title_manufacturer}"
+    title_manufacturer.to_s
   end
 
-  def self.ransackable_associations(auth_object = nil)
-    ["chats", "messages", "products"]
+  def self.ransackable_associations(_auth_object = nil)
+    %w[chats messages products]
   end
 
-  def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "email", "encrypted_password", "id", "id_value", "person_last_name", "person_middle_name", "person_name", "phone_number", "remember_created_at", "reset_password_sent_at", "reset_password_token", "title_manufacturer", "updated_at"]
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[created_at email encrypted_password id id_value person_last_name person_middle_name person_name phone_number remember_created_at
+       reset_password_sent_at reset_password_token title_manufacturer updated_at]
   end
 end

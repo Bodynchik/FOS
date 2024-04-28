@@ -1,5 +1,4 @@
 ActiveAdmin.register SubCategory do
-
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -25,15 +24,14 @@ ActiveAdmin.register SubCategory do
     actions
   end
 
-  filter :category_id, as: :select, collection: Category.all.map {|c| [c.cat_name, c.id]}
+  filter :category_id, as: :select, collection: Category.all.map { |c| [c.cat_name, c.id] }
   filter :subcat_name
 
   form do |f|
     f.inputs do
-      f.input :category_id, as: :select, collection: Category.all.map {|c| [c.cat_name, c.id]}
+      f.input :category_id, as: :select, collection: Category.all.map { |c| [c.cat_name, c.id] }
       f.input :subcat_name
     end
     f.actions
   end
-  
 end

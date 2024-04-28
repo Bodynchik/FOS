@@ -1,5 +1,4 @@
 ActiveAdmin.register Message do
-
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -32,20 +31,19 @@ ActiveAdmin.register Message do
     actions
   end
 
-  filter :chat_id, as: :select, collection: Chat.all.map {|c| [c.id]}
-  filter :user_id, as: :select, collection: User.all.map {|u| [u.username, u.id]}
-  filter :manufacturer_id, as: :select, collection: Manufacturer.all.map {|m| [m.username, m.id]}
+  filter :chat_id, as: :select, collection: Chat.all.map { |c| [c.id] }
+  filter :user_id, as: :select, collection: User.all.map { |u| [u.username, u.id] }
+  filter :manufacturer_id, as: :select, collection: Manufacturer.all.map { |m| [m.username, m.id] }
   filter :created_at
 
   form do |f|
     f.inputs do
-      f.input :chat_id, as: :select, collection: Chat.all.map {|c| [c.id]}
-      f.input :user_id, as: :select, collection: User.all.map {|u| [u.username, u.id]}
-      f.input :manufacturer_id, as: :select, collection: Manufacturer.all.map {|m| [m.username, m.id]}
+      f.input :chat_id, as: :select, collection: Chat.all.map { |c| [c.id] }
+      f.input :user_id, as: :select, collection: User.all.map { |u| [u.username, u.id] }
+      f.input :manufacturer_id, as: :select, collection: Manufacturer.all.map { |m| [m.username, m.id] }
       f.input :content
     end
 
     f.actions
   end
-  
 end

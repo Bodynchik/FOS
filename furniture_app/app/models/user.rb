@@ -17,11 +17,12 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def self.ransackable_associations(auth_object = nil)
-    ["chats", "messages", "orders", "prod_sets"]
+  def self.ransackable_associations(_auth_object = nil)
+    %w[chats messages orders prod_sets]
   end
 
-  def self.ransackable_attributes(auth_object = nil)
-    ["confirmation_sent_at", "confirmation_token", "confirmed_at", "created_at", "email", "encrypted_password", "first_name", "id", "id_value", "last_name", "middle_name", "phone_number", "remember_created_at", "reset_password_sent_at", "reset_password_token", "unconfirmed_email", "updated_at"]
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[confirmation_sent_at confirmation_token confirmed_at created_at email encrypted_password first_name id id_value last_name middle_name
+       phone_number remember_created_at reset_password_sent_at reset_password_token unconfirmed_email updated_at]
   end
 end

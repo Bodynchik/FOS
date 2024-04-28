@@ -1,11 +1,11 @@
 ActiveAdmin.register Manufacturer do
-
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :person_name, :person_last_name, :person_middle_name, :title_manufacturer, :phone_number
+  permit_params :email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :person_name, :person_last_name, :person_middle_name,
+                :title_manufacturer, :phone_number
   #
   # or
   #
@@ -49,5 +49,4 @@ ActiveAdmin.register Manufacturer do
     end
     f.actions
   end
-  
 end

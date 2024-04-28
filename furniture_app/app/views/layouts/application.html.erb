@@ -94,9 +94,13 @@
     </div>
 
     <div class="footer-column">
+      <%#= auto_discovery_link_tag(:rss, products_url(format: "rss")) %>
       <p>Підписатися на розсилку</p>
-      <input type="email" placeholder="Email" class="email-field"/>
-      <button class="button">Відправити</button>
+      <a href="<%= products_url(format: "rss") %>">
+        <%= image_tag "footer/rss-feed-svgrepo-com.svg", class: "footer-icon", alt: "RSS icon" %>
+      </a>
+<!--      <input type="email" placeholder="Email" class="email-field"/>-->
+<!--      <button class="button">Відправити</button>-->
     </div>
 
   </div>

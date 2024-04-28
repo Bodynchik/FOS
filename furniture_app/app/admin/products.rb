@@ -1,5 +1,4 @@
 ActiveAdmin.register Product do
-
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -36,9 +35,9 @@ ActiveAdmin.register Product do
     actions
   end
 
-  filter :furniture_id, as: :select, collection: Furniture.all.map {|f| [f.name, f.id]}
-  filter :manufacturer_id, as: :select, collection: Manufacturer.all.map {|m| [m.title_manufacturer, m.id]}
-  filter :sub_category_id, as: :select, collection: SubCategory.all.map {|c| [c.subcat_name, c.id]}
+  filter :furniture_id, as: :select, collection: Furniture.all.map { |f| [f.name, f.id] }
+  filter :manufacturer_id, as: :select, collection: Manufacturer.all.map { |m| [m.title_manufacturer, m.id] }
+  filter :sub_category_id, as: :select, collection: SubCategory.all.map { |c| [c.subcat_name, c.id] }
   filter :prod_model
   filter :price
   filter :description
@@ -48,9 +47,9 @@ ActiveAdmin.register Product do
 
   form do |f|
     f.inputs do
-      f.input :furniture_id, as: :select, collection: Furniture.all.map {|u| [u.name, u.id]}
-      f.input :manufacturer_id, as: :select, collection: Manufacturer.all.map {|m| [m.title_manufacturer, m.id]}
-      f.input :sub_category_id, as: :select, collection: SubCategory.all.map {|c| [c.subcat_name, c.id]}
+      f.input :furniture_id, as: :select, collection: Furniture.all.map { |u| [u.name, u.id] }
+      f.input :manufacturer_id, as: :select, collection: Manufacturer.all.map { |m| [m.title_manufacturer, m.id] }
+      f.input :sub_category_id, as: :select, collection: SubCategory.all.map { |c| [c.subcat_name, c.id] }
       f.input :prod_model
       f.input :price
       f.input :description
@@ -59,5 +58,4 @@ ActiveAdmin.register Product do
     end
     f.actions
   end
-  
 end

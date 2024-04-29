@@ -41,6 +41,11 @@
     <%= form.text_area :description %>
   </div>
 
+  <div>
+    <%= form.label :product_image, style: "display: block" %>
+    <%= form.file_field :product_image %>
+  </div>
+
   <!-- Додати поля для кількості днів на виробництво та дні тижня для доставки -->
   <div>
     <%= form.label :production_days, style: "display: block" %>

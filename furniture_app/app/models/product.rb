@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   belongs_to :manufacturer
   belongs_to :sub_category
   has_many :orders
+  has_one_attached :product_image, dependent: :destroy
 
   def self.ransackable_associations(_auth_object = nil)
     %w[furniture manufacturer orders sub_category]

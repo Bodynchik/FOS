@@ -41,6 +41,19 @@ class ProductsController < ApplicationController
   # GET /products/1 or /products/1.json
   def show; end
 
+  def acceptable_image
+    return unless @product.product_image.attached?
+
+    unless @product.product_image.blob.byte_size <= 3.megabyte
+      @product.errors.add(:product_image, "is too big")
+    end
+
+    acceptable_types = ["image/jpeg", "image/png"]
+    unless acceptable_types.include?(@product.product_image.content_type)
+      @product.errors.add(:product_image, "must be a JPEG or PNG")
+    end
+  end
+
   # GET /products/new
   def new
     @product = Product.new
@@ -53,12 +66,17 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
 
+    acceptable_image
+
     respond_to do |format|
-      if @product.save
+      if @product.errors.empty? && @product.save
         format.html { redirect_to '/profiles' }
         format.json { render :show, status: :created, location: @product }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html do
+          flash[:alert] = @product.errors.full_messages.join(", ")
+          redirect_to '/profiles'
+        end
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
@@ -97,6 +115,6 @@ class ProductsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def product_params
     params.require(:product).permit(:furniture_id, :manufacturer_id, :sub_category_id, :prod_model, :price,
-                                    :description, :production_days, delivery_days: [])
+                                    :description, :product_image, :production_days, delivery_days: [])
   end
 end

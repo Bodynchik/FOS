@@ -1,5 +1,7 @@
 <div class="product-container">
-  <div class="grey-square-img"></div>
+  <div class="grey-square-img">
+    <%= image_tag(@product.product_image, class: 'image-div') if @product.product_image.attached? %>
+  </div>
 
   <div class="product-details">
     <%# furniture = Furniture.find(@product.furniture_id) %>

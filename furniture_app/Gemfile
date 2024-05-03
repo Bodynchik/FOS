@@ -38,6 +38,8 @@ gem 'activeadmin'
 
 gem 'rss'
 
+gem 'rails-i18n'
+
 gem 'sassc-rails'
 
 group :development do

@@ -4,15 +4,16 @@
     <div class="background-image">
       <div class="container-about">
         <h1 id="logo-text">FURNITURE ONLIONE STORE</h1>
-        <button class="about-button">Про нас</button>
+        <button class="about-button"><%= t('home.about_us') %></button>
       </div>
     </div>
   </section>
 
   <section id="categories">
-    <h1 id="category-title">Знайдіть ідеальне вираження вашого стилю та смаку!</h1>
+    <h1 id="category-title"><%= t('home.cat_title') %></h1>
 
     <div class="category-grid">
+
       <div class="category-column">
 
         <%= link_to sub_categories_path(category_name: "Вітальня") do %>
@@ -80,43 +81,39 @@
   </section>
 
   <section id="why-we">
-    <h1 id="why-we-title">Чому саме ми?</h1>
+    <h1 id="why-we-title"><%= t('home.why_us') %></h1>
 
     <div class="why-we-grid">
       <div class="why-we-column">
         <%= image_tag "why we/delivery-truck-truck-svgrepo-com.svg", class: "why-we-icon", alt: "Free shipping icon" %>
 
-        <h2 id="why-we-column-title">Безкоштовна доставка</h2>
+        <h2 id="why-we-column-title"><%= t('home.shipping') %></h2>
 
-        <p>Отримайте свої улюблені меблі без додаткових витрат! Ми забезпечуємо безкоштовну доставку для
-          наших клієнтів, щоб зробити ваше шопінг-враження ще приємнішим.</p>
+        <p><%= t('home.shi_p') %></p>
       </div>
 
       <div class="why-we-column">
         <%= image_tag "why we/credit-card-payment-svgrepo-com.svg", class: "why-we-icon", alt: "Pro support icon" %>
 
-        <h2 id="why-we-column-title">Професійна підтримка клієнтів</h2>
+        <h2 id="why-we-column-title"><%= t('home.support') %></h2>
 
-        <p>Наша дружня команда експертів завжди готова вам допомогти. Ми пропонуємо професійну підтримку
-          клієнтів, готову відповісти на всі ваші питання та надати допомогу на кожному етапі покупки.</p>
+        <p><%= t('home.sup_p') %></p>
       </div>
 
       <div class="why-we-column">
         <%= image_tag "why we/checked-tick-svgrepo-com.svg", class: "why-we-icon", alt: "Quality guarantee icon" %>
 
-        <h2 id="why-we-column-title">Гарантія якості</h2>
+        <h2 id="why-we-column-title"><%= t('home.guarantee') %></h2>
 
-        <p>Відчуйте впевненість у своїй покупці! Ми надаємо гарантію якості на всі наші меблі, щоб ви могли
-          насолоджуватися їхньою довговічністю та елегантністю.</p>
+        <p><%= t('home.gua_p') %></p>
       </div>
 
       <div class="why-we-column">
         <%= image_tag "why we/shopping-cart-shop-svgrepo-com.svg", class: "why-we-icon", alt: "Easy return icon" %>
 
-        <h2 id="why-we-column-title">Легке повернення</h2>
+        <h2 id="why-we-column-title"><%= t('home.return') %></h2>
 
-        <p>Якщо вам не сподобалося або є будь-які проблеми, не переймайтеся! Наша система легкого повернення
-          робить процес заміни або повернення товару максимально зручним та безстресовим.</p>
+        <p><%= t('home.ret_p') %></p>
       </div>
     </div>
   </section>

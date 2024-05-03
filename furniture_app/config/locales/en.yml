@@ -1,31 +1,21 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  home:
+    about_us: "About us"
+    cat_title: "Find the perfect expression of your style and taste!"
+    why_us: "Why us?"
+    shipping: "Free shipping"
+    shi_p: "Get your favorite furniture at no extra cost! We provide free shipping for
+            our customers to make your shopping experience even more enjoyable."
+    support: "Professional customer support"
+    sup_p: "Our friendly team of experts is always ready to help you. We offer professional support
+            customers, ready to answer all your questions and provide assistance at every stage of the purchase."
+    guarantee: "Quality guarantee"
+    gua_p: "Feel confident in your purchase! We provide a quality guarantee on all our furniture so that you can
+            enjoy their durability and elegance."
+    return: "Easy return"
+    ret_p: "If you don't like it or have any problems, don't worry! Our easy returns system
+            makes the process of replacing or returning the product as convenient and stress-free as possible."
+  footer:
+    follow: "Follow us"
+    contact: "Contact us"
+    subscribe: "Subscribe to the newsletter"

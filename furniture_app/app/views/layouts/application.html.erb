@@ -64,7 +64,7 @@
   <div class="footer-grid">
     <div class="footer-column">
 
-      <p>Слідкуйте за нами</p>
+      <p><%= t('footer.follow') %></p>
 
       <div class="footer-icons">
         <a href="https://www.tiktok.com">
@@ -85,7 +85,7 @@
       </div>
 
       <a href="mailto:denis.kimlyk.of@gmail.com">
-        <p>Зв'язатись з нами</p>
+        <p><%= t('footer.contact') %></p>
       </a>
     </div>
 
@@ -95,7 +95,7 @@
 
     <div class="footer-column">
       <%#= auto_discovery_link_tag(:rss, products_url(format: "rss")) %>
-      <p>Підписатися на розсилку</p>
+      <p><%= t('footer.subscribe') %></p>
       <a href="<%= products_url(format: "rss") %>">
         <%= image_tag "footer/rss-feed-svgrepo-com.svg", class: "footer-icon", alt: "RSS icon" %>
       </a>

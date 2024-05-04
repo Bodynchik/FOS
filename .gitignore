@@ -8,3 +8,4 @@ furniture_app/.gitattributes
 furniture_app/config/master.key
 furniture_app/tmp
 furniture_app/log
+furniture_app/storage

@@ -72,7 +72,7 @@ document.addEventListener("turbo:load", function() {
         addItem.style.display = 'none';
         userSets.style.display = 'none'
         removeItem.style.display = 'none';
-        itemList.style.display = 'block';
+        itemList.style.display = 'flex';
         chatList.style.display = 'none';
     });
 

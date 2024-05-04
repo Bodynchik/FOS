@@ -12,7 +12,7 @@
         <div><%= f.password_field :password, placeholder: "Пароль", class: "input-field", required: true %></div>
         <!--        <div><%#= f.password_field :password_confirmation, placeholder: "Підтвердження паролю", class: "input-field" %></div>-->
         <div>
-          <%= f.select :currency, [['UAH', 'uah'], ['USD', 'usd'], ['EUR', 'eur'], ['ZL', 'zl']], { selected: 'uah' }, class: "input-field", required: true %>
+          <%= f.select :currency, ['UAH', 'USD', 'EUR'], { selected: 'UAH' }, class: "input-field", required: true %>
         </div>
         <div><%= f.submit "Зареєструватися", class: "btn" %></div>
       <% end %>

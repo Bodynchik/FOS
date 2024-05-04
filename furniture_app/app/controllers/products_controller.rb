@@ -1,3 +1,6 @@
+require 'net/http'
+require 'json'
+
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
 
@@ -8,38 +11,22 @@ class ProductsController < ApplicationController
 
     if params[:sub_category_id].present?
       sub_category = SubCategory.find(params[:sub_category_id])
-      @products = if sort_by == 'name'
-                    sub_category.products.order(prod_model: direction.to_sym)
-                  elsif sort_by == 'price'
-                    sub_category.products.order(price: direction.to_sym)
-                  else
-                    sub_category.products
-                  end
+      products = sub_category.products
     elsif params[:manufacturer_id].present?
       manufacturer = Manufacturer.find(params[:manufacturer_id])
-      @products = if sort_by == 'name'
-                    manufacturer.products.order(prod_model: direction.to_sym)
-                  elsif sort_by == 'price'
-                    manufacturer.products.order(price: direction.to_sym)
-                  else
-                    manufacturer.products
-                  end
+      products = manufacturer.products
     else
-      @products = if sort_by == 'name'
-                    Product.order(prod_model: direction.to_sym)
-                  elsif sort_by == 'price'
-                    Product.order(price: direction.to_sym)
-                  else
-                    Product.all
-                  end
+      products = Product.all
     end
+
+    @products = sort_products(products, sort_by, direction)
 
     @sort_direction = direction == 'asc' ? 'desc' : 'asc'
     @user = current_user
+
+    convert_prices_to_user_currency
   end
 
-  # GET /products/1 or /products/1.json
-  def show; end
 
   def acceptable_image
     return unless @product.product_image.attached?
@@ -154,4 +141,58 @@ class ProductsController < ApplicationController
     end
   end
 
+  def sort_products(products, sort_by, direction)
+    case sort_by
+    when 'name'
+      products.order(prod_model: direction.to_sym)
+    when 'price'
+      products.order(price: direction.to_sym)
+    else
+      products
+    end
+  end
+
+  # Конвертувати всі ціни
+  def convert_prices_to_user_currency
+    if current_user
+      currency = current_user.currency || 'UAH'
+      @products.each do |product|
+        product.price = convert_price(product.price, currency)
+      end
+    end
+  end
+
+  # Конвертувати ціну певного продукту
+  def convert_price_to_user_currency(product)
+    currency = current_user.currency || 'UAH'
+    product.price = convert_price(product.price, currency)
+  end
+
+  # Конвертація ціни з гривень в залежності від валюти користувача
+  def convert_price(price, currency)
+    exchange_rate = get_exchange_rate(currency)
+    if exchange_rate
+      price /= exchange_rate.to_f
+      price.round(2)
+    else
+      price
+    end
+  end
+
+  # Отримання курсу з приватбанку
+  def get_exchange_rate(currency)
+    url = URI("https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=11")
+    response = Net::HTTP.get(url)
+    data = JSON.parse(response)
+
+    exchange_rate = nil
+    data.each do |rate|
+      if rate['ccy'] == currency
+        exchange_rate = rate['buy']
+        break
+      end
+    end
+
+    exchange_rate
+  end
 end

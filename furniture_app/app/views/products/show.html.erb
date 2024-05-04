@@ -7,7 +7,11 @@
     <%# furniture = Furniture.find(@product.furniture_id) %>
     <h2><%= "#{@product.prod_model}" %></h2>
     <div class="price-order">
-      <p class="price"><%= number_to_currency(@product.price, unit: "₴") %></p>
+      <% if current_user %>
+        <p class="price"><%= "#{@product.price} #{current_user.currency}" %></p>
+      <% else %>
+        <p class="price"><%= "#{@product.price} UAH" %></p>
+      <% end %>
     </div>
     <div id="addProductToSetForm" style="display: none;">
 
@@ -43,12 +47,12 @@
 
 
     <%30.times do %>
-    <% @product.delivery_days.each do |day| %>
-      <%i = i + 1%>
-      <% days_difference = (possible_delivery_days[day]  - current_day).to_i %>
-      <% days_difference += 7 if days_difference <= 0 %>
-      <% @closest_delivery_dates[i] = today + days_difference %>
-    <% end %>
+      <% @product.delivery_days.each do |day| %>
+        <%i = i + 1%>
+        <% days_difference = (possible_delivery_days[day]  - current_day).to_i %>
+        <% days_difference += 7 if days_difference <= 0 %>
+        <% @closest_delivery_dates[i] = today + days_difference %>
+      <% end %>
       <%today = @closest_delivery_dates[i]%>
       <%current_day = today.wday %>
 

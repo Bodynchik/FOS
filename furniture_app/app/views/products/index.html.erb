@@ -3,19 +3,19 @@
 <!--<h1>Products</h1>-->
 
 <!--<div id="products">-->
-  <%# @products.each do |product| %>
-    <%#= render product %>
+<%# @products.each do |product| %>
+<%#= render product %>
 <!--    <p>-->
-      <%#= link_to "Show this product", product %>
+<%#= link_to "Show this product", product %>
 <!--    </p>-->
-  <%# end %>
+<%# end %>
 <!--</div>-->
 
 <%#= link_to "New product", new_product_path %>
 
 <%# @products.each do |product| %>
 <!--  <div>-->
-    <%#= link_to product.prod_model, product_path(product) %>
+<%#= link_to product.prod_model, product_path(product) %>
 <!--  </div>-->
 <%# end %>
 
@@ -23,8 +23,8 @@
   <div class="products-container">
 
     <div class="sorting-buttons">
-      <%= link_to "Сортувати за назвою", products_path(sort: 'name', direction: @sort_direction), class: "sort-button" %>
-      <%= link_to "Сортувати за ціною", products_path(sort: 'price', direction: @sort_direction), class: "sort-button" %>
+      <%= link_to "Сортувати за назвою", products_path(sort: 'name', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+      <%= link_to "Сортувати за ціною", products_path(sort: 'price', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
     </div>
 
     <% @products.each do |product| %>
@@ -34,11 +34,14 @@
           <%= image_tag(product.product_image, class: 'image-div') if product.product_image.attached? %>
         </div>
         <div class="product-info">
-          <p class="product-name"><%= "#{furniture.name} (#{product.prod_model})" %></p>
-          <p class="product-price"><%= number_to_currency(product.price, unit: "₴") %></p>
+          <p class="product-name"><%= "#{product.prod_model}" %></p>
+          <% if current_user %>
+            <p class="product-price"><%= "#{product.price} #{current_user.currency}" %></p>
+          <% else %>
+            <p class="product-price"><%= "#{product.price} UAH" %></p>
+          <% end %>
         </div>
       <% end %>
     <% end %>
   </div>
 </section>
-

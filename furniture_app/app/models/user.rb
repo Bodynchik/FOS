@@ -1,3 +1,6 @@
+require 'net/http'
+require 'json'
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -25,4 +28,32 @@ class User < ApplicationRecord
     %w[confirmation_sent_at confirmation_token confirmed_at created_at email encrypted_password first_name id id_value last_name middle_name
        phone_number remember_created_at reset_password_sent_at reset_password_token unconfirmed_email updated_at]
   end
+
+  # Метод для отримання відношення валюти користувача до доллара
+  def get_exchange_rates(currency)
+    url = URI("https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=11")
+    response = Net::HTTP.get(url)
+    data = JSON.parse(response)
+
+    usd_rate = nil
+    eur_rate = nil
+    result = 0.0
+
+    data.each do |rate|
+      if rate['ccy'] == 'USD'
+        usd_rate = rate['buy']
+      elsif rate['ccy'] == 'EUR'
+        eur_rate = rate['buy']
+      end
+    end
+
+    if currency == 'UAH'
+      result = 1 / usd_rate.to_f
+    elsif currency == 'EUR'
+      result = eur_rate.to_f / usd_rate.to_f
+    end
+
+    result.round(2)
+  end
+
 end

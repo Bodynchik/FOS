@@ -10,7 +10,10 @@
         <div><%= f.email_field :email, placeholder: "Пошта", class: "input-field", required: true %></div>
         <div><%= f.text_field :phone_number, placeholder: "Номер телефону", class: "input-field", required: true %></div>
         <div><%= f.password_field :password, placeholder: "Пароль", class: "input-field", required: true %></div>
-<!--        <div><%#= f.password_field :password_confirmation, placeholder: "Підтвердження паролю", class: "input-field" %></div>-->
+        <!--        <div><%#= f.password_field :password_confirmation, placeholder: "Підтвердження паролю", class: "input-field" %></div>-->
+        <div>
+          <%= f.select :currency, [['UAH', 'uah'], ['USD', 'usd'], ['EUR', 'eur'], ['ZL', 'zl']], { selected: 'uah' }, class: "input-field", required: true %>
+        </div>
         <div><%= f.submit "Зареєструватися", class: "btn" %></div>
       <% end %>
     </div>

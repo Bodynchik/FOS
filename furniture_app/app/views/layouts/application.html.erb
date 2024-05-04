@@ -27,23 +27,35 @@
       <%= image_tag "header/loupe-search-svgrepo-com.svg", class: "search-icon", alt: "Search Icon" %>
     </div>
 
-    <a href="#" class="nav-icons">
-      <%= image_tag "header/shopping-cart-svgrepo-com.svg", class: "nav-icons", alt: "Cart icon" %>
-    </a>
+    <!--    <a href="#" class="nav-icons">-->
+    <%#= image_tag "header/shopping-cart-svgrepo-com.svg", class: "nav-icons", alt: "Cart icon" %>
+    <!--    </a>-->
+
+    <div class="dropdown">
+      <label>
+        <select onchange="window.location.href = this.value;">
+          <% I18n.available_locales.each do |locale| %>
+            <option value="<%= root_path(locale: locale) %>" <%= 'selected' if locale.to_s == I18n.locale.to_s %>>
+              <%= t(locale) %>
+            </option>
+          <% end %>
+        </select>
+      </label>
+    </div>
 
     <% if user_signed_in? %>
-      <a href="/users/profiles" class="nav-icons" id="logout-prof-user">
+      <%= link_to users_profiles_path, class: "nav-icons", id: "logout-prof-mun" do %>
         <%= image_tag "header/profile.svg", class: "nav-icons", alt: "Profile" %>
-      </a>
+      <% end %>
 
       <%= button_to destroy_user_session_path, method: :delete, form_class: "button_log_out", id: "logout-but-user" do %>
         <%= image_tag "header/logout.svg", class: "nav-icons", alt: "Log Out Icon" %>
       <% end %>
 
     <% elsif manufacturer_signed_in? %>
-      <a href="/manufacturers/profiles" class="nav-icons" id="logout-prof-mun">
+      <%= link_to manufacturers_profiles_path, class: "nav-icons", id: "logout-prof-mun" do %>
         <%= image_tag "header/profile.svg", class: "nav-icons", alt: "Profile" %>
-      </a>
+      <% end %>
 
       <%= button_to destroy_manufacturer_session_path, method: :delete, form_class: "button_log_out", id: "logout-but-mun" do %>
         <%= image_tag "header/logout.svg", class: "nav-icons", alt: "Log Out Icon" %>
@@ -99,8 +111,8 @@
       <a href="<%= products_url(format: "rss") %>">
         <%= image_tag "footer/rss-feed-svgrepo-com.svg", class: "footer-icon", alt: "RSS icon" %>
       </a>
-<!--      <input type="email" placeholder="Email" class="email-field"/>-->
-<!--      <button class="button">Відправити</button>-->
+      <!--      <input type="email" placeholder="Email" class="email-field"/>-->
+      <!--      <button class="button">Відправити</button>-->
     </div>
 
   </div>

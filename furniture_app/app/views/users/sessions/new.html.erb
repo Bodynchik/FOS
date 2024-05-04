@@ -1,19 +1,19 @@
 <div class="background-image">
   <div class="container-sign">
-    <h2>Вхід</h2>
+    <h2><%= t('.log') %></h2>
 
     <div class="form-container">
       <%= form_with(model: resource, url: session_path(resource_name)) do |f| %>
-        <div><%= f.email_field :email, placeholder: "Пошта", class: 'input-field' %></div>
-        <div><%= f.password_field :password, placeholder: "Пароль", class: 'input-field' %></div>
-        <div><%= f.submit "Увійти", class: 'btn' %></div>
+        <div><%= f.email_field :email, placeholder: t('.email_f'), class: 'input-field' %></div>
+        <div><%= f.password_field :password, placeholder: t('.pass_f'), class: 'input-field' %></div>
+        <div><%= f.submit t('.sign_in'), class: 'btn' %></div>
       <% end %>
     </div>
 
     <div class="container-sign-item-link">
-      <p><%= link_to "Зареєструватися", new_user_registration_path, class: "link-registration" %></p>
-      <p><%= link_to "Забули пароль?", new_user_password_path, class: "link-registration" %></p>
-      <p><%= link_to "Я виробник", new_manufacturer_session_path, class: "link-registration" %></p>
+      <p><%= link_to t('.regist'), new_user_registration_path, class: "link-registration" %></p>
+      <p><%= link_to t('.for_pas'), new_user_password_path, class: "link-registration" %></p>
+      <p><%= link_to t('.manu'), new_manufacturer_session_path, class: "link-registration" %></p>
     </div>
 
   </div>

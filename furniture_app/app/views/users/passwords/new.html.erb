@@ -1,18 +1,18 @@
 <div class="background-image">
-    <div class="container-sign">
-        <h2>Вхід</h2>
+  <div class="container-sign">
+    <h2><%= t('.reset') %></h2>
 
-        <div class="form-container">
-            <%= form_with(model: resource, url: password_path(resource_name)) do |f| %>
-                <div><%= f.email_field :email, placeholder: "Пошта", class: 'input-field' %></div>
-            <div><%= f.submit "Збросити пароль", class: 'btn' %></div>
-            <% end %>
-        </div>
-
-        <div class="container-sign-item-link">
-            <p><%= link_to "Зареєструватися", new_user_registration_path, class: "link-registration" %></p>
-            <p><%= link_to "Увійти", new_user_session_path, class: "link-registration" %></p>
-        </div>
-
+    <div class="form-container">
+      <%= form_with(model: resource, url: password_path(resource_name)) do |f| %>
+        <div><%= f.email_field :email, placeholder: t('users.sessions.new.email_f'), class: 'input-field' %></div>
+        <div><%= f.submit t('.reset_pass'), class: 'btn' %></div>
+      <% end %>
     </div>
+
+    <div class="container-sign-item-link">
+      <p><%= link_to t('users.registrations.new.sign_up'), new_user_registration_path, class: "link-registration" %></p>
+      <p><%= link_to t('users.sessions.new.sign_in'), new_user_session_path, class: "link-registration" %></p>
+    </div>
+
+  </div>
 </div>

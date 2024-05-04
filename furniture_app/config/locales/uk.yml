@@ -1,7 +1,15 @@
 uk:
+  en: "Англійська"
+  uk: "Українська"
   home:
     about_us: "Про нас"
     cat_title: "Знайдіть ідеальне вираження вашого стилю та смаку!"
+    liv_p: "Вітальня"
+    wor_p: "Робоча зона"
+    kit_p: "Кухня"
+    sto_p: "Зберігання"
+    bed_p: "Спальня"
+    gar_p: "Сад"
     why_us: "Чому саме ми?"
     shipping: "Безкоштовна доставка"
     shi_p: "Отримайте свої улюблені меблі без додаткових витрат! Ми забезпечуємо безкоштовну доставку для
@@ -19,3 +27,50 @@ uk:
     follow: "Слідкуйте за нами"
     contact: "Зв'язатись з нами"
     subscribe: "Підписатися на розсилку"
+  users:
+    sessions:
+      new:
+        log: "Вхід"
+        email_f: "Пошта"
+        pass_f: "Пароль"
+        sign_in: "Увійти"
+        regist: "Зареєструватися"
+        for_pas: "Забули пароль?"
+        manu: "Я виробник"
+    registrations:
+      new:
+        reg: "Реєстрація"
+        name: "Ім'я"
+        sur_name: "Прізвище"
+        mid_name: "По батькові"
+        phone: "Номер телефону"
+        sign_up: "Зареєструватися"
+        registered: "Я вже зареєстрований"
+    passwords:
+      new:
+        reset: "Скинути"
+        reset_pass: "Скинути пароль"
+    profiles:
+      show:
+        per_inform: "Особиста інформація"
+        set: "Мої сети"
+        add_prod: "Додати товари"
+        del_prod: "Видалити товари"
+        order: "Мої замовлення"
+        chat: "Чати"
+        edit: "Редагувати"
+        create_set: "Створити сет"
+        amount_prod: "В цьому сеті немає продуктів."
+        num_info: "Замовлення"
+        sum_order: "Сума замовлення"
+        chat_with: "Чат з"
+  manufacturers:
+    sessions:
+      new:
+        user: "Я користувач"
+    registrations:
+      new:
+        company: "Назва компанії"
+    profiles:
+      show:
+        view_prod: "Переглянути товари"

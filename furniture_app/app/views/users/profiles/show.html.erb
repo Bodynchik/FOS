@@ -16,23 +16,23 @@
     </div>
 
     <div class="item-cat" id="user-sets-cat">
-      <p class="item-cat-title">Мої сети</p>
+      <p class="item-cat-title"><%= t('.set') %></p>
     </div>
 
     <div class="item-cat" id="add-item-cat" style="display: none">
-      <p class="item-cat-title">Додати товари</p>
+      <p class="item-cat-title"><%= t('.add_prod') %></p>
     </div>
 
     <div class="item-cat" id="remove-item-cat" style="display: none">
-      <p class="item-cat-title">Видалити товари</p>
+      <p class="item-cat-title"><%= t('.del_prod') %></p>
     </div>
 
     <div class="item-cat" id="item-list-cat">
-      <p class="item-cat-title">Мої замовлення</p>
+      <p class="item-cat-title"><%= t('.order') %></p>
     </div>
 
     <div class="item-cat" id="chat-cat">
-      <h1 class="item-cat-title">Чати</h1>
+      <h1 class="item-cat-title"><%= t('.chat') %></h1>
     </div>
 
   </section>
@@ -40,33 +40,33 @@
   <section id="category-data">
     <div class="personal-data">
 
-      <h1 class="personal-data-header">Особиста інформація</h1>
+      <h1 class="personal-data-header"><%= t('.per_inform') %></h1>
 
       <div class="personal-data-full-name-grid">
 
         <div class="contact-data-column">
-          <p class="personal-data-column-title">Прізвище</p>
+          <p class="personal-data-column-title"><%= t('users.registrations.new.sur_name') %></p>
           <p class="personal-data-field"><%= current_user.last_name %></p>
         </div>
 
         <div class="contact-data-column">
-          <p class="personal-data-column-title">Ім'я</p>
+          <p class="personal-data-column-title"><%= t('users.registrations.new.name') %></p>
           <p class="personal-data-field"><%= current_user.first_name %></p>
         </div>
 
         <div class="contact-data-column">
-          <p class="personal-data-column-title">По батькові</p>
+          <p class="personal-data-column-title"><%= t('users.registrations.new.mid_name') %></p>
           <p class="personal-data-field"><%= current_user.middle_name %></p>
         </div>
 
 
         <div class="contact-data-column">
-          <p class="personal-data-column-title">Номер телефону</p>
+          <p class="personal-data-column-title"><%= t('users.registrations.new.phone') %></p>
           <p class="contact-data-field"><%= current_user.phone_number %></p>
         </div>
 
         <div class="contact-data-column">
-          <p class="personal-data-column-title">Email</p>
+          <p class="personal-data-column-title"><%= t('users.sessions.new.email_f') %></p>
           <p class="contact-data-field"><%= current_user.email %></p>
         </div>
 
@@ -74,7 +74,7 @@
       </div>
 
       <div class="button-container">
-        <button class="change-data-button">Редагувати</button>
+        <button class="change-data-button"><%= t('.edit') %></button>
       </div>
     </div>
 
@@ -92,51 +92,51 @@
                   </div>
                 <% end %>
               <% else %>
-                <p>В цьому сеті немає продуктів.</p>
+                <p><%= t('.amount_prod') %></p>
               <% end %>
             </div>
           </div>
         <% end %>
         <div class="button-container">
-          <%= link_to "Створити сет", new_prod_set_path(user_id: current_user.id), class: "create-set-button" %>
+          <%= link_to t('.create_set'), new_prod_set_path(user_id: current_user.id), class: "create-set-button" %>
         </div>
       </div>
     </div>
 
     <div class="add-item">
-<!--      <div>-->
-        <%# if @sub_categories.present? %>
-          <%#= label_tag :sub_category_id, "Оберіть категорію", style: "display: block" %>
-          <%#= select_tag :sub_category_id, options_for_select(@sub_categories.map { |sub_category| [sub_category.subcat_name, sub_category.id] }), id: "sub_category_select" %>
-        <%# else %>
-<!--          <p>Немає доступних товарів</p>-->
-        <%# end %>
-<!--      </div>-->
+      <!--      <div>-->
+      <%# if @sub_categories.present? %>
+      <%#= label_tag :sub_category_id, "Оберіть категорію", style: "display: block" %>
+      <%#= select_tag :sub_category_id, options_for_select(@sub_categories.map { |sub_category| [sub_category.subcat_name, sub_category.id] }), id: "sub_category_select" %>
+      <%# else %>
+      <!--          <p>Немає доступних товарів</p>-->
+      <%# end %>
+      <!--      </div>-->
 
-<!--      <div id="products-dropdown">-->
-<!--        <table class="product-table">-->
-<!--          <thead>-->
-<!--          <tr>-->
-<!--            <th></th>-->
-<!--            <th>Модель</th>-->
-<!--            <th>Ціна</th>-->
-<!--            <th>Опис</th>-->
-<!--          </tr>-->
-<!--          </thead>-->
-<!--          <tbody>-->
-          <%# if @products.present? %>
-          <%# @products.each do |product| %>
-<!--            <tr>-->
-<!--              <td><%#= check_box_tag "product_ids[]", product.id %></td>-->
-<!--              <td><%#= product.prod_model %></td>-->
-<!--              <td><%#= product.price %></td>-->
-<!--              <td><%#= product.description %></td>-->
-<!--            </tr>-->
-          <%# end %>
-          <%# end %>
-<!--          </tbody>-->
-<!--        </table>-->
-<!--      </div>-->
+      <!--      <div id="products-dropdown">-->
+      <!--        <table class="product-table">-->
+      <!--          <thead>-->
+      <!--          <tr>-->
+      <!--            <th></th>-->
+      <!--            <th>Модель</th>-->
+      <!--            <th>Ціна</th>-->
+      <!--            <th>Опис</th>-->
+      <!--          </tr>-->
+      <!--          </thead>-->
+      <!--          <tbody>-->
+      <%# if @products.present? %>
+      <%# @products.each do |product| %>
+      <!--            <tr>-->
+      <!--              <td><%#= check_box_tag "product_ids[]", product.id %></td>-->
+      <!--              <td><%#= product.prod_model %></td>-->
+      <!--              <td><%#= product.price %></td>-->
+      <!--              <td><%#= product.description %></td>-->
+      <!--            </tr>-->
+      <%# end %>
+      <%# end %>
+      <!--          </tbody>-->
+      <!--        </table>-->
+      <!--      </div>-->
     </div>
 
 
@@ -146,19 +146,19 @@
     <div class="item-list">
       <% @orders.each do |order| %>
         <div class="order">
-          <p class="order-header">Замовлення №<%= order.id %></p>
+          <p class="order-header"><%= t('.num_info') %> №<%= order.id %></p>
           <div class="order-details">
             <p><%= order.product.prod_model %> x<%= order.quantity %></p>
-            <p>Сума замовлення: <%= number_to_currency(order.total_price, unit: "₴") %></p>
+            <p><%= t('.sum_order') %>: <%= number_to_currency(order.total_price, unit: "₴") %></p>
           </div>
         </div>
       <% end %>
     </div>
 
     <div class="chat-list" style="display: none">
-        <% @user_chats.chats.each do |chat| %>
-          <%= link_to "Чат з #{chat.manufacturer.username}", chat_path(chat) %><br>
-        <% end %>
+      <% @user_chats.chats.each do |chat| %>
+        <%= link_to "#{t('.chat_with')} #{chat.manufacturer.username}", chat_path(chat) %><br>
+      <% end %>
     </div>
 
   </section>

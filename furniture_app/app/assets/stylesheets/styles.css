@@ -4,6 +4,13 @@
     gap: 30px;
 }
 
+.dropdown select {
+    font-family: "Roboto", sans-serif;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
 .icons-item {
     flex: 1 1;
 }

@@ -1,24 +1,24 @@
 <div class="background-image">
   <div class="container-sign">
 
-    <h2>Реєстрація</h2>
+    <h2><%= t('users.registrations.new.reg') %></h2>
 
     <div class="form-container">
       <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <div><%= f.text_field :person_name, placeholder: "Ім'я", class: "input-field", required: true %></div>
-        <div><%= f.text_field :person_last_name, placeholder: "Прізвище", class: "input-field", required: true %></div>
-        <div><%= f.text_field :person_middle_name, placeholder: "По батькові", class: "input-field" %></div>
-        <div><%= f.text_field :title_manufacturer, placeholder: "Назва компанії", class: "input-field", required: true %></div>
-        <div><%= f.email_field :email, placeholder: "Пошта", class: "input-field", required: true %></div>
-        <div><%= f.text_field :phone_number, placeholder: "Номер телефону", class: "input-field", required: true %></div>
-        <div><%= f.password_field :password, placeholder: "Пароль", class: "input-field", required: true %></div>
+        <div><%= f.text_field :person_name, placeholder: t('users.registrations.new.name'), class: "input-field", required: true %></div>
+        <div><%= f.text_field :person_last_name, placeholder: t('users.registrations.new.sur_name'), class: "input-field", required: true %></div>
+        <div><%= f.text_field :person_middle_name, placeholder: t('users.registrations.new.mid_name'), class: "input-field" %></div>
+        <div><%= f.text_field :title_manufacturer, placeholder: t('.company'), class: "input-field", required: true %></div>
+        <div><%= f.email_field :email, placeholder: t('users.sessions.new.email_f'), class: "input-field", required: true %></div>
+        <div><%= f.text_field :phone_number, placeholder: t('users.registrations.new.phone'), class: "input-field", required: true %></div>
+        <div><%= f.password_field :password, placeholder: t('users.sessions.new.pass_f'), class: "input-field", required: true %></div>
         <div><%#= f.password_field :password_confirmation, placeholder: "Підтвердження паролю", class: "input-field" %></div>
-        <div><%= f.submit "Зареєструватися", class: "btn" %></div>
+        <div><%= f.submit t('users.registrations.new.sign_up'), class: "btn" %></div>
       <% end %>
 
     </div>
 
-    <p><%= link_to "Вже зареєстровані", new_manufacturer_session_path, class: "link-registration" %></p>
+    <p><%= link_to t('users.registrations.new.registered'), new_manufacturer_session_path, class: "link-registration" %></p>
 
     <% if flash[:alert].present? %>
       <div class="flash alert">

@@ -1,7 +1,15 @@
 en:
+  en: "English"
+  uk: "Ukrainian"
   home:
     about_us: "About us"
     cat_title: "Find the perfect expression of your style and taste!"
+    liv_p: "Living room"
+    wor_p: "Work area"
+    kit_p: "Kitchen"
+    sto_p: "Storage"
+    bed_p: "Bedroom"
+    gar_p: "Garden"
     why_us: "Why us?"
     shipping: "Free shipping"
     shi_p: "Get your favorite furniture at no extra cost! We provide free shipping for
@@ -19,3 +27,50 @@ en:
     follow: "Follow us"
     contact: "Contact us"
     subscribe: "Subscribe to the newsletter"
+  users:
+    sessions:
+      new:
+        log: "Login"
+        email_f: "Email"
+        pass_f: "Password"
+        sign_in: "Sign in"
+        regist: "Sign up"
+        for_pas: "Forgot password"
+        manu: "Manufacturer"
+    registrations:
+      new:
+        reg: "Registration"
+        name: "Name"
+        sur_name: "Surname"
+        mid_name: "Middle name"
+        phone: "Phone number"
+        sign_up: "Sign up"
+        registered: "Registered"
+    passwords:
+      new:
+        reset: "Reset"
+        reset_pass: "Reset password"
+    profiles:
+      show:
+        per_inform: "Personal information"
+        set: "My sets"
+        add_prod: "Add products"
+        del_prod: "Delete products"
+        order: "My orders"
+        chat: "Chats"
+        edit: "Edit"
+        create_set: "Create a set"
+        amount_prod: "There are no products in this set."
+        num_info: "Order"
+        sum_order: "Order amount"
+        chat_with: "Chat with"
+  manufacturers:
+    sessions:
+      new:
+        user: "User"
+    registrations:
+      new:
+        company: "Company name"
+    profiles:
+      show:
+        view_prod: "View products"

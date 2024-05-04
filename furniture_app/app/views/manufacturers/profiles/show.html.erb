@@ -14,68 +14,67 @@
     </div>
 
     <div class="item-cat" id="add-item-cat">
-      <h1 class="item-cat-title">Додати товари</h1>
+      <h1 class="item-cat-title"><%= t('users.profiles.show.add_prod') %></h1>
     </div>
 
     <div class="item-cat" id="item-list-cat" style="display: block">
-      <%#= link_to manufacturer_products_path(current_manufacturer), style: "text-decoration: none" do %>
-<!--        <h1 class="item-cat-title">Переглянути товари</h1>-->
-      <%# end %>
-      <h1 class="item-cat-title">Переглянути товари</h1>
+      <%= link_to manufacturer_products_path(current_manufacturer), style: "text-decoration: none" do %>
+        <h1 class="item-cat-title"><%= t('.view_prod') %></h1>
+      <% end %>
     </div>
 
     <div class="item-cat" id="remove-item-cat">
-      <h1 class="item-cat-title">Видалити товари</h1>
+      <h1 class="item-cat-title"><%= t('users.profiles.show.del_prod') %></h1>
     </div>
 
     <div class="item-cat" id="chat-cat">
-      <h1 class="item-cat-title">Чати</h1>
+      <h1 class="item-cat-title"><%= t('users.profiles.show.chat') %></h1>
     </div>
 
     <div class="item-cat" id="user-sets-cat" style="display: none">
-      <p class="item-cat-title">Мої сети</p>
+      <p class="item-cat-title"><%= t('users.profiles.show.set') %></p>
     </div>
   </section>
 
   <section id="category-data">
     <div class="personal-data">
 
-      <h1 class="personal-data-header">Особиста інформація</h1>
+      <h1 class="personal-data-header"><%= t('users.profiles.show.per_inform') %></h1>
 
       <div class="personal-data-full-name-grid">
         <div class="contact-data-column">
-          <p class="personal-data-column-title">Прізвище</p>
+          <p class="personal-data-column-title"><%= t('users.registrations.new.sur_name') %></p>
           <p class="personal-data-field"><%= current_manufacturer.person_last_name %></p>
         </div>
 
         <div class="contact-data-column">
-          <p class="personal-data-column-title">Ім'я</p>
+          <p class="personal-data-column-title"><%= t('users.registrations.new.name') %></p>
           <p class="personal-data-field"><%= current_manufacturer.person_name %></p>
         </div>
 
         <div class="contact-data-column">
-          <p class="personal-data-column-title">По батькові</p>
+          <p class="personal-data-column-title"><%= t('users.registrations.new.mid_name') %></p>
           <p class="personal-data-field"><%= current_manufacturer.person_middle_name %></p>
         </div>
 
         <div class="contact-data-column">
-          <p class="personal-data-column-title">Назва виробника</p>
+          <p class="personal-data-column-title"><%= t('manufacturers.registrations.new.company') %></p>
           <p class="contact-data-field"><%= current_manufacturer.title_manufacturer %></p>
         </div>
 
         <div class="contact-data-column">
-          <p class="personal-data-column-title">Номер телефону</p>
+          <p class="personal-data-column-title"><%= t('users.registrations.new.phone') %></p>
           <p class="contact-data-field"><%= current_manufacturer.phone_number %></p>
         </div>
 
         <div class="contact-data-column">
-          <p class="personal-data-column-title">Email</p>
+          <p class="personal-data-column-title"><%= t('users.sessions.new.email_f') %>l</p>
           <p class="contact-data-field"><%= current_manufacturer.email %></p>
         </div>
       </div>
 
       <div class="button-container">
-        <button class="change-data-button">Редагувати</button>
+        <button class="change-data-button"><%= t('users.profiles.show.edit') %></button>
       </div>
 
     </div>
@@ -91,31 +90,15 @@
 
 
     <div class="item-list" style="display: none">
-      <% @products.each do |product| %>
-        <% furniture = Furniture.find(product.furniture_id) %>
-        <%= link_to product_path(product), class: "product" do %>
-          <div class="grey-square">
-            <%= image_tag(product.product_image, class: 'image-div') if product.product_image.attached? %>
-          </div>
-          <div class="product-info">
-            <p class="product-name"><%= "#{furniture.name} (#{product.prod_model})" %></p>
-            <p class="product-price"><%= number_to_currency(product.price, unit: "₴") %></p>
-          </div>
-        <% end %>
-      <% end %>
-
-      <div class="export-buttons">
-        <%= link_to "Експорт у CSV", export_csv_products_path(format: :csv), class: "csv-button" %>
-      </div>
     </div>
 
     <div class="remove-item">
     </div>
 
     <div class="chat-list" style="display: none">
-        <% @manufacturer_chats.chats.each do |chat| %>
-          <%= link_to "Чат з #{chat.user.username}", chat_path(chat) %><br>
-        <% end %>
+      <% @manufacturer_chats.chats.each do |chat| %>
+        <%= link_to "#{t('users.profiles.show.chat_with')} #{chat.user.username}", chat_path(chat) %><br>
+      <% end %>
     </div>
 
     <div class="user-sets" style="display: none">

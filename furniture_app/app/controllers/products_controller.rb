@@ -105,6 +105,18 @@ class ProductsController < ApplicationController
     end
   end
 
+  # GET /products/export_csv.csv
+  def export_csv
+    @products = current_manufacturer.products
+
+    respond_to do |format|
+      format.csv do
+        send_data to_csv(@products), filename: "products-#{Date.today}-#{current_manufacturer.title_manufacturer}.csv"
+      end
+    end
+  end
+
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -117,4 +129,29 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:furniture_id, :manufacturer_id, :sub_category_id, :prod_model, :price,
                                     :description, :product_image, :production_days, delivery_days: [])
   end
+
+  # Метод для експортування товарів виробника у CSV
+  def to_csv(products)
+
+    # Todo: add image for export
+
+    attributes = %w[furniture_type name price description production_days delivery]
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      products.each do |product|
+        csv << [
+          product.furniture.name,
+          # product.product_image,
+          "#{product.furniture.name} (#{product.prod_model})",
+          product.price,
+          product.description,
+          product.production_days,
+          product.delivery_days.join(", ")
+        ]
+      end
+    end
+  end
+
 end

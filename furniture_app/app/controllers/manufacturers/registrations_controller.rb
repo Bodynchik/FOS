@@ -45,7 +45,7 @@ class Manufacturers::RegistrationsController < Devise::RegistrationsController
   def check_email_domain
     return if params[:manufacturer][:email].end_with?('@karazin.ua')
 
-    redirect_to new_manufacturer_registration_path, alert: 'Реєстрація доступна тільки с доменом karazin.ua'
+    redirect_to new_manufacturer_registration_path, alert: t('flash.manufacturers.errors.email_check')
   end
 
   def check_info_manufacturers
@@ -53,11 +53,11 @@ class Manufacturers::RegistrationsController < Devise::RegistrationsController
     title_manufacturer = params[:manufacturer][:title_manufacturer]
     phone_number = params[:manufacturer][:phone_number]
     if Manufacturer.exists?(email:)
-      redirect_to new_manufacturer_registration_path, alert: 'Цей email вже зареєстрований'
+      redirect_to new_manufacturer_registration_path, alert: t('flash.manufacturers.errors.email')
     elsif Manufacturer.exists?(title_manufacturer:)
-      redirect_to new_manufacturer_registration_path, alert: 'Ця назва вже зареєстрована'
+      redirect_to new_manufacturer_registration_path, alert: t('flash.manufacturers.errors.name')
     elsif Manufacturer.exists?(phone_number:)
-      redirect_to new_manufacturer_registration_path, alert: 'Цей номер телефону вже зареєстрований'
+      redirect_to new_manufacturer_registration_path, alert: t('flash.manufacturers.errors.phone')
     end
   end
 

@@ -42,7 +42,7 @@
   </div>
 
   <div>
-    <%= form.label :product_image, style: "display: block" %>
+    <%= form.label :product_image, t('activerecord.attributes.product.prod_image'), style: "display: block" %>
     <%= form.file_field :product_image %>
   </div>
 
@@ -55,7 +55,7 @@
 
 
   <div>
-    <%= form.label :delivery_days, "Можливі дні доставки", style: "display: block" %>
+    <%= form.label :delivery_days, t('activerecord.attributes.product.delivery_days'), style: "display: block" %>
     <% [ 'Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П\'ятниця', 'Субота', 'Неділя'].each do |day| %>
       <%= check_box_tag 'product[delivery_days][]', day, @product.delivery_days.include?(day), id: day.parameterize %>
       <%= label_tag day, day, for: day.parameterize, style: "margin-right: 10px;" %>
@@ -64,7 +64,7 @@
 
 
   <div>
-    <%= form.submit %>
+    <%= form.submit value: t('prod_sets.new.value') %>
   </div>
 
 <% end %>

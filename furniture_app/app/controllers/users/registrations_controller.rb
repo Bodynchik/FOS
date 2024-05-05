@@ -45,9 +45,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     email = params[:user][:email]
     phone_number = params[:user][:phone_number]
     if User.exists?(email:)
-      redirect_to new_user_registration_path, alert: 'Цей email вже зареєстрований'
+      redirect_to new_user_registration_path, alert: t('flash.users.errors.email')
     elsif User.exists?(phone_number:)
-      redirect_to new_user_registration_path, alert: 'Цей номер телефону вже зареєстрований'
+      redirect_to new_user_registration_path, alert: t('flash.users.errors.phone')
     end
   end
 

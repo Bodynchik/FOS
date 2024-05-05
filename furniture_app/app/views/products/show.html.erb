@@ -18,14 +18,14 @@
       <!-- Форма для додавання товару до сету -->
       <%= form_tag(add_product_to_set_path, method: :post, remote: true) do %>
         <%= hidden_field_tag :product_id, @product.id %>
-        <label for="prod_set">Виберіть сет:</label>
+        <label for="prod_set"><%= t('.ch_set') %></label>
         <%= select_tag(:prod_set, options_for_select(ProdSet.all.map { |ps| [ps.set_name, ps.id] })) %>
         <br>
-        <label for="quantity">Кількість товару:</label>
+        <label for="quantity"><%= t('.amount_prod') %></label>
         <%= number_field_tag :quantity, 1, min: 1 %>
         <br>
-        <%= submit_tag "Додати", class: "add-to-set-submit" %>
-        <button type="button" class="close-button">Закрити</button>
+        <%= submit_tag t('.add_tag'), class: "add-to-set-submit" %>
+        <button type="button" class="close-button"><%= t('.close') %></button>
       <% end %>
 
     </div>
@@ -60,11 +60,11 @@
     <% @closest_delivery_dates = @closest_delivery_dates.sort_by { |day, date| date } %>
 
     <div class="description-container">
-      <h1>Опис</h1>
+      <h1><%= t('.title') %></h1>
       <p class="description" id="description-text"><%= @product.description %></p>
-      <p class="description">Виробництво продукта: <%= @product.production_days %> днів </p>
-      <p class="description">Можлива доставка: <%= @product.delivery_days.join(', ') %></p>
-      <p class="description" id="last-description">Найближчі дні доставки:</p>
+      <p class="description"><%= t('.man_prod') %> <%= @product.production_days %> днів </p>
+      <p class="description"><%= t('.delivery') %> <%= @product.delivery_days.join(', ') %></p>
+      <p class="description" id="last-description"><%= t('.del_days') %></p>
       <ul class="delivery-list">
         <% sorted_delivery_dates = closest_delivery_dates_4.sort_by { |day, date| date } %>
         <% sorted_delivery_dates.each do |day, date| %>
@@ -74,11 +74,11 @@
 
       <div class="product-button-con">
         <% if current_user.is_a?(User) %>
-          <%= link_to "Замовити", new_order_path(product_id: @product.id, delivery_dates: @closest_delivery_dates), class: "order-button" %>
+          <%= link_to t('.order'), new_order_path(product_id: @product.id, delivery_dates: @closest_delivery_dates), class: "order-button" %>
         <% end %>
         <% if current_user.present? %>
-          <a href="#" class="add-to-set-button">Додати до сету</a>
-          <%= button_to "Написати виробнику", chats_path(manufacturer_id: @product.manufacturer.id), method: :post, class: "chat-button"%>
+          <a href="#" class="add-to-set-button"><%= t('.add_set') %></a>
+          <%= button_to t('.write'), chats_path(manufacturer_id: @product.manufacturer.id), method: :post, class: "chat-button"%>
         <% end %>
       </div>
 

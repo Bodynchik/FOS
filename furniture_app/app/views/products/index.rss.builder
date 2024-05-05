@@ -18,7 +18,7 @@ xml.rss version: '2.0' do
                               <h1 style='margin: 0 0 18px;'>#{product.prod_model}</h1>
                               <p style='color: #4d4d4d; font-weight: bold; font-size: 20px; margin: 0;'>₴#{product.price}</p>
                               <h2 style='margin: 18px 0 15px;'>Опис</h2>
-                              <p style='margin: 0;'>#{product.description}</p>
+                              <p style='margin: 0; max-width: 400px; word-wrap: break-word;'>#{product.description}</p>
                             </div>
 
                           </div>")

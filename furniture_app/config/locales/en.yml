@@ -1,6 +1,52 @@
 en:
   en: "English"
   uk: "Ukrainian"
+  activerecord:
+    attributes:
+      prod_set:
+        set_name: "Set name"
+      product:
+        furniture_id: "Furniture"
+        sub_category_id: "Sub category"
+        prod_model: "Product model"
+        price: "Price"
+        description: "Description"
+        prod_image: "Choose a file"
+        select_file: "File is not selected"
+        production_days: "Production days"
+        delivery_days: "Possible delivery days"
+  sub_categories:
+    index:
+      title: "Select the desired product subcategory:"
+  products:
+    show:
+      title: "Description"
+      man_prod: "Production:"
+      delivery: "Delivery is possible:"
+      del_days: "The next delivery days:"
+      order: "Order"
+      add_set: "Add to set"
+      write: "Write manufacturer"
+      ch_set: "Select a set:"
+      amount_prod: "Quantity of products:"
+      add_tag: "Add"
+      close: "Close"
+  orders:
+    new:
+      order: "Ordering a product"
+      date: "Product availability date:"
+      quantity: "Quantity:"
+      del_date: "Delivery date:"
+      btn_order: "Order"
+  prod_sets:
+    new:
+      title: "New prod set"
+      value: "Create"
+  chats:
+    show:
+      title: "Chat"
+      place: "Message..."
+      value: "Send"
   home:
     about_us: "About us"
     cat_title: "Find the perfect expression of your style and taste!"
@@ -64,6 +110,7 @@ en:
         num_info: "Order"
         sum_order: "Order amount"
         chat_with: "Chat with"
+        currency: "Currency"
   manufacturers:
     sessions:
       new:
@@ -74,3 +121,14 @@ en:
     profiles:
       show:
         view_prod: "View products"
+  flash:
+    users:
+      errors:
+        email: "This email address is already registered"
+        phone: "This phone number is already registered"
+    manufacturers:
+      errors:
+        email: "This email address is already registered"
+        email_check: "Registration is available only with the karazin.ua domain"
+        name: "This company name is already registered"
+        phone: "This phone number is already registered"

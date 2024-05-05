@@ -1,6 +1,52 @@
 uk:
   en: "Англійська"
   uk: "Українська"
+  activerecord:
+    attributes:
+      prod_set:
+        set_name: "Назва сету"
+      product:
+        furniture_id: "Меблі"
+        sub_category_id: "Підкатегорія"
+        prod_model: "Модель"
+        price: "Ціна"
+        description: "Опис"
+        prod_image: "Оберіть файл"
+        select_file: "Файл не обрано"
+        production_days: "Кількість днів виробництва"
+        delivery_days: "Можливі дні доставки"
+  sub_categories:
+    index:
+      title: "Оберіть бажану підкатегорію товарів:"
+  products:
+    show:
+      title: "Опис"
+      man_prod: "Виробництво продукта:"
+      delivery: "Можлива доставка:"
+      del_days: "Найближчі дні доставки:"
+      order: "Замовити"
+      add_set: "Додати до сету"
+      write: "Написати виробнику"
+      ch_set: "Виберіть сет:"
+      amount_prod: "Кількість товару:"
+      add_tag: "Додати"
+      close: "Закрити"
+  orders:
+    new:
+      order: "Замовлення товара"
+      date: "Дата готовності товару:"
+      quantity: "Кількість:"
+      del_date: "Дата доставки:"
+      btn_order: "Замовити"
+  prod_sets:
+    new:
+      title: "Новий продуктовий сет"
+      value: "Створити"
+  chats:
+    show:
+      title: "Чат"
+      place: "Повідомлення..."
+      value: "Відправити"
   home:
     about_us: "Про нас"
     cat_title: "Знайдіть ідеальне вираження вашого стилю та смаку!"
@@ -64,6 +110,7 @@ uk:
         num_info: "Замовлення"
         sum_order: "Сума замовлення"
         chat_with: "Чат з"
+        currency: "Валюта"
   manufacturers:
     sessions:
       new:
@@ -74,3 +121,14 @@ uk:
     profiles:
       show:
         view_prod: "Переглянути товари"
+  flash:
+    users:
+      errors:
+        email: "Цей email вже зареєстрований"
+        phone: "Цей номер телефону вже зареєстрований"
+    manufacturers:
+      errors:
+        email: "Цей email вже зареєстрований"
+        email_check: "Реєстрація доступна тільки с доменом karazin.ua"
+        name: "Ця назва компанії вже зареєстрована"
+        phone: "Цей номер телефону вже зареєстрований"

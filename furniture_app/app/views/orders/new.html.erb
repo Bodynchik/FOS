@@ -17,10 +17,78 @@
       </div>
 
 
+<!--      <div class="field">-->
+        <%#= form.label :delivery_day, t('.del_date') %>
+        <%#= form.select :delivery_day, options_for_select(@closest_delivery_dates.each_slice(2).map(&:last)) %>
+<!--      </div>-->
+
+<!--      <div class="field">-->
+        <%#= form.label :delivery_day, t('.del_date') %>
+        <%#= form.text_field :delivery_day, id: 'order_delivery_day' %>
+<!--      </div>-->
+
+<!--      <div class="field">-->
+        <%#= form.label :delivery_day, t('.del_date') %>
+        <%#= form.select :delivery_day, options_for_select(@closest_delivery_dates.select { |item| item[0].match?(/\d{4}-\d{2}-\d{2}/) }.map { |item| item[0] }) %>
+        <%#= @closest_delivery_dates.select { |item| item[0].match?(/\d{4}-\d{2}-\d{2}/) }.map { |item| item[0] } %>
+<!--      </div>-->
+
       <div class="field">
         <%= form.label :delivery_day, t('.del_date') %>
-        <%= form.select :delivery_day, options_for_select(@closest_delivery_dates.each_slice(2).map(&:last)) %>
+        <%= form.text_field :delivery_day, id: "order_delivery_day", readonly: true %>
       </div>
+
+      <script>
+          document.addEventListener("DOMContentLoaded", function() {
+              console.log("AAAAAAAA Closest delivery dates:", <%= raw @closest_delivery_dates.select { |item| item[0].match?(/\d{4}-\d{2}-\d{2}/) }.map { |item| item[0] }.to_json %>);
+
+              flatpickr("#order_delivery_day", {
+                  enable: <%= raw @closest_delivery_dates.select { |item| item[0].match?(/\d{4}-\d{2}-\d{2}/) }.map { |item| item[0] }.to_json %>,
+                  dateFormat: "Y-m-d",
+                  minDate: "2024.05.07",
+                  inline: true,
+                  onChange: function(selectedDates, dateStr, instance) {
+                      // Змініть значення поля вводу, коли вибрано нову дату
+                      document.querySelector("#order_delivery_day").value = dateStr;
+                  }
+              });
+          });
+      </script>
+
+<!--      <script>-->
+<!--          document.addEventListener("DOMContentLoaded", function() {-->
+<!--              const deliveryDays = <%#= raw @product.delivery_days.to_json %>;-->
+<!--              const possibleDeliveryDays = <%#= raw "{ \"Понеділок\": 1, \"Вівторок\": 2, \"Середа\": 3, \"Четвер\": 4, \"П'ятниця\": 5, \"Субота\": 6, \"Неділя\": 7 }" %>;-->
+<!--              const i = 0;-->
+<!--              const daysDifference = [];-->
+
+              <%# @product.delivery_days.each do |day| %>
+<!--                daysDifference.push(possibleDeliveryDays[<%#= raw "\"#{day}\"" %>]);-->
+              <%# end %>
+<!--              console.log("Days avail:", daysDifference);-->
+
+
+<!--              flatpickr("#order_delivery_day", {-->
+<!--                  "dateFormat": "Y-m-d",-->
+<!--                  "disable": [-->
+<!--                      function(date) {-->
+<!--                          // return true to disable-->
+<!--                          return (date.getDay() === 0 || date.getDay() === 6);-->
+
+<!--                      },-->
+<!--                      "2025-01-30",-->
+<!--                  ],-->
+<!--                  "locale": {-->
+<!--                      "firstDayOfWeek": 1 // start week on Monday-->
+<!--                  },-->
+<!--                  onChange: function(selectedDates, dateStr, instance) {-->
+<!--                      // Змініть значення поля вводу, коли вибрано нову дату-->
+<!--                      document.querySelector("#order_delivery_day").value = dateStr;-->
+<!--                  }-->
+<!--              });-->
+<!--          });-->
+<!--      </script>-->
+
 
 
       <div class="actions">

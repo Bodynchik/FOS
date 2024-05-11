@@ -1,17 +1,29 @@
 class ChatsController < ApplicationController
   def index
-      @manufacturers = Manufacturer.all
-      if user_signed_in?
-        @chats = Chat.where(user_id: current_user.id)
-        @user_type = 'Користувач'
-      else
-        @chats = Chat.where(manufacturer_id: current_manufacturer.id)
-        @user_type = 'Виробник'
-      end
-      selected_manufacturer_id = params[:manufacturer_id]
-      @chat_exists = Chat.exists?(user_id: current_user.id, manufacturer_id: selected_manufacturer_id)
+    @manufacturers = Manufacturer.all
+    if user_signed_in?
+      @chats = Chat.where(user_id: current_user.id)
+      @user_type = 'Користувач'
+    else
+      @chats = Chat.where(manufacturer_id: current_manufacturer.id)
+      @user_type = 'Виробник'
+    end
+    selected_manufacturer_id = params[:manufacturer_id]
+    @chat_exists = Chat.exists?(user_id: current_user.id, manufacturer_id: selected_manufacturer_id)
   end
 
+  def show
+    @chat = Chat.find(params[:id])
+    @messages = @chat.messages.order(created_at: :asc)
+    @manufacturer = @chat.manufacturer
+    @user = @chat.user
+    @chat.save
+    @user_type = if user_signed_in?
+                   'Користувач'
+                 else
+                   'Виробник'
+                 end
+  end
 
   def new
     @manufacturer = Manufacturer.find(params[:manufacturer_id])
@@ -28,19 +40,4 @@ class ChatsController < ApplicationController
       end
     end
   end
-
-
-  def show
-    @chat = Chat.find(params[:id])
-    @messages = @chat.messages.order(created_at: :asc)
-    @manufacturer = @chat.manufacturer
-    @user = @chat.user
-    @chat.save
-    @user_type = if user_signed_in?
-                   'Користувач'
-                 else
-                   'Виробник'
-                 end
-  end
-
 end

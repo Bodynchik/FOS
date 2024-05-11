@@ -27,18 +27,15 @@ class ProductsController < ApplicationController
     convert_prices_to_user_currency
   end
 
-
   def acceptable_image
     return unless @product.product_image.attached?
 
-    unless @product.product_image.blob.byte_size <= 3.megabyte
-      @product.errors.add(:product_image, "is too big")
-    end
+    @product.errors.add(:product_image, 'is too big') unless @product.product_image.blob.byte_size <= 3.megabyte
 
-    acceptable_types = ["image/jpeg", "image/png"]
-    unless acceptable_types.include?(@product.product_image.content_type)
-      @product.errors.add(:product_image, "must be a JPEG or PNG")
-    end
+    acceptable_types = ['image/jpeg', 'image/png']
+    return if acceptable_types.include?(@product.product_image.content_type)
+
+    @product.errors.add(:product_image, 'must be a JPEG or PNG')
   end
 
   # GET /products/new
@@ -61,7 +58,7 @@ class ProductsController < ApplicationController
         format.json { render :show, status: :created, location: @product }
       else
         format.html do
-          flash[:alert] = @product.errors.full_messages.join(", ")
+          flash[:alert] = @product.errors.full_messages.join(', ')
           redirect_to '/profiles'
         end
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -98,7 +95,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       format.csv do
-        send_data to_csv(@products), filename: "products-#{Date.today}-#{current_manufacturer.title_manufacturer}.csv"
+        send_data to_csv(@products), filename: "products-#{Time.zone.today}-#{current_manufacturer.title_manufacturer}.csv"
       end
     end
   end
@@ -119,8 +116,7 @@ class ProductsController < ApplicationController
 
   # Метод для експортування товарів виробника у CSV
   def to_csv(products)
-
-    # Todo: add image for export
+    # TODO: add image for export
 
     attributes = %w[furniture_type name price description production_days delivery]
 
@@ -135,7 +131,7 @@ class ProductsController < ApplicationController
           product.price,
           product.description,
           product.production_days,
-          product.delivery_days.join(", ")
+          product.delivery_days.join(', ')
         ]
       end
     end
@@ -154,11 +150,11 @@ class ProductsController < ApplicationController
 
   # Конвертувати всі ціни
   def convert_prices_to_user_currency
-    if current_user
-      currency = current_user.currency || 'UAH'
-      @products.each do |product|
-        product.price = convert_price(product.price, currency)
-      end
+    return unless current_user
+
+    currency = current_user.currency || 'UAH'
+    @products.each do |product|
+      product.price = convert_price(product.price, currency)
     end
   end
 
@@ -181,7 +177,7 @@ class ProductsController < ApplicationController
 
   # Отримання курсу з приватбанку
   def get_exchange_rate(currency)
-    url = URI("https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=11")
+    url = URI('https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=11')
     response = Net::HTTP.get(url)
     data = JSON.parse(response)
 

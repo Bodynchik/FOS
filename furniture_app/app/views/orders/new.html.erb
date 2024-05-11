@@ -18,13 +18,11 @@
 
       <div class="field">
         <%= form.label :delivery_day, t('.del_date') %>
-        <%= form.text_field :delivery_day, id: "order_delivery_day", readonly: true %>
+        <%= form.text_field :delivery_day, id: "order_delivery_day", readonly: true, onclick: "confirmAndRedirectToNewChat()" %>
       </div>
 
       <script>
-          document.addEventListener("DOMContentLoaded", function() {
-              console.log("AAAAAAAA Closest delivery dates:", <%= raw @closest_delivery_dates.select { |item| item[0].match?(/\d{4}-\d{2}-\d{2}/) }.map { |item| item[0] }.to_json %>);
-
+          function confirmAndRedirectToNewChat() {
               flatpickr("#order_delivery_day", {
                   enable: <%= raw @closest_delivery_dates.select { |item| item[0].match?(/\d{4}-\d{2}-\d{2}/) }.map { |item| item[0] }.to_json %>,
                   dateFormat: "Y-m-d",
@@ -35,11 +33,8 @@
                       document.querySelector("#order_delivery_day").value = dateStr;
                   }
               });
-          });
+          }
       </script>
-
-
-
 
       <div class="actions">
         <%= form.submit t('.btn_order') %>

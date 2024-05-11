@@ -28,8 +28,11 @@
     </div>
 
     <div class="item-cat" id="chat-cat">
-      <h1 class="item-cat-title"><%= t('users.profiles.show.chat') %></h1>
+      <%= link_to chats_path, class: "item-cat-link" do %>
+        <h1 class="item-cat-title"><%= t('users.profiles.index.chat') %></h1>
+      <% end %>
     </div>
+
 
     <div class="item-cat" id="user-sets-cat" style="display: none">
       <p class="item-cat-title"><%= t('users.profiles.show.set') %></p>

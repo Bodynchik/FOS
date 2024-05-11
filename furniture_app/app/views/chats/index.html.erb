@@ -1,0 +1,64 @@
+<div class="chat_wrapper">
+  <div class="chat-container">
+    <h1 class="chat-header"><%= t('.chats') %></h1>
+
+    <% if @user_type == 'Користувач' %>
+    <div class="search-container">
+      <p><%= t('.select_manufacturer') %></p>
+      <%= select_tag 'manufacturer', options_for_select(@manufacturers.map{ |c| [c.title_manufacturer, c.id] }), onchange: "redirectOnManufacturerChange()" %>
+    </div>
+    <% end %>
+
+    <div class="chat-list">
+      <% if @chats.present? %>
+        <% @chats.each do |chat| %>
+          <div class="chat-item-box">
+            <% if chat.user_id.present? || chat.manufacturer_id.present? %>
+              <div class="chat-header">
+                <h3>
+                  <% user = User.find(chat.user_id) if chat.user_id.present? %>
+                  <% manufacturer = Manufacturer.find(chat.manufacturer_id) if chat.manufacturer_id.present? %>
+                  <%= "#{manufacturer&.title_manufacturer} - #{user&.first_name} #{user&.last_name}: " if user && manufacturer %>
+                </h3>
+                <div class="chat-content">
+                  <% if chat.messages.present? %>
+                    <p class="last-message"><%= t('.last_message') %>: <%= chat.messages.last.content %></p>
+                  <% else %>
+                    <p class="no-message"><%= t('.no_messages') %></p>
+                  <% end %>
+                  <%= link_to t('.join_chat'), chat_path(chat), class: "join-button" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+
+
+    <% if @chats.blank? %>
+      <p><%= t('.no_chats_found') %></p>
+    <% end %>
+
+    <% if @user_type == 'Користувач' %>
+      <%= link_to t('.new_chat'), "#", class: "chat-submit",id: "create-chat-link", onclick: "confirmAndRedirectToNewChat()" %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+
+    function confirmAndRedirectToNewChat() {
+        var selectedManufacturerId = document.getElementById('manufacturer').value;
+<!--        var chatExists = <%#= @chats.any? { |chat| chat.manufacturer_id == selectedManufacturerId} %>;-->
+        // confirm("Selected manufacturer ID: " + selectedManufacturerId);
+
+        var selectedManufacturerName = document.getElementById('manufacturer').options[document.getElementById('manufacturer').selectedIndex].text;
+        if (confirm("Are you sure you want to create a new chat with " + selectedManufacturerName + "?")) {
+            window.location.href = "/chats/new?manufacturer_id=" + selectedManufacturerId;
+        }
+    }
+
+
+</script>

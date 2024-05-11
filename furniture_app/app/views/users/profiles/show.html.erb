@@ -23,7 +23,7 @@
       <p class="item-cat-title"><%= t('.add_prod') %></p>
     </div>
 
-    <div class="item-cat" id="remove-item-cat" style="display: none">
+    <div class="item-cat" id="remove-item-cat" style="isplay: none">
       <p class="item-cat-title"><%= t('.del_prod') %></p>
     </div>
 
@@ -32,8 +32,11 @@
     </div>
 
     <div class="item-cat" id="chat-cat">
-      <h1 class="item-cat-title"><%= t('.chat') %></h1>
+      <%= link_to chats_path, class: "item-cat-link" do %>
+        <h1 class="item-cat-title"><%= t('.chats') %></h1>
+      <% end %>
     </div>
+
 
   </section>
 

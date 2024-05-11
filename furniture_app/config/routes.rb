@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
-  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+  # devise_for :users
+  devise_for :installs
+  scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
     devise_for :admin_users, ActiveAdmin::Devise.config
     ActiveAdmin.routes(self)
     get 'chat/index'
+
     resources :order_sets
     resources :prod_sets
     resources :orders
     resources :products
     resources :furnitures
-    # devise_for :manufacturers
-    # devise_for :users
 
     # Шлях до реєстрації користувача
     devise_for :users, controllers: {
@@ -27,7 +28,7 @@ Rails.application.routes.draw do
 
     get 'pages/home'
 
-    resources :chats, only: %i[create show] do
+    resources :chats, only: %i[index create show new] do
       resources :messages, only: [:create]
     end
 
@@ -62,5 +63,6 @@ Rails.application.routes.draw do
 
     # Add this route for adding product to set
     post 'add_product_to_set', to: 'prod_sets#add_product_to_set'
+
   end
 end

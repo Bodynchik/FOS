@@ -92,3 +92,14 @@ document.addEventListener("turbo:load", function () {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  const selectManufacturer = document.getElementById('manufacturer_id');
+  selectManufacturer.addEventListener('change', function() {
+    const selectedManufacturerId = this.value;
+    const createChatLink = document.getElementById('create-chat-link');
+    const newChatPath = createChatLink.getAttribute('data-path');
+    createChatLink.setAttribute('href', newChatPath + '?manufacturer_id=' + selectedManufacturerId);
+  });
+});
+

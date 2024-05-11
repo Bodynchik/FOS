@@ -18,11 +18,11 @@
 
       <div class="field">
         <%= form.label :delivery_day, t('.del_date') %>
-        <%= form.text_field :delivery_day, id: "order_delivery_day", readonly: true, onclick: "confirmAndRedirectToNewChat()" %>
+        <%= form.text_field :delivery_day, id: "order_delivery_day", readonly: true, onclick: "calendar()" %>
       </div>
 
       <script>
-          function confirmAndRedirectToNewChat() {
+          function calendar() {
               flatpickr("#order_delivery_day", {
                   enable: <%= raw @closest_delivery_dates.select { |item| item[0].match?(/\d{4}-\d{2}-\d{2}/) }.map { |item| item[0] }.to_json %>,
                   dateFormat: "Y-m-d",

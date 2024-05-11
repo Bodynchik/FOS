@@ -14,6 +14,12 @@ class CategoriesController < ApplicationController
     @category = Category.new
   end
 
+  def description
+    @category_name = params[:category_name]
+    # Інші дії методу
+  end
+
+
   # GET /categories/1/edit
   def edit; end
 

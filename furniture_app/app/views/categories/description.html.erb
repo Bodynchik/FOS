@@ -1,0 +1,9 @@
+<div class="background-image-descr">
+  <div class="container-descr">
+    <%= image_tag "categorys/#{@category_name}.jfif", class: "category-img", alt: "Кухня" %>
+    <div class="category-description">
+      <%= render "categories/descriptions/#{@category_name.downcase}", sub_categories: @sub_categories %>
+    </div>
+    <a href="<%= sub_categories_path(category_name: @category_name) %>" class="cat-button">Підкатегорії</a>
+  </div>
+</div>

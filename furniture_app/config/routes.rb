@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
     resources :sub_categories
     resources :categories
+    get '/categories/:category_name/description', to: 'categories#description', as: :description_category
 
     root 'pages#home'
 
@@ -63,6 +64,5 @@ Rails.application.routes.draw do
 
     # Add this route for adding product to set
     post 'add_product_to_set', to: 'prod_sets#add_product_to_set'
-
   end
 end

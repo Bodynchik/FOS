@@ -1,15 +1,9 @@
-html, body {
-    /* Встановлення сторінки як розтягування за висотою */
-    height: 120%;
-    margin: 0; /* Відсутність зовнішніх відступів */
-    padding: 0; /* Відсутність внутрішніх відступів */
-}
-
 .container-descr {
     background-color: #FAFAFA;
     color: #181818;
-    width: 50%;
-    margin: 0 auto;
+    width: 45%;
+    margin-top: 30px;
+    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,11 +17,19 @@ html, body {
     background: url('categorys/white_room.png');
     background-size: cover;
     width: 100%;
-    height: calc(100vh - 67px);
+    height: auto;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.cat-img-descr {
+    height: 400px;
+    width: 630px;
+    border-radius: 15px;
+    object-fit: cover;
+    margin-top:20px;
 }
 
 
@@ -50,6 +52,10 @@ html, body {
     border-color: #a6a5a5;
 }
 
+.subcategory-description{
+    color: #4d4d4d;
+}
+
 .cat-button {
     display: flex;
     align-items: center;
@@ -65,7 +71,7 @@ html, body {
     font-weight: 300;
     align-self: center;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -105,6 +111,7 @@ html, body {
 
 .subcategory-column {
     flex: 1;
+    margin-left: 1px;
     margin-left: auto; /* Автоматичний відступ зліва */
     margin-right: auto;
 }

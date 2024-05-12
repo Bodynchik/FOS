@@ -1,6 +1,6 @@
 <div class="background-image-descr">
   <div class="container-descr">
-    <%= image_tag "categorys/#{@category_name}.jfif", class: "category-img", alt: "Кухня" %>
+    <%= image_tag "categorys/#{@category_name}.jfif", class: "cat-img-descr", alt: "Кухня" %>
     <div class="category-description">
       <%= render "categories/descriptions/#{@category_name.downcase}", sub_categories: @sub_categories %>
     </div>

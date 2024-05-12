@@ -1,6 +1,8 @@
 <div class="chat_wrapper">
   <div class="chat-container">
-    <h3 class="chat-header"><%= t('.product comments') %> (<%= @comments.count %>)</h3>
+    <% product_comments = @comments.select { |comment| comment.product_id.to_s == params[:product_id] } %>
+    <h3 class="chat-header"><%= t('.product comments') %> (<%= product_comments.count %>)</h3>
+
 
     <%#= form_with(model: @comment, url: product_comments_path(product_id: @product), method: "post") do |form| %>
     <%= form_with(model: @comment, url: product_comments_path, method: "post") do |form| %>
@@ -31,11 +33,11 @@
             <div class="comm-content">
               <h3><%= comment.user.username %> (<%= t('.grade') %> <%= comment.rating %>/5):  </h3>
             </div>
-            <%# if comment.user.id == current_user.id %>
-<!--              <div class="chat-content">-->
-<!--                <p> <%#= comment.text %></p> <%#= button_to 'Видалити', comment_path(comment), method: :delete, data: { confirm: 'Ви впевнені?' }, class: 'delete-button' %>-->
-<!--              </div>-->
-            <%# end %>
+            <% if comment.user.id == current_user.id %>
+              <div class="chat-content">
+                <p> <%= comment.text %></p> <%= button_to 'Видалити', comment_path(comment), method: :delete, data: { confirm: 'Ви впевнені?' }, class: 'delete-button' %>
+              </div>
+            <% end %>
           </div>
         <% end %>
       <% end %>

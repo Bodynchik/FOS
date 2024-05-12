@@ -17,10 +17,9 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
 
     return unless @comment.save
+
     redirect_to product_comments_path(@prod), notice: 'Коментар успішно додано.'
   end
-
-
 
   # DELETE /comments/1
   def destroy
@@ -29,6 +28,7 @@ class CommentsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_comment
     @comment = Comment.find(params[:id])

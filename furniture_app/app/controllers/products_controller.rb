@@ -155,11 +155,12 @@ class ProductsController < ApplicationController
       products.left_joins(:comments)
               .group('products.id')
               .order('COUNT(comments.id) DESC')
+    when 'production_days'
+      products.order(production_days: direction.to_sym)
     else
       products
     end
   end
-
 
   # Конвертувати всі ціни
   def convert_prices_to_user_currency

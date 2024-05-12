@@ -23,10 +23,11 @@
   <div class="products-container">
 
     <div class="sorting-buttons">
-      <%= link_to "Сортувати за назвою", products_path(sort: 'name', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
-      <%= link_to "Сортувати за ціною", products_path(sort: 'price', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
-      <%= link_to "Сортувати за рейтингом", products_path(sort: 'average_rating', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
-      <%= link_to "Сортувати за коментарями", products_path(sort: 'comments_count', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+      <%= link_to "За назвою", products_path(sort: 'name', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+      <%= link_to "За ціною", products_path(sort: 'price', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+      <%= link_to "За рейтингом", products_path(sort: 'average_rating', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+      <%= link_to "За коментарями", products_path(sort: 'comments_count', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+      <%= link_to "За швидкістю виробництва", products_path(sort: 'production_days', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
     </div>
 
     <% @products.each do |product| %>

@@ -1,3 +1,9 @@
+html, body {
+    /* Встановлення сторінки як розтягування за висотою */
+    height: 120%;
+    margin: 0; /* Відсутність зовнішніх відступів */
+    padding: 0; /* Відсутність внутрішніх відступів */
+}
 
 .container-descr {
     background-color: #FAFAFA;
@@ -10,6 +16,7 @@
     z-index: 2;
     text-align: center;
     border-radius: 12px;
+    height: auto;
 }
 
 .background-image-descr {
@@ -44,6 +51,9 @@
 }
 
 .cat-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: auto;
     height: 40px;
     background-color: #6a6460;
@@ -85,6 +95,18 @@
     background-color: #f2dede;
     border-color: #ebccd1;
     color: #a94442;
+}
+
+.subcategory-columns {
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.subcategory-column {
+    flex: 1;
+    margin-left: auto; /* Автоматичний відступ зліва */
+    margin-right: auto;
 }
 
 

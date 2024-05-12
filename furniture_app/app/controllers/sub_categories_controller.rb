@@ -8,13 +8,6 @@ class SubCategoriesController < ApplicationController
     # @sub_categories = SubCategory.all
   end
 
-  def description
-    @category = Category.find_by(cat_name: params[:category_name])
-    @sub_categories = @category.sub_categories
-  end
-
-
-
   # GET /sub_categories/1 or /sub_categories/1.json
   def show; end
 
@@ -53,7 +46,6 @@ class SubCategoriesController < ApplicationController
       end
     end
   end
-
 
   # DELETE /sub_categories/1 or /sub_categories/1.json
   def destroy

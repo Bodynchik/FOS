@@ -9,7 +9,7 @@ ActiveAdmin.register Product do
   # or
   #
   # permit_params do
-  #   permitted = [:furniture_id, :manufacturer_id, :sub_category_id, :prod_model, :price, :description, :delivery_days, :production_days]
+  #   permitted = [:furniture_id, :manufacturer_id, :sub_category_id, :prod_model, :price, :descriptions, :delivery_days, :production_days]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end

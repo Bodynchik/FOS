@@ -16,9 +16,12 @@ class CategoriesController < ApplicationController
 
   def description
     @category_name = params[:category_name]
-    # Інші дії методу
+    @category = Category.find_by(cat_name: params[:category_name])
+    @sub_categories = @category.sub_categories
+    @sub_categories_left = @sub_categories.take((@sub_categories.size + 2) / 3)
+    @sub_categories_middle = @sub_categories.drop(@sub_categories_left.size).take((@sub_categories.size - @sub_categories_left.size + 1) / 2)
+    @sub_categories_right = @sub_categories.drop(@sub_categories_left.size + @sub_categories_middle.size)
   end
-
 
   # GET /categories/1/edit
   def edit; end

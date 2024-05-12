@@ -5,6 +5,10 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
   validates :first_name, presence: true
@@ -14,7 +18,7 @@ class User < ApplicationRecord
   has_many :orders
   has_many :prod_sets
   has_many :chats
-  has_many :messages
+  has_many :messages, dependent: :destroy
 
   def username
     "#{first_name} #{last_name}"
@@ -31,7 +35,7 @@ class User < ApplicationRecord
 
   # Метод для отримання відношення валюти користувача до доллара
   def get_exchange_rates(currency)
-    url = URI("https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=11")
+    url = URI('https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=11')
     response = Net::HTTP.get(url)
     data = JSON.parse(response)
 
@@ -50,10 +54,9 @@ class User < ApplicationRecord
     if currency == 'UAH'
       result = 1 / usd_rate.to_f
     elsif currency == 'EUR'
-      result = eur_rate.to_f / usd_rate.to_f
+      result = eur_rate.to_f / usd_rate
     end
 
     result.round(2)
   end
-
 end

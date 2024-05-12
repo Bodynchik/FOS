@@ -1,11 +1,29 @@
-<!-- kitchen.html.erb -->
-
 <p>Категорія "Робоча зона" - створити комфортне та функціональне робоче середовище.
   Тут ви знайдете все необхідне для організації робочого місця, від столів та стільців до освітлення та аксесуарів..</p>
 
-<h3>Підкатегорії:</h3>
-<!--<ul>-->
-  <%# sub_categories.each do |subcategory| %>
-<!--    <li><%#= subcategory.subcat_name %></li>-->
-  <%# end %>
-<!--</ul>-->
+<h3>Підкатегорії (<%= @sub_categories.count %>)</h3>
+<div class="subcategory-columns">
+  <div class="subcategory-column">
+    <ul>
+      <% @sub_categories_left.each do |subcategory| %>
+        <li><%= subcategory.subcat_name %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="subcategory-column">
+    <ul>
+      <% @sub_categories_middle.each do |subcategory| %>
+        <li><%= subcategory.subcat_name %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="subcategory-column">
+    <ul>
+      <% @sub_categories_right.each do |subcategory| %>
+        <li><%= subcategory.subcat_name %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

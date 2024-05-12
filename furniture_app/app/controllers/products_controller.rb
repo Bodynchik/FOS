@@ -118,7 +118,7 @@ class ProductsController < ApplicationController
   def to_csv(products)
     # TODO: add image for export
 
-    attributes = %w[furniture_type name price description production_days delivery]
+    attributes = %w[furniture_type name price descriptions production_days delivery]
 
     CSV.generate(headers: true) do |csv|
       csv << attributes

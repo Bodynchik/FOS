@@ -10,7 +10,7 @@ class Product < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[created_at delivery_days description furniture_id id id_value manufacturer_id price prod_model production_days sub_category_id
+    %w[created_at delivery_days descriptions furniture_id id id_value manufacturer_id price prod_model production_days sub_category_id
        updated_at]
   end
 end

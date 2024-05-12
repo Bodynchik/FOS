@@ -46,6 +46,10 @@ class ProductsController < ApplicationController
   # GET /products/1/edit
   def edit; end
 
+  def average_rating
+    comments.average(:rating)
+  end
+
   # POST /products or /products.json
   def create
     @product = Product.new(product_params)
@@ -143,10 +147,19 @@ class ProductsController < ApplicationController
       products.order(prod_model: direction.to_sym)
     when 'price'
       products.order(price: direction.to_sym)
+    when 'average_rating'
+      products.joins(:comments)
+              .group('products.id')
+              .order('AVG(comments.rating) DESC')
+    when 'comments_count'
+      products.left_joins(:comments)
+              .group('products.id')
+              .order('COUNT(comments.id) DESC')
     else
       products
     end
   end
+
 
   # Конвертувати всі ціни
   def convert_prices_to_user_currency

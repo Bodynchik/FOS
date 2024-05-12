@@ -25,6 +25,8 @@
     <div class="sorting-buttons">
       <%= link_to "Сортувати за назвою", products_path(sort: 'name', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
       <%= link_to "Сортувати за ціною", products_path(sort: 'price', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+      <%= link_to "Сортувати за рейтингом", products_path(sort: 'average_rating', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+      <%= link_to "Сортувати за коментарями", products_path(sort: 'comments_count', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
     </div>
 
     <% @products.each do |product| %>
@@ -34,7 +36,15 @@
           <%= image_tag(product.product_image, class: 'image-div') if product.product_image.attached? %>
         </div>
         <div class="product-info">
-          <p class="product-name"><%= "#{product.prod_model}" %></p>
+          <p class="product-name">
+            <%= "#{product.prod_model}" %>
+            <% if product.average_rating %>
+              <%= "<span class='product-price'>- рейтинг: #{product.average_rating.round(1)}</span>".html_safe %>
+            <% else %>
+              <%= "<span class='product-price'>- Немає оцінок</span>".html_safe %>
+              - Немає оцінок
+            <% end %>
+          </p>
           <% if current_user %>
             <p class="product-price"><%= "#{product.price} #{current_user.currency}" %></p>
           <% else %>

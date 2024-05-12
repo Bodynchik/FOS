@@ -1,0 +1,73 @@
+<div class="chat_wrapper">
+  <div class="chat-container">
+    <h3 class="chat-header"><%= t('.product comments') %> (<%= @comments.count %>)</h3>
+
+    <%#= form_with(model: @comment, url: product_comments_path(product_id: @product), method: "post") do |form| %>
+    <%= form_with(model: @comment, url: product_comments_path, method: "post") do |form| %>
+      <div class="chat-form">
+        <div class="comm-field">
+          <%= form.text_area :text, class: "message-input", placeholder: "Залиште свій коментар" %>
+        </div>
+
+        <div class="comm-field">
+          <%= form.label :rating, "Rating" %><br>
+          <div class="rating-buttons">
+            <% (1..5).each do |i| %>
+              <%= form.button type: "button", class: "rating-button#{'selected' if i == @comment.rating}", data: { rating: i }, onclick: "setRating(#{i})" do %>
+                <%= i %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%= form.hidden_field :rating, id: "rating-input" %>
+      <%= form.submit "Надіслати", class: "chat-submit" %>
+    <% end %>
+
+    <div class="chat-messages">
+      <% @comments.each do |comment| %>
+        <% if comment.product_id.to_s == params[:product_id] %>
+          <div class="chat-item-box">
+            <div class="comm-content">
+              <h3><%= comment.user.username %> (<%= t('.grade') %> <%= comment.rating %>/5):  </h3>
+            </div>
+            <%# if comment.user.id == current_user.id %>
+<!--              <div class="chat-content">-->
+<!--                <p> <%#= comment.text %></p> <%#= button_to 'Видалити', comment_path(comment), method: :delete, data: { confirm: 'Ви впевнені?' }, class: 'delete-button' %>-->
+<!--              </div>-->
+            <%# end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+
+
+
+    <!--    <h2>Середній рейтинг:</h2>-->
+    <!--    <p><%#= @average_rating %></p>-->
+  </div>
+</div>
+
+
+<script>
+    function setRating(rating) {
+        // для схованого поля устанавлюю обраний рейтинг
+        document.getElementById("rating-input").value = rating;
+
+        // всі кнопки рейтингу
+        var buttons = document.querySelectorAll('.rating-button');
+        buttons.forEach(function(button) {
+            var buttonRating = button.getAttribute('data-rating');
+
+            // Перевірити, чи співпадає рейтинг кнопки з обраним рейтингом
+            if (buttonRating == rating) {
+                // Додати клас 'selected' для вибраної кнопки
+                button.classList.add('selected');
+            } else {
+                // Видалити клас 'selected' для всіх інших кнопок
+                button.classList.remove('selected');
+            }
+        });
+    }
+</script>

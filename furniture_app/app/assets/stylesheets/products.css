@@ -134,6 +134,19 @@
 .product-button-con {
     display: flex;
     gap: 10px;
+    flex-direction: column;
+    margin-right: 10px;
+    align-items: center;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.one-button {
+    margin-right: 15px;
 }
 
 .order-button, .add-to-set-button, .chat-button {

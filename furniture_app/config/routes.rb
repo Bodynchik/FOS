@@ -64,5 +64,16 @@ Rails.application.routes.draw do
 
     # Add this route for adding product to set
     post 'add_product_to_set', to: 'prod_sets#add_product_to_set'
+
+    get 'comments/index'
+    get 'comments/create'
+    get 'comments/destroy'
+
+    resources :products do
+      resources :comments
+    end
+
+    resources :comments, only: [:index, :create, :destroy]
+
   end
 end

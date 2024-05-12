@@ -62,6 +62,7 @@
     <div class="description-container">
       <h1><%= t('.title') %></h1>
       <p class="description" id="description-text"><%= @product.description %></p>
+      <p class="description" id="last-description">Середній рейтинг: <%= @product.average_rating %></p>
       <p class="description"><%= t('.man_prod') %> <%= @product.production_days %> днів </p>
       <p class="description"><%= t('.delivery') %> <%= @product.delivery_days.join(', ') %></p>
       <p class="description" id="last-description"><%= t('.del_days') %></p>
@@ -72,15 +73,42 @@
         <% end %>
       </ul>
 
+<!--      <div class="product-button-con">-->
+        <%# if current_user.is_a?(User) %>
+          <%#= link_to t('.order'), new_order_path(product_id: @product.id, delivery_dates: @closest_delivery_dates), class: "order-button" %>
+        <%# end %>
+        <%# if current_user.present? %>
+<!--          <a href="#" class="add-to-set-button"><%#= t('.add_set') %></a>-->
+          <%#= link_to t('.write'), new_chat_path(manufacturer_id: @product.manufacturer.id), class: "chat-button", method: :post %>
+          <%#= link_to t('.comments'), product_comments_path(@product), class: "chat-button" %>
+        <%# end %>
+<!--      </div>-->
+
       <div class="product-button-con">
-        <% if current_user.is_a?(User) %>
-          <%= link_to t('.order'), new_order_path(product_id: @product.id, delivery_dates: @closest_delivery_dates), class: "order-button" %>
-        <% end %>
-        <% if current_user.present? %>
-          <a href="#" class="add-to-set-button"><%= t('.add_set') %></a>
-          <%= link_to t('.write'), new_chat_path(manufacturer_id: @product.manufacturer.id), class: "chat-button", method: :post %>
-      <% end %>
+        <div class="button-row">
+          <div class="one-button">
+            <% if current_user.is_a?(User) %>
+              <%= link_to t('.order'), new_order_path(product_id: @product.id, delivery_dates: @closest_delivery_dates), class: "order-button" %>
+            <% end %>
+          </div>
+          <% if current_user.present? %>
+            <div class="one-button">
+                <a href="#" class="add-to-set-button"><%= t('.add_set') %></a>
+            </div>
+            <div class="one-button">
+              <%= link_to t('.comments'), product_comments_path(@product), class: "chat-button" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="button-row">
+          <div class="one-button">
+            <% if current_user.present? %>
+              <%= link_to t('.write'), new_chat_path(manufacturer_id: @product.manufacturer.id), class: "chat-button", method: :post %>
+            <% end %>
+          </div>
+        </div>
       </div>
+
 
     </div>
   </div>

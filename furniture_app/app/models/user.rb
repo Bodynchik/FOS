@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :orders
   has_many :prod_sets
   has_many :chats
+  has_many :comments, dependent: :destroy
   has_many :messages, dependent: :destroy
 
   def username

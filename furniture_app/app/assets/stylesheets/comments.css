@@ -1,0 +1,57 @@
+.rating-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.rating-button {
+    color: #090808;
+    font-size: 16px;
+    line-height: 120%;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 10px 20px; /* Зміна відступів кнопок */
+    border: 1px solid #ccc; /* Додавання рамки */
+    border-radius: 10px; /* Закруглення кутів */
+    background-color: #f9f9f9; /* Зміна кольору фону */
+}
+
+.rating-button:hover {
+    background-color: #504b49;
+}
+
+.rating-button.selected {
+    background-color: #504b49;
+    color: white;
+}
+
+
+.message-input::placeholder {
+    font-size: 18px;
+}
+
+
+.comm-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+.chat-content p{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+}
+
+.chat-content p {
+    margin-right: 20px;
+    color: #4d4d4d;
+    padding-left: 20px;
+}
+
+
+

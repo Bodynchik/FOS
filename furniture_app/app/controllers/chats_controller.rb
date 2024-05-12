@@ -8,8 +8,6 @@ class ChatsController < ApplicationController
       @chats = Chat.where(manufacturer_id: current_manufacturer.id)
       @user_type = 'Виробник'
     end
-    selected_manufacturer_id = params[:manufacturer_id]
-    @chat_exists = Chat.exists?(user_id: current_user.id, manufacturer_id: selected_manufacturer_id)
   end
 
   def show

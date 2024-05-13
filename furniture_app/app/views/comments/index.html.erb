@@ -3,8 +3,6 @@
     <% product_comments = @comments.select { |comment| comment.product_id.to_s == params[:product_id] } %>
     <h3 class="chat-header"><%= t('.product comments') %> (<%= product_comments.count %>)</h3>
 
-
-    <%#= form_with(model: @comment, url: product_comments_path(product_id: @product), method: "post") do |form| %>
     <%= form_with(model: @comment, url: product_comments_path, method: "post") do |form| %>
       <div class="chat-form">
         <div class="comm-field">
@@ -42,12 +40,6 @@
         <% end %>
       <% end %>
     </div>
-
-
-
-
-    <!--    <h2>Середній рейтинг:</h2>-->
-    <!--    <p><%#= @average_rating %></p>-->
   </div>
 </div>
 

@@ -26,7 +26,7 @@
                   <% else %>
                     <p class="no-message"><%= t('.no_messages') %></p>
                   <% end %>
-                  <%= link_to t('.join_chat'), chat_path(chat), class: "join-button" %>
+                  <%= link_to t('.join_chat'), chat_path(chat), class: "join-button"%>
                 </div>
               </div>
             <% end %>
@@ -51,8 +51,6 @@
 
     function confirmAndRedirectToNewChat() {
         var selectedManufacturerId = document.getElementById('manufacturer').value;
-<!--        var chatExists = <%#= @chats.any? { |chat| chat.manufacturer_id == selectedManufacturerId} %>;-->
-        // confirm("Selected manufacturer ID: " + selectedManufacturerId);
 
         var selectedManufacturerName = document.getElementById('manufacturer').options[document.getElementById('manufacturer').selectedIndex].text;
         if (confirm("Are you sure you want to create a new chat with " + selectedManufacturerName + "?")) {
@@ -60,5 +58,8 @@
         }
     }
 
+    function reloadPage() {
+        window.location.reload();
+    }
 
 </script>

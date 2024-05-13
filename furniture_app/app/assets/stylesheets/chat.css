@@ -9,18 +9,7 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    text-align: center;
-    gap: 20px;
-}
-
-.search-container select{
-    display: inline-block;
-    margin-right: 10px;
-    line-height: 2px;
-    border: 2px solid;
-    border-radius: 15px;
-    font-size: 16px;
-    outline: none;
+    gap: 50px;
 }
 
 .chat-header {
@@ -38,10 +27,6 @@
     gap: 20px;
 }
 
-.chat-list {
-    margin-top: 30px;
-}
-
 .message-input {
     padding: 10px 5px;
     border: 1px solid #000000;
@@ -50,7 +35,6 @@
     line-height: 120%;
     flex-grow: 2;
     outline: none;
-    width: 700px;
 }
 
 .chat-submit {
@@ -63,85 +47,8 @@
     line-height: 120%;
     transition: background-color 0.3s ease;
     cursor: pointer;
-    margin-left: 3px;
-    text-decoration: none;
-    width: 100px;
-}
-
-.chat-info {
-    /*display: flex;*/
-    align-items: center;
-    gap: 50px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #4d4d4d;
-}
-
-.manufacturer-label {
-    display: inline-block;
-    margin-right: 10px; /* Додатковий відступ між підписом і інформацією */
-}
-
-.manufacturer-info {
-    display: inline-block;
 }
 
 .chat-submit:hover {
     background-color: #504b49;
 }
-
-.chat-item-box {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    width: 1100px;
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-
-}
-
-.chat-item-box .chat-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.chat-item-box .chat-header h3 {
-    margin: 10px;
-    font-size: 25px;
-}
-
-.chat-item-box .chat-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 18px;
-}
-
-.chat-item-box .last-message,
-.chat-item-box .no-message {
-    margin: 0;
-}
-
-.chat-item-box .join-button {
-    padding: 5px 10px;
-    background-color: #6a6460;
-    color: #FAFAFA;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.chat-item-box .join-button:hover {
-    background-color: #504b49;
-}
-
-.join-button {
-    position: absolute;
-    right: 250px;
-}
-
-

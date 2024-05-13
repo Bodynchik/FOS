@@ -1,8 +1,8 @@
 import consumer from "channels/consumer"
 
+let subscription;
 document.addEventListener("turbo:load", function () {
   const chatMessages = document.getElementById("chat-messages");
-  let subscription;
 
   function subscribeToChatChannel() {
     const manufacturerId = chatMessages.dataset.manufacturerId;
@@ -44,14 +44,14 @@ document.addEventListener("turbo:load", function () {
 
   subscribeToChatChannel();
 
-  const logoutButtons = document.querySelectorAll("#link-logo, #logout-prof-user, #logout-but-user, #logout-prof-mun, #logout-but-mun");
-  logoutButtons.forEach(logoutButton => {
-    logoutButton.addEventListener("click", function () {
-      if (subscription) {
-        subscription.unsubscribe();
-      }
-    });
-  });
+  // const logoutButtons = document.querySelectorAll("#link-logo, #logout-prof-user, #logout-but-user, #logout-prof-mun, #logout-but-mun");
+  // logoutButtons.forEach(logoutButton => {
+  //   logoutButton.addEventListener("click", function () {
+  //     if (subscription) {
+  //       subscription.unsubscribe();
+  //     }
+  //   });
+  // });
 });
 
 document.addEventListener("turbo:load", function () {
@@ -89,6 +89,12 @@ document.addEventListener("turbo:load", function () {
             messageInput.value = "";
           })
           .catch(error => console.error("Error:", error));
+    }
+  });
+
+  window.addEventListener("beforeunload", function () {
+    if (subscription) {
+      subscription.unsubscribe();
     }
   });
 });

@@ -105,6 +105,10 @@
           </div>
         <% end %>
       <% end %>
+
+      <div class="export-buttons">
+        <%= link_to "Експорт у CSV", export_csv_products_path(format: :csv), class: "csv-button" %>
+      </div>
     </div>
 
     <div class="remove-item">

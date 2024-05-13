@@ -3,6 +3,7 @@ require 'json'
 
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
+  before_action :set_manufacturer, only: %i[export_csv]
 
   # GET /products or /products.json
   def index
@@ -95,17 +96,19 @@ class ProductsController < ApplicationController
 
   # GET /products/export_csv.csv
   def export_csv
-    @products = current_manufacturer.products
-
+    product_query = ProductQuery.new(@manufacturer)
     respond_to do |format|
       format.csv do
-        send_data to_csv(@products), filename: "products-#{Time.zone.today}-#{current_manufacturer.title_manufacturer}.csv"
+        send_data product_query.to_csv, filename: "products-#{Time.zone.today}-#{@manufacturer.title_manufacturer}.csv"
       end
     end
   end
 
-
   private
+
+  def set_manufacturer
+    @manufacturer = current_manufacturer
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_product
@@ -116,29 +119,6 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:furniture_id, :manufacturer_id, :sub_category_id, :prod_model, :price,
                                     :description, :product_image, :production_days, delivery_days: [])
-  end
-
-  # Метод для експортування товарів виробника у CSV
-  def to_csv(products)
-    # TODO: add image for export
-
-    attributes = %w[furniture_type name price descriptions production_days delivery]
-
-    CSV.generate(headers: true) do |csv|
-      csv << attributes
-
-      products.each do |product|
-        csv << [
-          product.furniture.name,
-          # product.product_image,
-          "#{product.furniture.name} (#{product.prod_model})",
-          product.price,
-          product.description,
-          product.production_days,
-          product.delivery_days.join(', ')
-        ]
-      end
-    end
   end
 
   def sort_products(products, sort_by, direction)

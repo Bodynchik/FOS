@@ -103,7 +103,7 @@
         <div class="button-row">
           <div class="one-button">
             <% if current_user.present? %>
-              <%= link_to t('.write'), new_chat_path(manufacturer_id: @product.manufacturer.id), class: "chat-button", method: :post %>
+              <%= button_to t('.write'), chats_path(manufacturer_id: @product.manufacturer.id), class: "chat-button", method: :post %>
             <% end %>
           </div>
         </div>

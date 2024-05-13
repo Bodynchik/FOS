@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     resources :order_sets
     resources :prod_sets
     resources :orders
-    resources :products
+    resources :products do
+      collection do
+        get :export_csv
+      end
+    end
     resources :furnitures
 
     # Шлях до реєстрації користувача

@@ -1,5 +1,4 @@
 class ChatsController < ApplicationController
-
   def index
     @manufacturers = Manufacturer.all
     if user_signed_in?
@@ -11,7 +10,6 @@ class ChatsController < ApplicationController
       @user_type = 'Виробник'
     end
   end
-
 
   def show
     @chat = Chat.find(params[:id])
@@ -41,4 +39,3 @@ class ChatsController < ApplicationController
     end
   end
 end
-

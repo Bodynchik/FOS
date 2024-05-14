@@ -264,3 +264,88 @@
     background-color: #8B8B8B;
     color: white;
 }
+
+.add-item {
+    align-items: center;
+    justify-content: center;
+}
+
+.form-element {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#delivery-days {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#delivery-days label {
+    font-size: 16px;
+}
+
+.add-item form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+}
+
+.add-item form label {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.add-item form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#prod-image input {
+    width: 100%;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+}
+
+.add-item form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.add-item form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.create-prod-button {
+    display: flex;
+    justify-content: center;
+}
+
+.add-item form input[type="submit"] {
+    width: 150px;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #333;
+    border-color: black;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.add-item form input[type="submit"]:hover {
+    background-color: #8B8B8B;
+    color: #ffffff;
+}

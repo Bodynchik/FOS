@@ -36,7 +36,7 @@ document.addEventListener("turbo:load", function() {
     addItemCat.addEventListener('click', function() {
         // Приховати всі блоки даних крім addItem
         personalData.style.display = 'none';
-        addItem.style.display = 'block';
+        addItem.style.display = 'flex';
         userSets.style.display = 'none'
         removeItem.style.display = 'none';
         itemList.style.display = 'none';

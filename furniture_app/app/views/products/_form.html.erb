@@ -17,27 +17,27 @@
   </div>
 
   <div class="form-element">
-    <%= form.label :furniture_id, "Тип фурнітури", style: "display: block" %>
+    <%= form.label :furniture_id, style: "display: block" %>
     <%= form.select :furniture_id, options_for_select(@furniture_name) %>
   </div>
 
   <div class="form-element">
-    <%= form.label :sub_category_id, "Підкатегорія товару", style: "display: block" %>
+    <%= form.label :sub_category_id, style: "display: block" %>
     <%= form.select :sub_category_id, options_for_select(@sub_category_name) %>
   </div>
 
   <div class="form-element">
-    <%= form.label :prod_model, "Назва товару", style: "display: block" %>
+    <%= form.label :prod_model, style: "display: block" %>
     <%= form.text_field :prod_model %>
   </div>
 
   <div class="form-element">
-    <%= form.label :price, "Ціна товару",  style: "display: block" %>
+    <%= form.label :price,  style: "display: block" %>
     <%= form.text_field :price %>
   </div>
 
   <div class="form-element">
-    <%= form.label :description, "Опис товару",  style: "display: block" %>
+    <%= form.label :description,  style: "display: block" %>
     <%= form.text_area :description %>
   </div>
 
@@ -48,7 +48,7 @@
 
   <!-- Додати поля для кількості днів на виробництво та дні тижня для доставки -->
   <div class="form-element">
-    <%= form.label :production_days, "Скільки днів буде вироблятися товар?",  style: "display: block" %>
+    <%= form.label :production_days,  style: "display: block" %>
     <%= form.number_field :production_days %>
   </div>
 

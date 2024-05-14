@@ -26,15 +26,6 @@
 
     <div class="icons-item"><%= link_to "FOS", root_path, id: "link-logo" %></div>
 
-    <div class="search-container">
-      <input type="search" id="search" placeholder="">
-      <%= image_tag "header/loupe-search-svgrepo-com.svg", class: "search-icon", alt: "Search Icon" %>
-    </div>
-
-    <!--    <a href="#" class="nav-icons">-->
-    <%#= image_tag "header/shopping-cart-svgrepo-com.svg", class: "nav-icons", alt: "Cart icon" %>
-    <!--    </a>-->
-
     <div class="dropdown">
       <label>
         <select onchange="window.location.href = this.value;">
@@ -110,13 +101,10 @@
     </div>
 
     <div class="footer-column">
-      <%#= auto_discovery_link_tag(:rss, products_url(format: "rss")) %>
       <p><%= t('footer.subscribe') %></p>
       <a href="<%= products_url(format: "rss") %>">
         <%= image_tag "footer/rss-feed-svgrepo-com.svg", class: "footer-icon", alt: "RSS icon" %>
       </a>
-      <!--      <input type="email" placeholder="Email" class="email-field"/>-->
-      <!--      <button class="button">Відправити</button>-->
     </div>
 
   </div>

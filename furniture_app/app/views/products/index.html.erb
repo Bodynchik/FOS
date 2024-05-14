@@ -1,5 +1,3 @@
-<p style="color: green"><%= notice %></p>
-
 <!--<h1>Products</h1>-->
 
 <!--<div id="products">-->
@@ -23,11 +21,11 @@
   <div class="products-container">
 
     <div class="sorting-buttons">
-      <%= link_to "За назвою", products_path(sort: 'name', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
-      <%= link_to "За ціною", products_path(sort: 'price', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
-      <%= link_to "За рейтингом", products_path(sort: 'average_rating', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
-      <%= link_to "За коментарями", products_path(sort: 'comments_count', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
-      <%= link_to "За швидкістю виробництва", products_path(sort: 'production_days', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+      <%= link_to t('.by_name'), products_path(sort: 'name', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+      <%= link_to t('.by_price'), products_path(sort: 'price', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+      <%= link_to t('.by_rating'), products_path(sort: 'average_rating', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+      <%= link_to t('.by_comments'), products_path(sort: 'comments_count', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+      <%= link_to t('.by_production_speed'), products_path(sort: 'production_days', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
     </div>
 
     <% @products.each do |product| %>
@@ -40,7 +38,7 @@
           <p class="product-name">
             <%= "#{product.prod_model}" %>
             <% if product.average_rating %>
-              <%= "<span class='product-price'>- рейтинг: #{product.average_rating.round(1)}</span>".html_safe %>
+              <%= "<span class='product-price'>- #{t('.rating')}: #{product.average_rating.round(1)}</span>".html_safe %>
             <% else %>
               <%= "<span class='product-price'>- Немає оцінок</span>".html_safe %>
               - Немає оцінок

@@ -1,6 +1,21 @@
 en:
   en: "English"
   uk: "Ukrainian"
+  categories:
+    descriptions:
+      living_room: "Living room category: This collection of living room furniture combines comfort and style.
+                    With a wide range of designs and functions, you will find the perfect solutions for your living room."
+      kitchen: "The Kitchen category offers a wide range of products for your kitchen. Here you will find everything you
+                need to prepare delicious meals, convenient kitchen equipment and accessories for organizing your space."
+      bedroom: "Bedroom category: Create the perfect oasis of peace and comfort with our bedroom collection. From modern
+                to classic designs, we offer solutions that match your style and needs."
+      work_area: "The Workspace category is all about creating a comfortable and functional work environment. Here you will
+                  find everything you need to organize your workplace, from tables and chairs to lighting and accessories."
+      storage: "Storage category Convenient and efficient storage is the key to an organized space. In this category, you'll find
+                storage solutions for everything from clothes to dishes that will help you make the most of your home's space."
+      garden: "Garden category: Give yourself and your family an oasis of comfort and beauty with our collection of garden furniture.
+              From dining furniture to comfortable sun loungers, we offer everything you need to create an unforgettable garden space."
+      btn: "Subcategories"
   activerecord:
     attributes:
       prod_set:
@@ -18,7 +33,48 @@ en:
   sub_categories:
     index:
       title: "Select the desired product subcategory:"
+    Крісла: "Chairs"
+    Пуфи: "Poufs"
+    Дивани: "Sofas"
+    Ліжка: "Beds"
+    Дивани-ліжка: "Sofa beds"
+    Столики: "Tables"
+    Тумби під телевізор: "TV stands"
+    Барні стільці: "Bar stools"
+    Барні столи: "Bar tables"
+    Обідні столи: "Dining tables"
+    Обідні стільці: "Dining chairs"
+    Складні стільці: "Folding chairs"
+    Дзеркала: "Mirrors"
+    Дитячі ліжка: "Children's beds"
+    Крісла офісні: "Office chairs"
+    Стіл комп`ютерний: "Computer table"
+    Столи з регулюванням висоти: "Tables with height adjustment"
+    Вуличне зберігання: "Street storage"
+    Буфети та серванти: "Buffets and sideboards"
+    Книжкові шафи: "Bookcases"
+    Комоди: "Dressers"
+    Консольні столики: "Console tables"
+    Передпокій: "Entrance hall"
+    Пересувні вішалки: "Mobile hangers"
+    Полиці: "Shelves"
+    Шафи: "Cabinets"
+    Приліжкові тумби: "Bedside tables"
+    Гамаки: "Hammocks"
+    Вуличне освітлення: "Street lighting"
+    Меблі для відпочинку: "Furniture for relaxation"
+    Садові стільці: "Garden chairs"
+    Садові лави: "Garden benches"
+    Садові столи: "Garden tables"
+    Шезлонги: "Sunbeds"
   products:
+    index:
+      by_name: "By name"
+      by_price: "By price"
+      by_rating: "By rating"
+      by_comments: "By comments"
+      by_production_speed: "By production speed"
+      rating: "rating"
     show:
       title: "Description"
       man_prod: "Production:"
@@ -32,6 +88,8 @@ en:
       amount_prod: "Quantity of products:"
       add_tag: "Add"
       close: "Close"
+      average_rating: "Average rating:"
+      days: "days"
   orders:
     new:
       order: "Ordering a product"

@@ -62,8 +62,8 @@
     <div class="description-container">
       <h1><%= t('.title') %></h1>
       <p class="description" id="description-text"><%= @product.description %></p>
-      <p class="description" id="last-description">Середній рейтинг: <%= @product.average_rating %></p>
-      <p class="description"><%= t('.man_prod') %> <%= @product.production_days %> днів </p>
+      <p class="description" id="last-description"><%= t('.average_rating') %> <%= @product.average_rating %></p>
+      <p class="description"><%= t('.man_prod') %> <%= @product.production_days %> <%= t('.days') %> </p>
       <p class="description"><%= t('.delivery') %> <%= @product.delivery_days.join(', ') %></p>
       <p class="description" id="last-description"><%= t('.del_days') %></p>
       <ul class="delivery-list">

@@ -1,19 +1,18 @@
 <div class="subcategory-columns">
   <div class="subcategory-column">
-    <p>Категорія Вітальня: Комфорт та стиль об'єднуються в цій колекції меблів для вітальні.
-    Завдяки широкому вибору дизайнів та функцій, ви знайдете ідеальні рішення для вашого простору вітальні.</p>
+    <p><%= t('categories.descriptions.living_room') %></p>
   </div>
 </div>
 
 <div class="subcategory-description">
-  <h3>Підкатегорії (<%= @sub_categories.count %>)</h3>
+  <h3><%= t('categories.descriptions.btn') %> (<%= @sub_categories.count %>)</h3>
 </div>
 
 <div class="subcategory-columns">
   <div class="subcategory-column">
     <ul>
       <% @sub_categories_left.each do |subcategory| %>
-        <li><%= subcategory.subcat_name %></li>
+        <li><%= t("sub_categories.#{subcategory.subcat_name}") %></li>
       <% end %>
     </ul>
   </div>
@@ -21,7 +20,7 @@
   <div class="subcategory-column">
     <ul>
       <% @sub_categories_middle.each do |subcategory| %>
-        <li><%= subcategory.subcat_name %></li>
+        <li><%= t("sub_categories.#{subcategory.subcat_name}") %></li>
       <% end %>
     </ul>
   </div>
@@ -29,7 +28,7 @@
   <div class="subcategory-column">
     <ul>
       <% @sub_categories_right.each do |subcategory| %>
-        <li><%= subcategory.subcat_name %></li>
+        <li><%= t("sub_categories.#{subcategory.subcat_name}") %></li>
       <% end %>
     </ul>
   </div>

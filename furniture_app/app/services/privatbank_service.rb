@@ -29,22 +29,22 @@ class PrivatbankService
     data = JSON.parse(response)
 
     if for_profile
-      usd_rate = nil
-      eur_rate = nil
+      usd_rate = 0.0
+      eur_rate = 0.0
       result = 0.0
 
       data.each do |rate|
         if rate['ccy'] == 'USD'
-          usd_rate = rate['buy']
+          usd_rate = rate['buy'].to_f
         elsif rate['ccy'] == 'EUR'
-          eur_rate = rate['buy']
+          eur_rate = rate['buy'].to_f
         end
       end
 
       if currency == 'UAH'
-        result = 1 / usd_rate.to_f
+        result = 1 / usd_rate
       elsif currency == 'EUR'
-        result = eur_rate.to_f / usd_rate.to_f
+        result = eur_rate / usd_rate
       end
 
       result.round(2)

@@ -11,6 +11,9 @@
         <div><%= f.text_field :phone_number, placeholder: t('.phone'), class: "input-field", required: true %></div>
         <div><%= f.password_field :password, placeholder: t('users.sessions.new.pass_f'), class: "input-field", required: true %></div>
         <!--        <div><%#= f.password_field :password_confirmation, placeholder: "Підтвердження паролю", class: "input-field" %></div>-->
+        <div>
+          <%= f.select :currency, %w[UAH USD EUR], { selected: 'UAH' }, class: "input-field", required: true %>
+        </div>
         <div><%= f.submit t('.sign_up'), class: "btn" %></div>
       <% end %>
     </div>

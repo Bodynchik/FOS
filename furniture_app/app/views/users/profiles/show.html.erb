@@ -79,14 +79,26 @@
         </div>
       </div>
 
+<!--      <div class="exchange-rate" style="display: flex; justify-content: center; margin-top: 50px">-->
+        <%# user_currency = current_user.currency %>
+        <%# exchange_rate = current_user.get_exchange_rates(user_currency) %>
+        <%# if exchange_rate %>
+          <%# if user_currency == 'UAH' %>
+<!--            <p style="margin: 0">1 UAH = <%#= exchange_rate %> USD</p>-->
+          <%# elsif user_currency == 'EUR' %>
+<!--            <p style="margin: 0">1 EUR = <%#= exchange_rate %> USD</p>-->
+          <%# end %>
+        <%# else %>
+<!--          <p style="margin: 0">Exchange rate is not available</p>-->
+        <%# end %>
+<!--      </div>-->
+
       <div class="exchange-rate" style="display: flex; justify-content: center; margin-top: 50px">
-        <% user_currency = current_user.currency %>
-        <% exchange_rate = current_user.get_exchange_rates(user_currency) %>
-        <% if exchange_rate %>
-          <% if user_currency == 'UAH' %>
-            <p style="margin: 0">1 UAH = <%= exchange_rate %> USD</p>
-          <% elsif user_currency == 'EUR' %>
-            <p style="margin: 0">1 EUR = <%= exchange_rate %> USD</p>
+        <% if @exchange_rate %>
+          <% if current_user.currency == 'UAH' %>
+            <p style="margin: 0">1 UAH = <%= @exchange_rate %> USD</p>
+          <% elsif current_user.currency == 'EUR' %>
+            <p style="margin: 0">1 EUR = <%= @exchange_rate %> USD</p>
           <% end %>
         <% else %>
           <p style="margin: 0">Exchange rate is not available</p>

@@ -27,6 +27,7 @@ uk:
       order: "Замовити"
       add_set: "Додати до сету"
       write: "Написати виробнику"
+      comments: "Коментарі"
       ch_set: "Виберіть сет:"
       amount_prod: "Кількість товару:"
       add_tag: "Додати"
@@ -43,10 +44,25 @@ uk:
       title: "Новий продуктовий сет"
       value: "Створити"
   chats:
+    index:
+      title: "Чати"
+      select_manufacturer: "Обрати виробника"
+      last_message: "останнє повідомлення"
+      no_messages: "немає повідомлень"
+      join_chat: "доєднатися"
+      no_chats_found: "не знайдено чатів"
+      new_chat: "новий чат"
     show:
       title: "Чат"
-      place: "Повідомлення..."
-      value: "Відправити"
+      send: "відправити"
+      my_chats: "Мої чати"
+  comments:
+    index:
+      title: "Коментарі товару"
+      rating: "Рейтинг"
+      grade: "Оцінка"
+      send: "Відправити"
+      delete: "Видалити"
   home:
     about_us: "Про нас"
     cat_title: "Знайдіть ідеальне вираження вашого стилю та смаку!"
@@ -100,6 +116,7 @@ uk:
       show:
         per_inform: "Особиста інформація"
         set: "Мої сети"
+        chats: "Чати"
         add_prod: "Додати товари"
         del_prod: "Видалити товари"
         order: "Мої замовлення"

@@ -3,8 +3,8 @@
     <h1 class="chat-header"><%= t('.title') %></h1>
 
     <form id="message-form" class="chat-form" action="<%= chat_messages_path(@chat) %>" method="post" >
-      <input type="text" id="message-input" class="message-input" placeholder=<%= t('.place') %>>
-      <button type="submit" class="chat-submit" onclick = "reloadPage()"  ><%= t('.value') %></button>
+      <input type="text" id="message-input" class="message-input">
+      <button type="submit" class="chat-submit" onclick = "reloadPage()" ><%= t('.send') %></button>
       <%= link_to t('.my_chats'), chats_path, class: "chat-submit" %>
     </form>
 
@@ -12,11 +12,10 @@
       <% @messages.each do |message| %>
           <div class="message">
           <% if message.user_id.present? %>
-            <strong><%= "#{message.user.username}" %></strong>
+            <strong><%= "#{message.user.username} (#{message.created_at.strftime("%H:%M")})" %></strong>
           <% elsif message.manufacturer_id.present? %>
             <strong><%= "#{message.manufacturer.username}" %></strong>
           <% end %>
-          <%#= message.created_at.strftime("%H:%M") %>
           <%= message.content %>
         </div>
       <% end %>

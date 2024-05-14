@@ -20,9 +20,10 @@ class ProductsController < ApplicationController
       products = Product.all
     end
 
-    @products = sort_products(products, sort_by, direction)
-
     @sort_direction = direction == 'asc' ? 'desc' : 'asc'
+    @products = SortQuery.sort_products(products, sort_by, direction)
+    # @products = sort_products(products, sort_by, direction)
+
     @user = current_user
 
     convert_prices_to_user_currency
@@ -96,7 +97,7 @@ class ProductsController < ApplicationController
 
   # GET /products/export_csv.csv
   def export_csv
-    product_query = ProductQuery.new(@manufacturer)
+    product_query = TocsvQuery.new(@manufacturer)
     respond_to do |format|
       format.csv do
         send_data product_query.to_csv, filename: "products-#{Time.zone.today}-#{@manufacturer.title_manufacturer}.csv"
@@ -121,26 +122,27 @@ class ProductsController < ApplicationController
                                     :description, :product_image, :production_days, delivery_days: [])
   end
 
-  def sort_products(products, sort_by, direction)
-    case sort_by
-    when 'name'
-      products.order(prod_model: direction.to_sym)
-    when 'price'
-      products.order(price: direction.to_sym)
-    when 'average_rating'
-      products.joins(:comments)
-              .group('products.id')
-              .order('AVG(comments.rating) DESC')
-    when 'comments_count'
-      products.left_joins(:comments)
-              .group('products.id')
-              .order('COUNT(comments.id) DESC')
-    when 'production_days'
-      products.order(production_days: direction.to_sym)
-    else
-      products
-    end
-  end
+  # def sort_products(products, sort_by, direction)
+  #   products = SortQuery.sort_products(products, sort_by, direction)
+  #   case sort_by
+  #   when 'name'
+  #     products.order(prod_model: direction.to_sym)
+  #   when 'price'
+  #     products.order(price: direction.to_sym)
+  #   when 'average_rating'
+  #     products.joins(:comments)
+  #             .group('products.id')
+  #             .order('AVG(comments.rating) DESC')
+  #   when 'comments_count'
+  #     products.left_joins(:comments)
+  #             .group('products.id')
+  #             .order('COUNT(comments.id) DESC')
+  #   when 'production_days'
+  #     products.order(production_days: direction.to_sym)
+  #   else
+  #     products
+  #   end
+  # end
 
   # Конвертувати всі ціни
   def convert_prices_to_user_currency

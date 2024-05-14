@@ -27,6 +27,7 @@ en:
       order: "Order"
       add_set: "Add to set"
       write: "Write manufacturer"
+      comments: "Comments"
       ch_set: "Select a set:"
       amount_prod: "Quantity of products:"
       add_tag: "Add"
@@ -43,10 +44,25 @@ en:
       title: "New prod set"
       value: "Create"
   chats:
+    index:
+      title: "Chats"
+      select_manufacturer: "Select manufacturer"
+      last_message: "Last message"
+      no_messages: "No messages"
+      join_chat: "Join"
+      no_chats_found: "No chats found"
+      new_chat: "New chat"
     show:
       title: "Chat"
-      place: "Message..."
-      value: "Send"
+      send: "send"
+      my_chats: "My chats"
+  comments:
+    index:
+      title: "Product comments"
+      rating: "Rating"
+      grade: "Grade"
+      send: "Send"
+      delete: "delete"
   home:
     about_us: "About us"
     cat_title: "Find the perfect expression of your style and taste!"
@@ -103,7 +119,7 @@ en:
         add_prod: "Add products"
         del_prod: "Delete products"
         order: "My orders"
-        chat: "Chats"
+        chats: "Chats"
         edit: "Edit"
         create_set: "Create a set"
         amount_prod: "There are no products in this set."

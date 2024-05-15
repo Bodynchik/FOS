@@ -170,7 +170,12 @@
     gap: 30px;
 }
 
-.change-data-button, .save-data-button, .cancel-button {
+.change-data-button,
+.save-data-button,
+.cancel-button,
+.csv-button,
+.create-product,
+.delete-button {
     width: 160px;
     height: 40px;
     background-color: white;
@@ -179,16 +184,30 @@
     color: black;
     font-size: 20px;
     font-weight: 300;
-    align-self: center;
-    margin-top: 50px;
+    align-items: center;
+    /*margin-top: 50px;*/
     cursor: pointer;
     transition: background-color 0.3s ease;
+    display: grid;
+    text-decoration: none;
     /*margin-right: 30px;*/
+    font-family: "Roboto", sans-serif;
 }
 
-.change-data-button:hover, .save-data-button:hover, .cancel-button:hover {
+.change-data-button:hover,
+.save-data-button:hover,
+.cancel-button:hover,
+.csv-button:hover,
+.create-product:hover,
+.delete-button:hover {
     background-color: #8B8B8B;
     color: white;
+}
+
+#delete-option {
+    width: auto;
+    height: 120px;
+    font-size: 16px;
 }
 
 .personal-data-field.editable, .contact-data-field.editable {
@@ -298,7 +317,7 @@
     font-weight: 400;
 }
 
-.add-item form input {
+#input-field {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -334,18 +353,8 @@
     justify-content: center;
 }
 
-.add-item form input[type="submit"] {
-    width: 150px;
-    padding: 10px;
-    background-color: #ffffff;
-    color: #333;
-    border-color: black;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.add-item form input[type="submit"]:hover {
-    background-color: #8B8B8B;
-    color: #ffffff;
+.product-item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }

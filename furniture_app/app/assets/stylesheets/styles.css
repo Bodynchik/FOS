@@ -389,3 +389,11 @@ footer {
 #addProductToSetForm .close-button:hover {
     background-color: #504b49;
 }
+
+.contact-us {
+    text-decoration: none;
+}
+
+.contact-us:hover {
+    text-decoration: underline;
+}

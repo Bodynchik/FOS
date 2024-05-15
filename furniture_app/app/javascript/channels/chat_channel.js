@@ -3,6 +3,13 @@ import consumer from "channels/consumer"
 let subscription;
 document.addEventListener("turbo:load", function () {
   const chatMessages = document.getElementById("chat-messages");
+
+  function scrollToBottom() {
+    const lastMessage = chatMessages.lastElementChild;
+    if (lastMessage) {
+      lastMessage.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
   function subscribeToChatChannel() {
     const manufacturerId = chatMessages.dataset.manufacturerId;
     const userId = chatMessages.dataset.userId;
@@ -27,6 +34,7 @@ document.addEventListener("turbo:load", function () {
       received(data) {
         const chatMessages = document.getElementById("chat-messages");
         chatMessages.insertAdjacentHTML("beforeend", `<div class="message"><strong>${data.username}:</strong> ${data.message}</div>`);
+        scrollToBottom();
       },
       send_message(message) {
         const senderId = userType === "Виробник" ? manufacturerId : userId;
@@ -44,6 +52,14 @@ document.addEventListener("turbo:load", function () {
   const chatMessages = document.getElementById("chat-messages");
   const userType = chatMessages.dataset.userType;
   const chatId = chatMessages.dataset.chatId;
+
+  function scrollToBottom() {
+    const lastMessage = chatMessages.lastElementChild;
+    if (lastMessage) {
+      lastMessage.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
   messageForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const messageContent = messageInput.value.trim();
@@ -70,10 +86,13 @@ document.addEventListener("turbo:load", function () {
           .then(data => {
             consumer.subscriptions.subscriptions[0].send_message(data.message.content);
             messageInput.value = "";
+            setTimeout(scrollToBottom, 100);
           })
           .catch(error => console.error("Error:", error));
     }
   });
+
+  scrollToBottom();
 
   window.addEventListener("beforeunload", function () {
     if (subscription) {

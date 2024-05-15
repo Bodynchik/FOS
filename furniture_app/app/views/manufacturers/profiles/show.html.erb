@@ -113,9 +113,13 @@
     </div>
 
     <div class="chat-list" style="display: none">
-      <% @manufacturer_chats.chats.each do |chat| %>
-        <%= link_to "#{t('users.profiles.show.chat_with')} #{chat.user.username}", chat_path(chat) %><br>
-      <% end %>
+        <% @manufacturer_chats.chats.each do |chat| %>
+          <%= link_to chat_path(chat), class: "chat-link" do %>
+            <div class="prod-set">
+              <%= "#{t('users.profiles.show.chat_with')} #{chat.user.username}" %>
+            </div>
+          <% end %>
+        <% end %>
     </div>
 
     <div class="user-sets" style="display: none">

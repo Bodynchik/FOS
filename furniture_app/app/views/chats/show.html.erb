@@ -1,23 +1,25 @@
-<div class="chat_wrapper">
-  <div class="chat-container">
-    <h1 class="chat-header">Чат</h1>
+<div class="chat">
+  <div class="chat_wrapper">
+    <div class="chat-container">
+      <h1 class="chat-header">Чат</h1>
 
-    <div id="chat-messages" class="chat-messages" data-manufacturer-id="<%= @manufacturer.id %>" data-user-id="<%= @user.id %>" data-user-type="<%= @user_type %>" data-chat-id="<%= @chat.id %>">
-      <% @messages.each do |message| %>
-        <div class="message">
-          <% if message.user_id.present? %>
-            <strong><%= "#{message.user.username}:" %></strong>
-          <% elsif message.manufacturer_id.present? %>
-            <strong><%= "#{message.manufacturer.username}:" %></strong>
-          <% end %>
-          <%= message.content %>
-        </div>
-      <% end %>
+      <div id="chat-messages" class="chat-messages" data-manufacturer-id="<%= @manufacturer.id %>" data-user-id="<%= @user.id %>" data-user-type="<%= @user_type %>" data-chat-id="<%= @chat.id %>">
+        <% @messages.each do |message| %>
+          <div class="message">
+            <% if message.user_id.present? %>
+              <strong><%= "#{message.user.username}:" %></strong>
+            <% elsif message.manufacturer_id.present? %>
+              <strong><%= "#{message.manufacturer.username}:" %></strong>
+            <% end %>
+            <%= message.content %>
+          </div>
+        <% end %>
+      </div>
+
+      <form id="message-form" class="chat-form">
+        <input type="text" id="message-input" class="message-input" placeholder=<%= t('.place') %>>
+        <button type="submit" class="chat-submit"><%= t('.send') %></button>
+      </form>
     </div>
-
-    <form id="message-form" class="chat-form">
-      <input type="text" id="message-input" class="message-input" placeholder=<%= t('.place') %>>
-      <button type="submit" class="chat-submit"><%= t('.send') %></button>
-    </form>
   </div>
 </div>

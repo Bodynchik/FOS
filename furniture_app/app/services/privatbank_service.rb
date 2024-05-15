@@ -10,10 +10,10 @@ class PrivatbankService
   def convert_price_to_user_currency
     currency = @user.currency || 'UAH'
     exchange_rate = get_exchange_rate(currency)
-    if exchange_rate
-      @product.price /= exchange_rate.to_f
-      @product.price = @product.price.round(2)
-    end
+    return unless exchange_rate
+
+    @product.price /= exchange_rate.to_f
+    @product.price = @product.price.round(2)
   end
 
   def user_to_usd_exchange_rate

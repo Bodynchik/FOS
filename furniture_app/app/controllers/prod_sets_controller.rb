@@ -71,7 +71,7 @@ class ProdSetsController < ApplicationController
     @prod_set.destroy!
 
     respond_to do |format|
-      format.html { redirect_to prod_sets_url, notice: 'Prod set was successfully destroyed.' }
+      format.html { redirect_to users_profiles_path, notice: 'Prod set was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

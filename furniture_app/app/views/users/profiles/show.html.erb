@@ -125,20 +125,26 @@
     <div class="user-sets">
       <div id="prod_sets">
         <% @prod_sets.each do |prod_set| %>
-          <div class="prod-set">
-            <p class="set-name"><%= prod_set.set_name %></p>
-            <div class="product-list">
-              <% if prod_set.prod_data.present? %>
-                <% prod_set.prod_data.each do |product_id, quantity| %>
-                  <% product = Product.find(product_id) %>
-                  <div class="prod">
-                    <p><%= product.prod_model %> x<%= quantity %></p>
-                  </div>
+          <div class="prod-set-and-delete">
+            <div class="prod-set">
+              <p class="set-name"><%= prod_set.set_name %></p>
+              <div class="product-list">
+                <% if prod_set.prod_data.present? %>
+                  <% prod_set.prod_data.each do |product_id, quantity| %>
+                    <% product = Product.find(product_id) %>
+                    <div class="prod">
+                      <p><%= product.prod_model %> x<%= quantity %></p>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <p><%= t('.amount_prod') %></p>
                 <% end %>
-              <% else %>
-                <p><%= t('.amount_prod') %></p>
-              <% end %>
+              </div>
             </div>
+
+            <%= form_with(model: prod_set, method: :delete, local: true) do %>
+              <%= submit_tag 'submit', class: 'delete-button', id: 'delete-option-set', value: 'Видалити' %>
+            <% end %>
           </div>
         <% end %>
 

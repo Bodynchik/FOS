@@ -428,3 +428,14 @@ dialog form {
 .disable-button {
     pointer-events: none;
 }
+
+.prod-set-and-delete {
+    display: flex;
+    gap: 10px;
+}
+
+#delete-option-set {
+    height: 78px;
+    font-size: 16px;
+    width: auto;
+}

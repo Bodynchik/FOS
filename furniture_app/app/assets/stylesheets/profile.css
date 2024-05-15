@@ -169,7 +169,8 @@
 .cancel-button,
 .csv-button,
 .create-product,
-.delete-button {
+.delete-button,
+.edit-button {
     width: 160px;
     height: 40px;
     background-color: white;
@@ -193,7 +194,8 @@
 .cancel-button:hover,
 .csv-button:hover,
 .create-product:hover,
-.delete-button:hover {
+.delete-button:hover,
+.edit-button:hover {
     background-color: #8B8B8B;
     color: white;
 }
@@ -247,13 +249,17 @@
 
 .order-details, .product-list {
     display: none;
-    padding-left: 20px;
+    /*padding-left: 20px;*/
 }
 
 .order.expanded .order-details, .prod-set.expanded .product-list, .prod-set.expanded .set-name {
     display: block;
     user-select: text;
     /*margin-bottom: 60px;*/
+}
+
+.prod, #prod-amount {
+    padding-left: 20px;
 }
 
 .create-set-button {
@@ -438,4 +444,61 @@ dialog form {
     height: 78px;
     font-size: 16px;
     width: auto;
+}
+
+.change-container {
+    display: flex;
+    justify-content: center;
+}
+
+.change-prods-quantity-set {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: #6A6460;
+    color: white;
+    padding: 15px;
+}
+
+.edit-set-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.edit-product-quantity {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+}
+
+.edit-product-quantity p {
+    margin: 0;
+    width: 100%;
+}
+
+.edit-quantity-field {
+    width: 100%;
+    border-radius: 10px;
+    height: 30px;
+}
+
+#edit-set-option {
+    font-size: 16px;
+    padding: 10px;
+    width: auto;
+    height: 70px;
+}
+
+.prods-in-set {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order-details {
+    padding-left: 20px;
 }

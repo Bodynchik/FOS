@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     ActiveAdmin.routes(self)
 
     resources :order_sets
-    resources :prod_sets
+    resources :prod_sets do
+      patch 'update', on: :member
+    end
     resources :orders
     resources :products do
       collection do

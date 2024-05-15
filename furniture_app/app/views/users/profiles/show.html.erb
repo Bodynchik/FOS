@@ -1,31 +1,5 @@
 <main class="main-container">
 
-  <dialog>
-    <div class="dialog-content">
-      <%= form_for @prod_set, url: prod_sets_path, local: true do |form| %>
-        <div class="create-set-form-group" style="display: none">
-          <%= form.label :user_id, style: "display: block" %>
-          <%= form.text_field :user_id, value: current_user.id, disabled: true %>
-        </div>
-
-        <div class="create-set-form-group">
-          <%= form.label :set_name %>
-          <%= form.text_field :set_name %>
-        </div>
-
-        <div style="display: none">
-          <%= form.label :prod_data %>
-          <%= form.text_field :prod_data %>
-        </div>
-
-        <div>
-          <%= form.submit value: t('prod_sets.new.value'), class: 'save-prod-set' %>
-        </div>
-      <% end %>
-      <button id="closeDialog">Закрити</button>
-    </div>
-  </dialog>
-
   <section id="category">
 
     <div class="personal-data-cat">
@@ -123,6 +97,33 @@
     <div class="overlay" id="overlay"></div>
 
     <div class="user-sets">
+
+      <dialog id="addDialog">
+        <div class="dialog-content">
+          <%= form_for @prod_set, url: prod_sets_path, local: true do |form| %>
+            <div class="create-set-form-group" style="display: none">
+              <%= form.label :user_id, style: "display: block" %>
+              <%= form.text_field :user_id, value: current_user.id, disabled: true %>
+            </div>
+
+            <div class="create-set-form-group">
+              <%= form.label :set_name %>
+              <%= form.text_field :set_name %>
+            </div>
+
+            <div style="display: none">
+              <%= form.label :prod_data %>
+              <%= form.text_field :prod_data %>
+            </div>
+
+            <div>
+              <%= form.submit value: t('prod_sets.new.value'), class: 'save-prod-set' %>
+            </div>
+          <% end %>
+          <button id="closeDialog">Закрити</button>
+        </div>
+      </dialog>
+
       <div id="prod_sets">
         <% @prod_sets.each do |prod_set| %>
           <div class="prod-set-and-delete">
@@ -136,8 +137,33 @@
                       <p><%= product.prod_model %> x<%= quantity %></p>
                     </div>
                   <% end %>
+                  <div class="change-container">
+                    <div class="change-prods-quantity-set">
+                      <%= form_with(
+                            model: prod_set,
+                            url: prod_set_path(prod_set),
+                            method: :patch, local: true,
+                            scope: :prod_set,
+                            class: 'edit-set-form'
+                          ) do |form| %>
+                        <div class="prods-in-set">
+                          <% prod_set.prod_data.each do |product_id, quantity| %>
+                            <% product = Product.find(product_id) %>
+                            <div class="edit-product-quantity">
+                              <p><%= product.prod_model %></p>
+                              <%= form.hidden_field "#{product_id}", value: quantity %>
+                              <%#= form.label "#{product_id}", "Quantity:" %>
+                              <%= form.number_field "#{product_id}", value: quantity, min: 0, class: 'edit-quantity-field' %>
+                            </div>
+                          <% end %>
+                        </div>
+                        <%= form.submit 'Зберегти', class: 'edit-button', id: 'edit-set-option' %>
+                      <% end %>
+                    </div>
+                  </div>
+
                 <% else %>
-                  <p><%= t('.amount_prod') %></p>
+                  <p id="prod-amount"><%= t('.amount_prod') %></p>
                 <% end %>
               </div>
             </div>
@@ -153,21 +179,21 @@
 
       <script>
           var overlay = document.getElementById('overlay');
-          var dialog = document.querySelector('dialog');
+          var dialog = document.querySelector('#addDialog');
           var buttonsToDisable = document.querySelectorAll('.disable-button');
 
-          document.querySelector('#openDialog').onclick = function() {
+          document.querySelector('#openDialog').onclick = function () {
               dialog.show();
               overlay.style.display = 'block';
-              buttonsToDisable.forEach(function(button) {
+              buttonsToDisable.forEach(function (button) {
                   button.disabled = true;
               });
           }
 
-          document.querySelector('#closeDialog').onclick = function() {
+          document.querySelector('#closeDialog').onclick = function () {
               dialog.close();
               overlay.style.display = 'none';
-              buttonsToDisable.forEach(function(button) {
+              buttonsToDisable.forEach(function (button) {
                   button.disabled = false;
               });
           }

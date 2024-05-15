@@ -15,13 +15,13 @@
   </div>
 
   <div class="subcategory-column">
-    <% @sub_categories_left.each do |subcategory| %>
+    <% @sub_categories_middle.each do |subcategory| %>
       <p><%= t("sub_categories.#{subcategory.subcat_name}") %></p>
     <% end %>
   </div>
 
   <div class="subcategory-column">
-    <% @sub_categories_left.each do |subcategory| %>
+    <% @sub_categories_right.each do |subcategory| %>
       <p><%= t("sub_categories.#{subcategory.subcat_name}") %></p>
     <% end %>
   </div>

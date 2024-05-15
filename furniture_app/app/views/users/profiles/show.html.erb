@@ -1,5 +1,31 @@
 <main class="main-container">
 
+  <dialog>
+    <div class="dialog-content">
+      <%= form_for @prod_set, url: prod_sets_path, local: true do |form| %>
+        <div class="create-set-form-group" style="display: none">
+          <%= form.label :user_id, style: "display: block" %>
+          <%= form.text_field :user_id, value: current_user.id, disabled: true %>
+        </div>
+
+        <div class="create-set-form-group">
+          <%= form.label :set_name %>
+          <%= form.text_field :set_name %>
+        </div>
+
+        <div style="display: none">
+          <%= form.label :prod_data %>
+          <%= form.text_field :prod_data %>
+        </div>
+
+        <div>
+          <%= form.submit value: t('prod_sets.new.value'), class: 'save-prod-set' %>
+        </div>
+      <% end %>
+      <button id="closeDialog">Закрити</button>
+    </div>
+  </dialog>
+
   <section id="category">
 
     <div class="personal-data-cat">
@@ -77,21 +103,7 @@
         </div>
       </div>
 
-<!--      <div class="exchange-rate" style="display: flex; justify-content: center; margin-top: 50px">-->
-        <%# user_currency = current_user.currency %>
-        <%# exchange_rate = current_user.get_exchange_rates(user_currency) %>
-        <%# if exchange_rate %>
-          <%# if user_currency == 'UAH' %>
-<!--            <p style="margin: 0">1 UAH = <%#= exchange_rate %> USD</p>-->
-          <%# elsif user_currency == 'EUR' %>
-<!--            <p style="margin: 0">1 EUR = <%#= exchange_rate %> USD</p>-->
-          <%# end %>
-        <%# else %>
-<!--          <p style="margin: 0">Exchange rate is not available</p>-->
-        <%# end %>
-<!--      </div>-->
-
-      <div class="exchange-rate" style="display: flex; justify-content: center; margin-top: 50px">
+      <div class="exchange-rate" style="display: flex; justify-content: center; margin-top: 25px; margin-bottom: 25px">
         <% if @exchange_rate %>
           <% if current_user.currency == 'UAH' %>
             <p style="margin: 0">1 UAH = <%= @exchange_rate %> USD</p>
@@ -107,6 +119,8 @@
         <button class="change-data-button"><%= t('.edit') %></button>
       </div>
     </div>
+
+    <div class="overlay" id="overlay"></div>
 
     <div class="user-sets">
       <div id="prod_sets">
@@ -127,10 +141,31 @@
             </div>
           </div>
         <% end %>
-        <div class="button-container">
-          <%= link_to t('.create_set'), new_prod_set_path(user_id: current_user.id), class: "create-set-button" %>
-        </div>
+
+        <button class="create-set-button" id="openDialog"><%= t('.create_set') %></button>
       </div>
+
+      <script>
+          var overlay = document.getElementById('overlay');
+          var dialog = document.querySelector('dialog');
+          var buttonsToDisable = document.querySelectorAll('.disable-button');
+
+          document.querySelector('#openDialog').onclick = function() {
+              dialog.show();
+              overlay.style.display = 'block';
+              buttonsToDisable.forEach(function(button) {
+                  button.disabled = true;
+              });
+          }
+
+          document.querySelector('#closeDialog').onclick = function() {
+              dialog.close();
+              overlay.style.display = 'none';
+              buttonsToDisable.forEach(function(button) {
+                  button.disabled = false;
+              });
+          }
+      </script>
     </div>
 
     <div class="add-item">
@@ -194,23 +229,3 @@
   </section>
 
 </main>
-
-<!--<script>-->
-<!--    document.addEventListener('turbo:load', function() {-->
-<!--        let createButton = document.querySelector(".create-set-button");-->
-<!--        let formDiv = document.getElementById("createSetForm");-->
-<!--        let overlay = document.getElementById("createSetForm-overlay");-->
-<!--        let closeButton = document.querySelector(".close-button");-->
-
-<!--        createButton.addEventListener("click", function(event) {-->
-<!--            event.preventDefault();-->
-<!--            formDiv.style.display = "block";-->
-<!--            overlay.style.display = "block";-->
-<!--        });-->
-
-<!--        closeButton.addEventListener("click", function() {-->
-<!--            formDiv.style.display = "none";-->
-<!--            overlay.style.display = "none";-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->

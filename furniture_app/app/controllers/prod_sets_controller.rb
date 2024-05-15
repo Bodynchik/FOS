@@ -20,7 +20,7 @@ class ProdSetsController < ApplicationController
 
   # POST /prod_sets or /prod_sets.json
   def create
-    @prod_set = ProdSet.new(prod_set_params)
+    @prod_set = current_user.prod_sets.build(prod_set_params)
 
     respond_to do |format|
       if @prod_set.save

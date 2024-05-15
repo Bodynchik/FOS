@@ -54,7 +54,6 @@ class ProductsController < ApplicationController
   # GET /products/1/edit
   def edit; end
 
-
   def average_rating
     comments.average(:rating)
   end

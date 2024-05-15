@@ -4,6 +4,6 @@
     <div class="category-description">
       <%= render "categories/descriptions/#{@category_name.downcase}", sub_categories: @sub_categories %>
     </div>
-    <a href="<%= sub_categories_path(category_name: @category_name) %>" class="cat-button"><%= t('categories.descriptions.btn') %></a>
+    <a href="<%= sub_categories_path(category_name: @category_name) %>" class="cat-button" style="text-decoration: none"><%= t('categories.descriptions.btn') %></a>
   </div>
 </div>

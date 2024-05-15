@@ -246,7 +246,9 @@
           <p class="order-header"><%= t('.num_info') %> №<%= order.id %></p>
           <div class="order-details">
             <p><%= order.product.prod_model %> x<%= order.quantity %></p>
-            <p><%= t('.sum_order') %>: <%= number_to_currency(order.total_price, unit: "₴") %></p>
+            <% service = PrivatbankService.new(nil, current_user) %>
+            <% service.convert_order_price_to_user_currency(order) %>
+            <p><%= t('.sum_order') %>: <%= "#{order.total_price} #{current_user.currency}" %></p>
           </div>
         </div>
       <% end %>

@@ -3,19 +3,17 @@ class MessagesController < ApplicationController
     @chat = Chat.find(params[:chat_id])
     @message = @chat.messages.new(message_params)
 
-    if user_type == 'Виробник'
+    if user_type == "Виробник"
       @message.manufacturer_id = current_manufacturer.id
     else
       @message.user_id = current_user.id
     end
 
-    return unless @message.save
-
-    redirect_to chat_messages_path, notice: 'Повідомлення відправлено успішно.'
-
-    # render json: { message: @message }
+    if @message.save
+      render json: { message: @message }
+    else
+    end
   end
-
 
   private
 

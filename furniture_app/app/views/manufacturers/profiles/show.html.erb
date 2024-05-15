@@ -19,7 +19,7 @@
 
     <div class="item-cat" id="item-list-cat" style="display: block">
       <div class="item-cat" id="item-list-cat" style="display: block">
-        <h1 class="item-cat-title">Переглянути товари</h1>
+        <h1 class="item-cat-title"><% t('.view_prod') %>></h1>
       </div>
     </div>
 
@@ -28,9 +28,7 @@
     </div>
 
     <div class="item-cat" id="chat-cat">
-      <%= link_to chats_path, class: "item-cat-link" do %>
-        <h1 class="item-cat-title"><%= t('users.profiles.index.chat') %></h1>
-      <% end %>
+      <h1 class="item-cat-title"><%= t('users.profiles.show.chats') %></h1>
     </div>
 
 

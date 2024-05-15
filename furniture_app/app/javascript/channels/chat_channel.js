@@ -1,19 +1,16 @@
 import consumer from "channels/consumer"
 
+let subscription;
 document.addEventListener("turbo:load", function () {
   const chatMessages = document.getElementById("chat-messages");
-  let subscription;
-
   function subscribeToChatChannel() {
     const manufacturerId = chatMessages.dataset.manufacturerId;
     const userId = chatMessages.dataset.userId;
     const userType = chatMessages.dataset.userType;
     const chatId = chatMessages.dataset.chatId;
-
     if (subscription) {
       subscription.unsubscribe();
     }
-
     subscription = consumer.subscriptions.create({
       channel: "ChatChannel",
       manufacturer_id: manufacturerId,
@@ -24,34 +21,21 @@ document.addEventListener("turbo:load", function () {
       connected() {
         console.log("Connected to chat channel");
       },
-
       disconnected() {
         console.log("Disconnected from chat channel");
       },
-
       received(data) {
         const chatMessages = document.getElementById("chat-messages");
         chatMessages.insertAdjacentHTML("beforeend", `<div class="message"><strong>${data.username}:</strong> ${data.message}</div>`);
       },
-
       send_message(message) {
         const senderId = userType === "Виробник" ? manufacturerId : userId;
         this.perform("receive", {message: message, sender_id: senderId, sender_type: String(userType)});
       }
-
     });
   }
 
   subscribeToChatChannel();
-
-  const logoutButtons = document.querySelectorAll("#link-logo, #logout-prof-user, #logout-but-user, #logout-prof-mun, #logout-but-mun");
-  logoutButtons.forEach(logoutButton => {
-    logoutButton.addEventListener("click", function () {
-      if (subscription) {
-        subscription.unsubscribe();
-      }
-    });
-  });
 });
 
 document.addEventListener("turbo:load", function () {
@@ -60,7 +44,6 @@ document.addEventListener("turbo:load", function () {
   const chatMessages = document.getElementById("chat-messages");
   const userType = chatMessages.dataset.userType;
   const chatId = chatMessages.dataset.chatId;
-
   messageForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const messageContent = messageInput.value.trim();
@@ -91,15 +74,10 @@ document.addEventListener("turbo:load", function () {
           .catch(error => console.error("Error:", error));
     }
   });
-});
 
-document.addEventListener("DOMContentLoaded", function() {
-  const selectManufacturer = document.getElementById('manufacturer_id');
-  selectManufacturer.addEventListener('change', function() {
-    const selectedManufacturerId = this.value;
-    const createChatLink = document.getElementById('create-chat-link');
-    const newChatPath = createChatLink.getAttribute('data-path');
-    createChatLink.setAttribute('href', newChatPath + '?manufacturer_id=' + selectedManufacturerId);
+  window.addEventListener("beforeunload", function () {
+    if (subscription) {
+      subscription.unsubscribe();
+    }
   });
 });
-

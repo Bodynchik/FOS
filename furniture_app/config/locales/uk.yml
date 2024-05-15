@@ -68,17 +68,9 @@ uk:
       title: "Новий продуктовий сет"
       value: "Створити"
   chats:
-    index:
-      title: "Чати"
-      select_manufacturer: "Обрати виробника"
-      last_message: "останнє повідомлення"
-      no_messages: "немає повідомлень"
-      join_chat: "доєднатися"
-      no_chats_found: "не знайдено чатів"
-      new_chat: "новий чат"
     show:
-      title: "Чат"
-      send: "відправити"
+      place: "Повідомлення..."
+      send: "Відправити"
       my_chats: "Мої чати"
   comments:
     index:
@@ -144,7 +136,6 @@ uk:
         add_prod: "Додати товари"
         del_prod: "Видалити товари"
         order: "Мої замовлення"
-        chat: "Чати"
         edit: "Редагувати"
         create_set: "Створити сет"
         amount_prod: "В цьому сеті немає продуктів."

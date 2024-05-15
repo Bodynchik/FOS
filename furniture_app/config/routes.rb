@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
     devise_for :admin_users, ActiveAdmin::Devise.config
     ActiveAdmin.routes(self)
-    get 'chat/index'
 
     resources :order_sets
     resources :prod_sets
@@ -32,7 +31,7 @@ Rails.application.routes.draw do
 
     get 'pages/home'
 
-    resources :chats, only: %i[index create show new] do
+    resources :chats, only: %i[create show] do
       resources :messages, only: [:create]
     end
 

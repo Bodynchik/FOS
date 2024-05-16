@@ -39,6 +39,10 @@ Rails.application.routes.draw do
     resources :sub_categories
     resources :categories
     get '/categories/:category_name/description', to: 'categories#description', as: :description_category
+    get '/categories/:category_name/add_favorite', to: 'users#add_favorite_category', as: :add_favorite_category
+    get '/categories/:category_name/remove_favorite', to: 'users#remove_favorite_category', as: :remove_favorite_category
+
+
 
     root 'pages#home'
 

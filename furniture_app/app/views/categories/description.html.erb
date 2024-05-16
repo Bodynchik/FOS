@@ -4,6 +4,23 @@
     <div class="category-description">
       <%= render "categories/descriptions/#{@category_name.downcase}", sub_categories: @sub_categories %>
     </div>
-    <a href="<%= sub_categories_path(category_name: @category_name) %>" class="cat-button"><%= t('categories.descriptions.btn') %></a>
+    <div class="button-row">
+      <a href="<%= sub_categories_path(category_name: @category_name) %>" class="cat-button"><%= t('categories.descriptions.btn') %></a>
+      <% if current_user.favorite_categories.present? && current_user.favorite_categories.include?(@category_name) %>
+        <a href="<%= remove_favorite_category_path(category_name: @category_name) %>" data-method="delete" class="favorite-button"><%= t('Unlike') %></a>
+      <% else %>
+        <a href="<%= add_favorite_category_path(category_name: @category_name) %>" data-method="post" class="cat-button" onclick="confirmAndRedirectToChats()"><%= t('Like category') %></a>
+      <% end %>
+    </div>
   </div>
 </div>
+
+<script>
+    function confirmAndRedirectToChats() {
+        // var selectedManufacturerId = document.getElementById('manufacturer').value;
+        // var selectedManufacturerName = document.getElementById('manufacturer').options[document.getElementById('manufacturer').selectedIndex].text;
+        if (confirm("Redirect to category chat-groups?")) {
+            window.location.href = "/chats";
+        }
+    }
+</script>

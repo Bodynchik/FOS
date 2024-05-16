@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_512_155_718) do
+ActiveRecord::Schema[7.1].define(version: 20_240_515_202_915) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'hstore'
   enable_extension 'plpgsql'
@@ -205,6 +205,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_512_155_718) do
     t.string 'phone_number', default: '', null: false
     t.string 'unconfirmed_email'
     t.string 'currency'
+    t.string 'favorite_categories', default: [], array: true
     t.index ['email'], name: 'index_users_on_email', unique: true
     t.index ['phone_number'], name: 'index_users_on_phone_number', unique: true
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true

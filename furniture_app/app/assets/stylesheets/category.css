@@ -63,20 +63,34 @@
     margin: 0;
 }
 
-.cat-button {
+.cat-button,
+.favorite-button{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 20px;
-    background-color: #6a6460;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 20px;
-    border-radius: 20px;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
+    width: auto;
+    height: 40px;
     border: none;
+    border-radius: 12px;
+    padding: 1px 16px;
+    font-size: 16px;
+    font-weight: 300;
+    align-self: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.7s;
+}
+
+.cat-button {
+    background-color: #6a6460;
+    color: #FAFAFA;
+}
+
+.favorite-button {
+    background-color: #eee5cf;
+    color: #6a6460;
 }
 
 .cat-button:hover {

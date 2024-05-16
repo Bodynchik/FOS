@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_favorite_categories, only: [:index, :add_favorite_category, :remove_favorite_category]
+  before_action :set_favorite_categories, only: %i[index add_favorite_category remove_favorite_category]
 
   def index
     UserNotificationService.new(User.new(email: 'soroka2021ks12@student.karazin.ua')).send_create_notification
@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     category_name = params[:category_name]
     current_user.favorite_categories << category_name unless @favorite_categories.include?(category_name)
     return unless current_user.save
+
     redirect_back(fallback_location: root_path)
   end
 
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
     category_name = params[:category_name]
     current_user.favorite_categories.delete(category_name)
     return unless current_user.save
+
     redirect_back(fallback_location: root_path)
   end
 

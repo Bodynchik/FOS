@@ -49,7 +49,7 @@
   <!-- Додати поля для кількості днів на виробництво та дні тижня для доставки -->
   <div class="form-element">
     <%= form.label :production_days,  style: "display: block" %>
-    <%= form.number_field :production_days, id: 'input-field' %>
+    <%= form.number_field :production_days, id: 'input-field', min: 1 %>
   </div>
 
 

@@ -96,7 +96,7 @@ class ProductsController < ApplicationController
     @product.destroy!
 
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to manufacturers_profiles_url(current_manufacturer), notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

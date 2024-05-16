@@ -32,9 +32,7 @@
     </div>
 
     <div class="item-cat" id="chat-cat">
-      <%= link_to chats_path, class: "item-cat-link" do %>
-        <h1 class="item-cat-title"><%= t('.chats') %></h1>
-      <% end %>
+      <h1 class="item-cat-title"><%= t('.chats') %></h1>
     </div>
 
 
@@ -79,21 +77,7 @@
         </div>
       </div>
 
-<!--      <div class="exchange-rate" style="display: flex; justify-content: center; margin-top: 50px">-->
-        <%# user_currency = current_user.currency %>
-        <%# exchange_rate = current_user.get_exchange_rates(user_currency) %>
-        <%# if exchange_rate %>
-          <%# if user_currency == 'UAH' %>
-<!--            <p style="margin: 0">1 UAH = <%#= exchange_rate %> USD</p>-->
-          <%# elsif user_currency == 'EUR' %>
-<!--            <p style="margin: 0">1 EUR = <%#= exchange_rate %> USD</p>-->
-          <%# end %>
-        <%# else %>
-<!--          <p style="margin: 0">Exchange rate is not available</p>-->
-        <%# end %>
-<!--      </div>-->
-
-      <div class="exchange-rate" style="display: flex; justify-content: center; margin-top: 50px">
+      <div class="exchange-rate" style="display: flex; justify-content: center; margin-top: 25px; margin-bottom: 25px">
         <% if @exchange_rate %>
           <% if current_user.currency == 'UAH' %>
             <p style="margin: 0">1 UAH = <%= @exchange_rate %> USD</p>
@@ -110,29 +94,110 @@
       </div>
     </div>
 
+    <div class="overlay" id="overlay"></div>
+
     <div class="user-sets">
+
+      <dialog id="addDialog">
+        <div class="dialog-content">
+          <%= form_for @prod_set, url: prod_sets_path, local: true do |form| %>
+            <div class="create-set-form-group" style="display: none">
+              <%= form.label :user_id, style: "display: block" %>
+              <%= form.text_field :user_id, value: current_user.id, disabled: true %>
+            </div>
+
+            <div class="create-set-form-group">
+              <%= form.label :set_name %>
+              <%= form.text_field :set_name %>
+            </div>
+
+            <div style="display: none">
+              <%= form.label :prod_data %>
+              <%= form.text_field :prod_data %>
+            </div>
+
+            <div>
+              <%= form.submit value: t('prod_sets.new.value'), class: 'save-prod-set' %>
+            </div>
+          <% end %>
+          <button id="closeDialog">Закрити</button>
+        </div>
+      </dialog>
+
       <div id="prod_sets">
         <% @prod_sets.each do |prod_set| %>
-          <div class="prod-set">
-            <p class="set-name"><%= prod_set.set_name %></p>
-            <div class="product-list">
-              <% if prod_set.prod_data.present? %>
-                <% prod_set.prod_data.each do |product_id, quantity| %>
-                  <% product = Product.find(product_id) %>
-                  <div class="prod">
-                    <p><%= product.prod_model %> x<%= quantity %></p>
+          <div class="prod-set-and-delete">
+            <div class="prod-set">
+              <p class="set-name"><%= prod_set.set_name %></p>
+              <div class="product-list">
+                <% if prod_set.prod_data.present? %>
+                  <% prod_set.prod_data.each do |product_id, quantity| %>
+                    <% product = Product.find(product_id) %>
+                    <div class="prod">
+                      <p><%= product.prod_model %> x<%= quantity %></p>
+                    </div>
+                  <% end %>
+                  <div class="change-container">
+                    <div class="change-prods-quantity-set">
+                      <%= form_with(
+                            model: prod_set,
+                            url: prod_set_path(prod_set),
+                            method: :patch, local: true,
+                            scope: :prod_set,
+                            class: 'edit-set-form'
+                          ) do |form| %>
+                        <div class="prods-in-set">
+                          <% prod_set.prod_data.each do |product_id, quantity| %>
+                            <% product = Product.find(product_id) %>
+                            <div class="edit-product-quantity">
+                              <p><%= product.prod_model %></p>
+                              <%= form.hidden_field "#{product_id}", value: quantity %>
+                              <%#= form.label "#{product_id}", "Quantity:" %>
+                              <%= form.number_field "#{product_id}", value: quantity, min: 0, class: 'edit-quantity-field' %>
+                            </div>
+                          <% end %>
+                        </div>
+                        <%= form.submit 'Зберегти', class: 'edit-button', id: 'edit-set-option' %>
+                      <% end %>
+                    </div>
                   </div>
+
+                <% else %>
+                  <p id="prod-amount"><%= t('.amount_prod') %></p>
                 <% end %>
-              <% else %>
-                <p><%= t('.amount_prod') %></p>
-              <% end %>
+              </div>
             </div>
+
+            <%= form_with(model: prod_set, method: :delete, local: true) do %>
+              <%= submit_tag 'submit', class: 'delete-button', id: 'delete-option-set', value: 'Видалити' %>
+            <% end %>
           </div>
         <% end %>
-        <div class="button-container">
-          <%= link_to t('.create_set'), new_prod_set_path(user_id: current_user.id), class: "create-set-button" %>
-        </div>
+
+        <button class="create-set-button" id="openDialog"><%= t('.create_set') %></button>
       </div>
+
+      <script>
+          var overlay = document.getElementById('overlay');
+          var dialog = document.querySelector('#addDialog');
+          var buttonsToDisable = document.querySelectorAll('.disable-button');
+
+          document.querySelector('#openDialog').onclick = function () {
+              dialog.show();
+              overlay.style.display = 'block';
+              buttonsToDisable.forEach(function (button) {
+                  button.disabled = true;
+              });
+          }
+
+          document.querySelector('#closeDialog').onclick = function () {
+              dialog.close();
+              overlay.style.display = 'none';
+              buttonsToDisable.forEach(function (button) {
+                  button.disabled = false;
+              });
+          }
+      </script>
     </div>
 
     <div class="add-item">
@@ -181,7 +246,9 @@
           <p class="order-header"><%= t('.num_info') %> №<%= order.id %></p>
           <div class="order-details">
             <p><%= order.product.prod_model %> x<%= order.quantity %></p>
-            <p><%= t('.sum_order') %>: <%= number_to_currency(order.total_price, unit: "₴") %></p>
+            <% service = PrivatbankService.new(nil, current_user) %>
+            <% service.convert_order_price_to_user_currency(order) %>
+            <p><%= t('.sum_order') %>: <%= "#{order.total_price} #{current_user.currency}" %></p>
           </div>
         </div>
       <% end %>
@@ -189,30 +256,14 @@
 
     <div class="chat-list" style="display: none">
       <% @user_chats.chats.each do |chat| %>
-        <%= link_to "#{t('.chat_with')} #{chat.manufacturer.username}", chat_path(chat) %><br>
+        <%= link_to chat_path(chat), class: "chat-link" do %>
+          <div class="prod-set">
+            <%= "#{t('users.profiles.show.chat_with')} #{chat.manufacturer.username}" %>
+          </div>
+        <% end %>
       <% end %>
     </div>
 
   </section>
 
 </main>
-
-<!--<script>-->
-<!--    document.addEventListener('turbo:load', function() {-->
-<!--        let createButton = document.querySelector(".create-set-button");-->
-<!--        let formDiv = document.getElementById("createSetForm");-->
-<!--        let overlay = document.getElementById("createSetForm-overlay");-->
-<!--        let closeButton = document.querySelector(".close-button");-->
-
-<!--        createButton.addEventListener("click", function(event) {-->
-<!--            event.preventDefault();-->
-<!--            formDiv.style.display = "block";-->
-<!--            overlay.style.display = "block";-->
-<!--        });-->
-
-<!--        closeButton.addEventListener("click", function() {-->
-<!--            formDiv.style.display = "none";-->
-<!--            overlay.style.display = "none";-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->

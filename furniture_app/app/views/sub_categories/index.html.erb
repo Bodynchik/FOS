@@ -22,7 +22,7 @@
           <% sub_categories_row.each do |sub_category| %>
             <%= link_to products_path(sub_category_id: sub_category.id), class: "sub-cat-link" do %>
               <div class="cat-img-dark">
-                <div class="category-img black-square"></div>
+                <%= image_tag "sub_categories/#{sub_category.subcat_name}.jfif", class: "category-img", alt: "Підкатегорія" %>
                 <div class="work-text-content">
                   <p><%= t("sub_categories.#{sub_category.subcat_name}") %></p>
                 </div>

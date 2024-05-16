@@ -11,6 +11,8 @@
     text-align: center;
     border-radius: 12px;
     height: auto;
+    padding: 30px;
+    gap: 30px;
 }
 
 .background-image-descr {
@@ -29,7 +31,7 @@
     width: 630px;
     border-radius: 15px;
     object-fit: cover;
-    margin-top:20px;
+    /*margin-top:20px;*/
 }
 
 
@@ -52,11 +54,17 @@
     border-color: #a6a5a5;
 }
 
-.subcategory-description{
+.subcategory-description {
     color: #4d4d4d;
+    font-size: 20px;
 }
 
-.cat-button  {
+.subcategory-description h3 {
+    margin: 0;
+}
+
+.cat-button,
+.favorite-button{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,25 +89,12 @@
 }
 
 .favorite-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    height: 40px;
-    border: none;
-    border-radius: 12px;
-    border-color: #6a6460;
-    padding: 1px 16px;
-    font-size: 16px;
-    font-weight: 300;
-    align-self: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    margin-right: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
     background-color: #eee5cf;
     color: #6a6460;
+}
+
+.cat-button:hover {
+    background-color: #504b49;
 }
 
 .btn:hover {
@@ -131,22 +126,22 @@
 
 .subcategory-columns {
     display: flex;
-    margin-left: 10px;
-    margin-right: 10px;
+    gap: 30px;
 }
 
 .subcategory-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     flex: 1;
-    margin-left: 1px;
-    margin-left: auto; /* Автоматичний відступ зліва */
-    margin-right: auto;
 }
 
+.subcategory-column p {
+    font-size: 20px;
+    margin: 0;
+}
 
-
-
-
-
-
-
-
+.category-description {
+    display: grid;
+    gap: 30px;
+}

@@ -19,18 +19,16 @@
 
     <div class="item-cat" id="item-list-cat" style="display: block">
       <div class="item-cat" id="item-list-cat" style="display: block">
-        <h1 class="item-cat-title">Переглянути товари</h1>
+        <h1 class="item-cat-title"><%= t('.view_prod') %></h1>
       </div>
     </div>
 
-    <div class="item-cat" id="remove-item-cat">
+    <div class="item-cat" id="remove-item-cat" style="display: none">
       <h1 class="item-cat-title"><%= t('users.profiles.show.del_prod') %></h1>
     </div>
 
     <div class="item-cat" id="chat-cat">
-      <%= link_to chats_path, class: "item-cat-link" do %>
-        <h1 class="item-cat-title"><%= t('users.profiles.index.chat') %></h1>
-      <% end %>
+      <h1 class="item-cat-title"><%= t('users.profiles.show.chats') %></h1>
     </div>
 
 
@@ -95,15 +93,21 @@
     <div class="item-list" style="display: none">
       <% @products.each do |product| %>
         <% furniture = Furniture.find(product.furniture_id) %>
-        <%= link_to product_path(product), class: "product" do %>
-          <div class="grey-square">
-            <%= image_tag(product.product_image, class: 'image-div') if product.product_image.attached? %>
-          </div>
-          <div class="product-info">
-            <p class="product-name"><%= "#{furniture.name} (#{product.prod_model})" %></p>
-            <p class="product-price"><%= number_to_currency(product.price, unit: "₴") %></p>
-          </div>
-        <% end %>
+        <div class="product-item" id="product-<%= product.id %>">
+          <%= link_to product_path(product), class: "product" do %>
+            <div class="grey-square">
+              <%= image_tag(product.product_image, class: 'image-div') if product.product_image.attached? %>
+            </div>
+            <div class="product-info">
+              <p class="product-name"><%= "#{furniture.name} (#{product.prod_model})" %></p>
+              <p class="product-price"><%= number_to_currency(product.price, unit: "₴") %></p>
+            </div>
+          <% end %>
+
+          <%= form_with(model: product, method: :delete, local: true) do %>
+            <%= submit_tag 'submit', class: 'delete-button', id: 'delete-option', value: 'Видалити' %>
+          <% end %>
+        </div>
       <% end %>
 
       <div class="export-buttons">
@@ -111,13 +115,18 @@
       </div>
     </div>
 
+
     <div class="remove-item">
     </div>
 
     <div class="chat-list" style="display: none">
-      <% @manufacturer_chats.chats.each do |chat| %>
-        <%= link_to "#{t('users.profiles.show.chat_with')} #{chat.user.username}", chat_path(chat) %><br>
-      <% end %>
+        <% @manufacturer_chats.chats.each do |chat| %>
+          <%= link_to chat_path(chat), class: "chat-link" do %>
+            <div class="prod-set">
+              <%= "#{t('users.profiles.show.chat_with')} #{chat.user.username}" %>
+            </div>
+          <% end %>
+        <% end %>
     </div>
 
     <div class="user-sets" style="display: none">

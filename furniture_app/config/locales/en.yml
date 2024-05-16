@@ -102,18 +102,9 @@ en:
       title: "New prod set"
       value: "Create"
   chats:
-    index:
-      title: "Chats"
-      select_manufacturer: "Select manufacturer"
-      last_message: "Last message"
-      no_messages: "No messages"
-      join_chat: "Join"
-      no_chats_found: "No chats found"
-      new_chat: "New chat"
     show:
-      title: "Chat"
-      send: "send"
-      my_chats: "My chats"
+      place: "Message..."
+      send: "Send"
   comments:
     index:
       title: "Product comments"

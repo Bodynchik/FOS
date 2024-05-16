@@ -6,5 +6,7 @@ class Users::ProfilesController < ApplicationController
 
     service = PrivatbankService.new(nil, current_user)
     @exchange_rate = service.user_to_usd_exchange_rate
+
+    @prod_set = ProdSet.new
   end
 end

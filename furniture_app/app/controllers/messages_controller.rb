@@ -11,11 +11,8 @@ class MessagesController < ApplicationController
 
     return unless @message.save
 
-    redirect_to chat_messages_path, notice: 'Повідомлення відправлено успішно.'
-
-    # render json: { message: @message }
+    render json: { message: @message }
   end
-
 
   private
 

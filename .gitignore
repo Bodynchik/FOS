@@ -5,6 +5,11 @@ furniture_app/.gitattributes
 
 .idea/
 
+furniture_app/log/*
+furniture_app/tmp/*
+furniture_app!/log/.keep
+furniture_app!/tmp/.keep
+
 furniture_app/config/master.key
 furniture_app/tmp
 furniture_app/log

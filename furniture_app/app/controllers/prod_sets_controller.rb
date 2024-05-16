@@ -20,7 +20,7 @@ class ProdSetsController < ApplicationController
 
   # POST /prod_sets or /prod_sets.json
   def create
-    @prod_set = ProdSet.new(prod_set_params)
+    @prod_set = current_user.prod_sets.build(prod_set_params)
 
     respond_to do |format|
       if @prod_set.save
@@ -55,15 +55,23 @@ class ProdSetsController < ApplicationController
 
   # PATCH/PUT /prod_sets/1 or /prod_sets/1.json
   def update
-    respond_to do |format|
-      if @prod_set.update(prod_set_params)
-        format.html { redirect_to prod_set_url(@prod_set), notice: 'Prod set was successfully updated.' }
-        format.json { render :show, status: :ok, location: @prod_set }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @prod_set.errors, status: :unprocessable_entity }
-      end
+    prod_set = ProdSet.find(params[:id])
+
+    form_data = params[:prod_set] || {}
+
+    form_data.each do |product_id, quantity|
+      form_data.delete(product_id) if quantity.to_i.zero?
     end
+
+    prod_set.prod_data = form_data
+
+    if prod_set.save
+      flash[:success] = 'Вміст сету успішно оновлено.'
+    else
+      flash[:error] = 'Не вдалося оновити вміст сету.'
+    end
+
+    redirect_to users_profiles_path
   end
 
   # DELETE /prod_sets/1 or /prod_sets/1.json
@@ -71,7 +79,7 @@ class ProdSetsController < ApplicationController
     @prod_set.destroy!
 
     respond_to do |format|
-      format.html { redirect_to prod_sets_url, notice: 'Prod set was successfully destroyed.' }
+      format.html { redirect_to users_profiles_path, notice: 'Prod set was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -120,7 +120,7 @@
               <%= form.submit value: t('prod_sets.new.value'), class: 'save-prod-set' %>
             </div>
           <% end %>
-          <button id="closeDialog">Закрити</button>
+          <button id="closeDialog"><%= t('.close') %></button>
         </div>
       </dialog>
 
@@ -157,7 +157,7 @@
                             </div>
                           <% end %>
                         </div>
-                        <%= form.submit 'Зберегти', class: 'edit-button', id: 'edit-set-option' %>
+                        <%= form.submit t('.save'), class: 'edit-button', id: 'edit-set-option' %>
                       <% end %>
                     </div>
                   </div>
@@ -168,7 +168,7 @@
               </div>
             </div>
 
-            <%= button_to 'Видалити', prod_set_path(prod_set), method: :delete, class: 'delete-button', id: 'delete-option-set' %>
+            <%= button_to t('.delete'), prod_set_path(prod_set), method: :delete, class: 'delete-button', id: 'delete-option-set' %>
           </div>
         <% end %>
 

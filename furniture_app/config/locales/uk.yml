@@ -17,7 +17,7 @@ uk:
               обіднього майданчика до зручних лежаків, ми пропонуємо все необхідне для створення незабутнього садового простору."
       btn: "Підкатегорії"
       Chatroom: "Форум"
-      Unlike: "Не улюблена"
+      Unlike: "Не подобається"
       Like: "В улюблені"
   activerecord:
     attributes:
@@ -72,6 +72,7 @@ uk:
       value: "Створити"
   chats:
     show:
+      chat_title: "Чат"
       place: "Повідомлення..."
       send: "Відправити"
       my_chats: "Мої чати"
@@ -159,6 +160,9 @@ uk:
         sum_order: "Сума замовлення"
         chat_with: "Чат з"
         currency: "Валюта"
+        save: "Зберігти"
+        delete: "Видалити"
+        close: "Закрити"
   manufacturers:
     sessions:
       new:
@@ -169,6 +173,7 @@ uk:
     profiles:
       show:
         view_prod: "Переглянути товари"
+        export_to_csv: "Експорт у CSV"
   flash:
     users:
       errors:

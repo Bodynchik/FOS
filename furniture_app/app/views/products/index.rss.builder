@@ -11,7 +11,9 @@ xml.rss version: '2.0' do
           xml.cdata!("<div style='display: flex; justify-content: center;'>
 
                             <div style='width: 250px; height: auto;'>
-                              <img src='#{url_for(product.product_image)}'>
+                              <img src='#{if product.product_image.attached?
+                                                                  url_for(product.product_image)
+                                          end}'>
                             </div>
 
                             <div style='max-width: 400px; margin-left: 40px;'>

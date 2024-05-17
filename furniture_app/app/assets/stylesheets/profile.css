@@ -1,9 +1,7 @@
 .main-container {
     display: flex;
-    /*flex-direction: column;*/
-    min-height: calc(100vh - 67px - 250px); /* Мінімальна висота для відображення всіх вмісту */
-    height: auto; /* Забезпечує автоматичну розтяжку при необхідності */
-    /*overflow-y: auto; !* Додає прокрутку при необхідності *!*/
+    min-height: calc(100vh - 67px - 250px);
+    height: auto;
 }
 
 #category {
@@ -19,7 +17,6 @@
     display: flex;
     align-items: center;
     width: 420px;
-    /*height: 70px;*/
 }
 
 .icon-cat-user {
@@ -46,9 +43,7 @@
 }
 
 .item-cat {
-    /*margin-top: 30px;*/
     width: 420px;
-    /*height: 70px;*/
 }
 
 .item-cat-title {
@@ -59,19 +54,8 @@
     margin: 0;
 }
 
-/*#add-item-cat {*/
-/*    margin-top: 40px;*/
-/*}*/
-
-/*#item-list-cat {*/
-/*    margin-bottom: 250px;*/
-/*}*/
-
 #category-data {
     width: calc(100% - 480px);
-
-    /*flex-direction: column;*/
-    /*align-items: center;*/
 }
 
 @media (max-width: 1286px) {
@@ -82,6 +66,14 @@
 
 .personal-data, .user-sets, .add-item, .remove-item, .item-list {
     padding: 40px 90px;
+
+}
+
+
+
+#item-list-id {
+    max-height: calc(100vh - 68px - 250px);
+    overflow: hidden;
 }
 
 .personal-data-header {
@@ -95,9 +87,6 @@
 .personal-data-full-name-grid {
     display: flex;
     flex-wrap: wrap;
-    /*justify-content: center;*/
-    /*display: grid;*/
-    /*grid-template-columns: repeat(3, 1fr);*/
     margin-top: 50px;
     gap: 50px 110px;
 }
@@ -106,13 +95,7 @@
     display: flex;
     justify-content: space-evenly;
     margin-top: 50px;
-    /*gap: 60px;*/
 }
-
-/*.full-name-column {*/
-/*    !*width: 160px;*!*/
-/*    !*height: 70px;*!*/
-/*}*/
 
 .contact-data-column {
     flex: 0 1 calc(100% / 3 - 110px * (3 - 1) / 3);
@@ -225,6 +208,16 @@
     display: block;
 }
 
+.item-list-content {
+    display: grid;
+    gap: 25px;
+    overflow-y: auto;
+    height: 100%;
+    width: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
 .order-header, .set-name {
     font-weight: 600;
     font-size: 18px;
@@ -286,6 +279,7 @@
 .add-item {
     align-items: center;
     justify-content: center;
+    max-height: 100%;
 }
 
 .form-element {
@@ -376,6 +370,11 @@ dialog {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    overflow-y: auto;
+    height: 100%;
+    /*width: 100vh;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
 }
 
 .dialog-content {

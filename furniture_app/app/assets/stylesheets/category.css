@@ -76,11 +76,9 @@
     font-size: 16px;
     font-weight: 300;
     align-self: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    margin-right: 10px;
     cursor: pointer;
-    transition: background-color 0.7s;
+    transition: all 0.7s ease;
+    text-decoration: none;
 }
 
 .cat-button {
@@ -91,6 +89,10 @@
 .favorite-button {
     background-color: #eee5cf;
     color: #6a6460;
+}
+
+.favorite-button:hover {
+    background-color: #cfbe95;
 }
 
 .cat-button:hover {

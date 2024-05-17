@@ -5,6 +5,7 @@ class Product < ApplicationRecord
   has_many :orders
   has_many :comments, dependent: :destroy
   has_one_attached :product_image, dependent: :destroy
+  validates :price, numericality: { greater_than: 0 }
 
   def self.ransackable_associations(_auth_object = nil)
     %w[furniture manufacturer orders sub_category]

@@ -168,9 +168,7 @@
               </div>
             </div>
 
-            <%= form_with(model: prod_set, method: :delete, local: true) do %>
-              <%= submit_tag 'submit', class: 'delete-button', id: 'delete-option-set', value: 'Видалити' %>
-            <% end %>
+            <%= button_to 'Видалити', prod_set_path(prod_set), method: :delete, class: 'delete-button', id: 'delete-option-set' %>
           </div>
         <% end %>
 

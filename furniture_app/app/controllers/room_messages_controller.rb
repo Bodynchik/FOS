@@ -1,6 +1,6 @@
 class RoomMessagesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_room
+  # before_action :authenticate_user!
+  # before_action :set_room
 
   # def create
   #   @message = @room.room_messages.build(room_message_params)
@@ -11,29 +11,19 @@ class RoomMessagesController < ApplicationController
   # end
 
   def create
-    @room_message = @room.room_messages.new(room_message_params)
-    @room_message.user = current_user
+    @room = Room.find(params[:room_id])
+    @message = @room.room_messages.new(room_message_params)
 
-    if @room_message.save
-      respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to @room }
-      end
-    else
-      render :new
-    end
+    @message.user_id = current_user.id
 
+    return unless @message.save
+
+    render json: { message: @message }
   end
-
-
 
   private
 
-  def set_room
-    @room = Room.find(params[:room_id])
-  end
-
   def room_message_params
-    params.require(:room_message).permit(:body)
+    params.require(:message).permit(:body)
   end
 end

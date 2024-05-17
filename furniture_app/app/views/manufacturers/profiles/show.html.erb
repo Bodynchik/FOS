@@ -106,14 +106,15 @@
             <% end %>
 
             <%= form_with(model: product, method: :delete, local: true) do %>
-              <%= submit_tag 'submit', class: 'delete-button', id: 'delete-option', value: 'Видалити' %>
+              <%= submit_tag 'submit', class: 'delete-button',
+                             id: 'delete-option', value: t('users.profiles.show.delete') %>
             <% end %>
           </div>
         <% end %>
       </div>
 
       <div class="export-buttons">
-        <%= link_to "Експорт у CSV", export_csv_products_path(format: :csv), class: "csv-button" %>
+        <%= link_to t('.export_to_csv'), export_csv_products_path(format: :csv), class: "csv-button" %>
       </div>
     </div>
 

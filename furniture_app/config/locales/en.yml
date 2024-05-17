@@ -16,6 +16,9 @@ en:
       garden: "Garden category: Give yourself and your family an oasis of comfort and beauty with our collection of garden furniture.
               From dining furniture to comfortable sun loungers, we offer everything you need to create an unforgettable garden space."
       btn: "Subcategories"
+      like: "Like"
+      chatroom: "Chatroom"
+      unlike: "Unlike"
   activerecord:
     attributes:
       prod_set:
@@ -103,6 +106,7 @@ en:
       value: "Create"
   chats:
     show:
+      chat_title: "Chat"
       place: "Message..."
       send: "Send"
   comments:
@@ -176,6 +180,9 @@ en:
         sum_order: "Order amount"
         chat_with: "Chat with"
         currency: "Currency"
+        save: "Save"
+        delete: "Delete"
+        close: "Close"
   manufacturers:
     sessions:
       new:
@@ -186,6 +193,7 @@ en:
     profiles:
       show:
         view_prod: "View products"
+        export_to_csv: "Export to CSV"
   flash:
     users:
       errors:

@@ -1,16 +1,17 @@
 .room_wrapper {
-    max-width: 1220px;
-    margin: 0 auto;
     padding: 40px 20px;
     display: flex;
     justify-content: center;
+    max-height: calc(100vh - 68px - 250px);
 }
 
 .room-container {
     display: flex;
     flex-direction: column;
-    text-align: center;
+    text-align: left;
     gap: 20px;
+    width: 90%;
+    justify-content: space-between;
 }
 
 .room-search-container select{
@@ -24,14 +25,34 @@
 }
 
 .room-header {
-    margin: 0;
+    margin-bottom: 0px;
     font-size: 36px;
     text-align: center;
 }
 
 .room-messages {
-    padding: 10px 5px;
+    margin-top: 0px;
+    padding:0px 5px;
+    width: 100%;
+    overflow: auto;
+    scroll-behavior: smooth;
+    word-wrap: break-word;
 }
+
+.message {
+    display: flex;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #4d4d4d;
+    padding-left: 20px;
+    align-items: center;
+    border-radius: 10px; /* Закруглення кутів */
+    box-shadow: 0 0 10px rgba(82, 66, 54, 0.1); /* Тінь для блоку */
+    position: relative;
+    height: 40px;
+}
+
+
 
 .input_form {
     display: flex;
@@ -91,8 +112,9 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
-
+    position: relative;
 }
+
 
 .room-item-box .room-header {
     display: flex;
@@ -121,18 +143,37 @@
     padding: 5px 10px;
     background-color: #6a6460;
     color: #FAFAFA;
-    border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    border-radius: 10px;
+    font-size: 20px;
+    height: 40px;
+    width: auto;
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    flex-shrink: 0;
 }
 
 .room-item-box .room-join-button:hover {
     background-color: #504b49;
 }
 
-.room-join-button {
+
+
+
+
+.comm-content .delete-button{
+    border-radius: 10px;
+    font-size: 20px;
+    height: 40px;
+    width: auto;
     position: absolute;
-    right: 250px;
+    right: 0; /* Розміщуємо кнопку видалення по ліву сторону контейнера */
+    transform: translateY(-50%); /* Центруємо по вертикалі */
+    margin-right: 10px;
+    flex-shrink: 0;
 }
+
 
 

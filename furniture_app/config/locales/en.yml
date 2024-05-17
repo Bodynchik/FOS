@@ -16,6 +16,9 @@ en:
       garden: "Garden category: Give yourself and your family an oasis of comfort and beauty with our collection of garden furniture.
               From dining furniture to comfortable sun loungers, we offer everything you need to create an unforgettable garden space."
       btn: "Subcategories"
+      Chatroom: "Chat room"
+      Unlike: "Unfollow"
+      Like: "Favourite"
   activerecord:
     attributes:
       prod_set:
@@ -112,6 +115,19 @@ en:
       grade: "Grade"
       send: "Send"
       delete: "delete"
+  rooms:
+    index:
+      rooms: "Rooms"
+      join_room: "Join"
+    show:
+      Back: "Back"
+      chatroom: "Chatroom for category: "
+      Вітальня: "Living room"
+      Спальня: "Bedroom"
+      Сад: "Garden"
+      Зберігання: "Storage"
+      Кухня: "Kitchen"
+      Робоча зона: "Workplace"
   home:
     about_us: "About us"
     cat_title: "Find the perfect expression of your style and taste!"

@@ -8,10 +8,10 @@
       <a href="<%= sub_categories_path(category_name: @category_name) %>" class="cat-button"><%= t('categories.descriptions.btn') %></a>
       <% if current_user%>
       <% if current_user.favorite_categories.present? && current_user.favorite_categories.include?(@category_name) %>
-        <a href="<%= room_show_path(category_name: @category_name) %>" data-method="post" class="cat-button"><%= t('Chatroom') %></a>
-        <a href="<%= remove_favorite_category_path(category_name: @category_name) %>" data-method="delete" class="favorite-button"><%= t('Unlike') %></a>
+        <a href="<%= room_show_path(category_name: @category_name) %>" data-method="post" class="cat-button"><%= t('categories.descriptions.Chatroom') %></a>
+        <a href="<%= remove_favorite_category_path(category_name: @category_name) %>" data-method="delete" class="favorite-button"><%= t('categories.descriptions.Unlike') %></a>
       <% else %>
-        <a href="<%= add_favorite_category_path(category_name: @category_name) %>" data-method="post" class="cat-button" onclick="confirmAndRedirectToChats()"><%= t('Like category') %></a>
+        <a href="<%= add_favorite_category_path(category_name: @category_name) %>" data-method="post" class="cat-button" onclick="confirmAndRedirectToChats()"><%= t('categories.descriptions.Like') %></a>
       <% end %>
       <% end %>
     </div>

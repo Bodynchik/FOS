@@ -1,7 +1,7 @@
 <div class="chat">
   <div class="chat_wrapper">
     <div id="room-messages" data-room-id="<%= @room.id %>" class="chat-container" data-controller="room_messages">
-      <div id="messages" class="chat-messages" data-room_messages-target="container">
+      <div id="messages" class="room-messages" data-room_messages-target="container">
         <% @messages.each do |message| %>
           <div class="message">
             <% if message.user_id.present? %>
@@ -19,7 +19,3 @@
     </div>
   </div>
 </div>
-
-
-
-<!-- @messages&.each Знак &. визначає, що якщо @messages є нульовим або невизначеним, то блок не буде викликаний-->

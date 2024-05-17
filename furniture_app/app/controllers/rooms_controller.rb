@@ -2,15 +2,15 @@ class RoomsController < ApplicationController
   # before_action :authenticate_user!
   # before_action :set_room, only: [:edit, :update, :destroy]
   #
-  # def index
-  #   favourite_categories = current_user.favorite_categories
-  #   @rooms = Room.where(category_name: favourite_categories)
-  # end
+  def index
+    favourite_categories = current_user.favorite_categories
+    @rooms = Room.where(category_name: favourite_categories)
+  end
 
   def show
     @category_name = params[:category_name]
     @room = Room.find_or_create_by(category_name: params[:category_name])
-    @messages = @room.room_messages.order(created_at: :desc)
+    @messages = @room.room_messages #.order(created_at: :desc)
     @user = current_user
   end
 

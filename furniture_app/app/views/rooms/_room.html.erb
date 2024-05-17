@@ -1,10 +1,16 @@
 <div class="chat">
   <div class="chat_wrapper">
-    <div id="<%= dom_id(room) %>" class="chat-container" data-controller="room_messages">
-      <%= turbo_stream_from dom_id(room) %>
+    <div id="room-messages" data-room-id="<%= @room.id %>" class="chat-container" data-controller="room_messages">
       <div id="messages" class="chat-messages" data-room_messages-target="container">
-        <% @messages.each do |room_message| %>
-          <%= render partial: "room_messages/room_message", locals: { room_message: room_message } %>
+        <% @messages.each do |message| %>
+          <div class="message">
+            <% if message.user_id.present? %>
+              <strong><%= "#{message.user.username}:" %></strong>
+            <% elsif message.manufacturer_id.present? %>
+              <strong><%= "#{message.manufacturer.username}:" %></strong>
+            <% end %>
+            <%= message.content %>
+          </div>
         <% end %>
       </div>
       <div class="chat-form">

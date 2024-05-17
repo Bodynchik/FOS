@@ -118,13 +118,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_16_212538) do
     t.index ["title_manufacturer"], name: "index_manufacturers_on_title_manufacturer", unique: true
   end
 
-  create_table "manufactures", force: :cascade do |t|
-    t.string "manufacture_name"
-    t.string "manufacture_country"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "messages", force: :cascade do |t|
     t.text "content"
     t.bigint "chat_id", null: false
@@ -166,20 +159,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_16_212538) do
     t.index ["user_id"], name: "index_prod_sets_on_user_id"
   end
 
-  create_table "products", force: :cascade do |t|
-    t.bigint "furniture_id", null: false
-    t.bigint "manufacturer_id", null: false
-    t.bigint "sub_category_id", null: false
-    t.string "prod_model"
-    t.decimal "price"
+  create_table "products", id: :serial, force: :cascade do |t|
+    t.integer "furniture_id", null: false
+    t.integer "manufacturer_id", null: false
+    t.integer "sub_category_id", null: false
+    t.string "prod_model", null: false
+    t.decimal "price", precision: 10, scale: 2
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "delivery_days", default: [], array: true
     t.integer "production_days"
-    t.index ["furniture_id"], name: "index_products_on_furniture_id"
-    t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
-    t.index ["sub_category_id"], name: "index_products_on_sub_category_id"
   end
 
   create_table "room_messages", force: :cascade do |t|
@@ -237,12 +227,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_16_212538) do
   add_foreign_key "messages", "manufacturers"
   add_foreign_key "messages", "users"
   add_foreign_key "order_sets", "prod_sets"
-  add_foreign_key "orders", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "prod_sets", "users"
-  add_foreign_key "products", "furnitures"
-  add_foreign_key "products", "manufacturers"
-  add_foreign_key "products", "sub_categories"
+  add_foreign_key "products", "furnitures", name: "products_furniture_id_fkey"
+  add_foreign_key "products", "manufacturers", name: "products_manufacturer_id_fkey"
+  add_foreign_key "products", "sub_categories", name: "products_sub_category_id_fkey"
   add_foreign_key "room_messages", "rooms"
   add_foreign_key "room_messages", "users"
   add_foreign_key "sub_categories", "categories"

@@ -1,12 +1,26 @@
-<p style="color: green"><%= notice %></p>
-
 <div class = "chat-header">
   <h3>Чат-кімната для категорії <%= @category_name %></h3>
 </div>
-<%= render @room %>
-
-<div>
-<!--  <%#= link_to "Edit this room", edit_room_path(@room) %> |-->
-
-  <%#= button_to "Destroy this room", @room, method: :delete %>
+<div class="chat">
+  <div class="chat_wrapper">
+    <div id="room-messages" data-room-id="<%= @room.id %>" data-room-category="<%= @room.category_name %>" data-user-id="<%= @user.id %>" class="chat-container" data-controller="room_messages">
+      <div id="room-message" class="chat-messages" data-room_messages-target="container">
+        <% @messages.each do |message| %>
+          <div class="message">
+            <% if message.user_id.present? %>
+              <strong><%= "#{message.user.username}:" %></strong>
+            <% end %>
+            <%= message.body %>
+          </div>
+        <% end %>
+      </div>
+<!--      <div class="chat-form">-->
+        <%#= render "room_messages/form", room: room %>
+<!--      </div>-->
+      <form id="room-message-form" class="chat-form">
+        <input type="text" id="room-message-input" class="message-input" placeholder=<%= t('chats.show.place') %>>
+        <button type="submit" class="chat-submit"><%= t('chats.show.send') %></button>
+      </form>
+    </div>
+  </div>
 </div>

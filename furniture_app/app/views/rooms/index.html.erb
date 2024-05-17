@@ -1,14 +1,13 @@
-
 <p style="color: green"><%= notice %></p>
 
 <div class="room_wrapper">
   <div class="room-container">
-    <h1 class="room-header"><%= t('.Rooms') %></h1>
+    <h1 class="room-header"><%= t('.rooms') %></h1>
     <div id="room-list">
-      <% @rooms&.each do |room| %>
+      <% @rooms.each do |room| %>
         <div class="room-item-box">
           <div class="room-header">
-            <h3><%= room.category_name.capitalize%></h3>
+            <h3><%= t("rooms.show.#{room.category_name.capitalize}")%></h3>
             <div class="room-content">
               <% if room.room_messages.any? %>
                 <p><%= room.room_messages.last.body %></p>
@@ -21,7 +20,6 @@
         </div>
       <% end %>
     </div>
-    <%#= link_to "New room", new_room_path %>
     <% if @rooms.blank? %>
       <p><%= t('.no_rooms_found') %></p>
     <% end %>

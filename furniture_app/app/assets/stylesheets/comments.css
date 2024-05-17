@@ -60,7 +60,6 @@
 .comm-content p {
     display: inline; /* Встановлюємо inline для елементу p */
     word-wrap: break-word;
-    /*overflow: auto;*/
     flex-grow: 1; /* Розширюємо елемент p на всю доступну ширину, залишаючи місце для кнопки */
     overflow: hidden; /* Забороняємо виходити за межі контейнера */
     margin-right: 130px;

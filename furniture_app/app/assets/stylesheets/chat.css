@@ -50,6 +50,7 @@
 }
 
 .chat-submit, .btn{
+    text-decoration: none;
     padding: 10px 10px;
     border: none;
     background-color: #6a6460;

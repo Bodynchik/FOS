@@ -1,8 +1,7 @@
 <div class="row">
   <div class="col-12">
     <%= simple_form_for([@room, RoomMessage.new], data: {
-      action: "turbo:submit-end->reset-form#clearInput",
-      # action: "turbo:submit-end->room_messages#resetForm",
+      action: "turbo:submit-end->room_messages#resetForm",
       controller: "reset-form",
       messages_target: "input_form"
     }) do |f|%>

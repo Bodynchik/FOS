@@ -1,45 +1,44 @@
-<div class="chat_wrapper">
-  <div class="chat-container">
+<div class="comm-wrapper">
+  <div class="comm-container">
     <% product_comments = @comments.select { |comment| comment.product_id.to_s == params[:product_id] } %>
     <h3 class="chat-header"><%= t('.title') %> (<%= product_comments.count %>)</h3>
-
-    <%= form_with(model: @comment, url: product_comments_path, method: "post") do |form| %>
-      <div class="chat-form">
-        <div class="comm-field">
-          <%= form.text_area :text, class: "message-input"%>
-
-        </div>
-
-        <div class="comm-field">
-          <%= form.label :rating, t('.rating') %><br>
-          <div class="rating-buttons">
-            <% (1..5).each do |i| %>
-              <%= form.button type: "button", class: "rating-button#{'selected' if i == @comment.rating}", data: { rating: i }, onclick: "setRating(#{i})" do %>
-                <%= i %>
+    <br />
+    <% if current_user %>
+      <%= form_with(model: @comment, url: product_comments_path, method: "post") do |form| %>
+        <div class="comm-form">
+          <div class="comm-field">
+            <div class="rating-buttons">
+              <%= form.label :rating, t('.rating'), class: "rating-label" %><br>
+              <% (1..5).each do |i| %>
+                <%= form.button type: "button", class: "rating-button#{'selected' if i == @comment.rating}",
+                                data: { rating: i }, onclick: "setRating(#{i})" do %>
+                  <%= i %>  &#9733;
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
           </div>
+
+          <div class="comm-field">
+            <%= form.text_area :text, class: "comment-input"%>
+          </div>
+
+          <%= form.hidden_field :rating, id: "rating-input" %>
+          <%= form.submit t('.send'), class: "comm-submit" %>
         </div>
-      </div>
-      <%= form.hidden_field :rating, id: "rating-input" %>
-      <%= form.submit t('.send'), class: "chat-submit" %>
+      <% end %>
     <% end %>
 
-    <div class="chat-messages">
+    <div class="comments">
       <% @comments.each do |comment| %>
         <% if comment.product_id.to_s == params[:product_id] %>
-          <div class="chat-item-box">
             <div class="comm-content">
               <h3><%= comment.user.username %> (<%= t('.grade') %> <%= comment.rating %>/5):  </h3>
-            </div>
+              <p> <%= comment.text %></p>
 
-              <div class="chat-content">
-                <p> <%= comment.text %></p>
-                <% if @user_type == "Користувач" && comment.user.id == current_user.id %>
+              <% if @user_type == "Користувач" && comment.user.id == current_user.id %>
                   <%= button_to t('.delete'), comment_path(comment), method: :delete, data: { confirm: 'Ви впевнені?' }, class: 'delete-button' %>
               <% end %>
-                </div>
-          </div>
+            </div>
         <% end %>
       <% end %>
     </div>

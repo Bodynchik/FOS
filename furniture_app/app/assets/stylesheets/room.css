@@ -1,0 +1,138 @@
+.room_wrapper {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.room-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+}
+
+.room-search-container select{
+    display: inline-block;
+    margin-right: 10px;
+    line-height: 2px;
+    border: 2px solid;
+    border-radius: 15px;
+    font-size: 16px;
+    outline: none;
+}
+
+.room-header {
+    margin: 0;
+    font-size: 36px;
+    text-align: center;
+}
+
+.room-messages {
+    padding: 10px 5px;
+}
+
+.input_form {
+    display: flex;
+    gap: 20px;
+}
+
+.room-list {
+    margin-top: 30px;
+}
+
+.room-message-input {
+    padding: 10px 5px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 120%;
+    flex-grow: 2;
+    outline: none;
+    width: 700px;
+}
+
+.room-submit {
+    padding: 10px 10px;
+    border: none;
+    background-color: #6a6460;
+    color: #FAFAFA;
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 120%;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    margin-left: 3px;
+    text-decoration: none;
+    width: 100px;
+}
+
+.room-info {
+    /*display: flex;*/
+    align-items: center;
+    gap: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #4d4d4d;
+}
+
+.room-submit:hover {
+    background-color: #504b49;
+}
+
+.room-item-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 1100px;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+
+}
+
+.room-item-box .room-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.room-item-box .room-header h3 {
+    margin: 10px;
+    font-size: 25px;
+}
+
+.room-item-box .room-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+}
+
+.room-item-box .last-message,
+.room-item-box .no-message {
+    margin: 0;
+}
+
+.room-item-box .room-join-button {
+    padding: 5px 10px;
+    background-color: #6a6460;
+    color: #FAFAFA;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.room-item-box .room-join-button:hover {
+    background-color: #504b49;
+}
+
+.room-join-button {
+    position: absolute;
+    right: 250px;
+}
+
+

@@ -1,0 +1,29 @@
+
+<p style="color: green"><%= notice %></p>
+
+<div class="room_wrapper">
+  <div class="room-container">
+    <h1 class="room-header"><%= t('.Rooms') %></h1>
+    <div id="room-list">
+      <% @rooms&.each do |room| %>
+        <div class="room-item-box">
+          <div class="room-header">
+            <h3><%= room.category_name.capitalize%></h3>
+            <div class="room-content">
+              <% if room.room_messages.any? %>
+                <p><%= room.room_messages.last.body %></p>
+              <% else %>
+                <p>No messages yet</p>
+              <% end %>
+              <%= link_to t('.join_room'),  room_show_path(category_name: room.category_name), class: "room-join-button"%>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%#= link_to "New room", new_room_path %>
+    <% if @rooms.blank? %>
+      <p><%= t('.no_rooms_found') %></p>
+    <% end %>
+  </div>
+</div>

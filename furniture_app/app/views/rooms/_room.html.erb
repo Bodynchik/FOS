@@ -1,0 +1,19 @@
+<div class="chat">
+  <div class="chat_wrapper">
+    <div id="<%= dom_id(room) %>" class="chat-container" data-controller="room_messages">
+      <%= turbo_stream_from dom_id(room) %>
+      <div id="messages" class="chat-messages" data-room_messages-target="container">
+        <% @messages.each do |room_message| %>
+          <%= render partial: "room_messages/room_message", locals: { room_message: room_message } %>
+        <% end %>
+      </div>
+      <div class="chat-form">
+        <%= render "room_messages/form", room: room %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- @messages&.each Знак &. визначає, що якщо @messages є нульовим або невизначеним, то блок не буде викликаний-->

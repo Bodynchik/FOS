@@ -32,11 +32,13 @@
             <div class="comm-content">
               <h3><%= comment.user.username %> (<%= t('.grade') %> <%= comment.rating %>/5):  </h3>
             </div>
-            <% if comment.user.id == current_user.id %>
+
               <div class="chat-content">
-                <p> <%= comment.text %></p> <%= button_to t('.delete'), comment_path(comment), method: :delete, data: { confirm: 'Ви впевнені?' }, class: 'delete-button' %>
-              </div>
-            <% end %>
+                <p> <%= comment.text %></p>
+                <% if @user_type == "Користувач" && comment.user.id == current_user.id %>
+                  <%= button_to t('.delete'), comment_path(comment), method: :delete, data: { confirm: 'Ви впевнені?' }, class: 'delete-button' %>
+              <% end %>
+                </div>
           </div>
         <% end %>
       <% end %>

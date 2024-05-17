@@ -97,6 +97,13 @@ GEM
     bootsnap (1.18.3)
       msgpack (~> 1.2)
     builder (3.2.4)
+    cable_ready (5.0.5)
+      actionpack (>= 5.2)
+      actionview (>= 5.2)
+      activesupport (>= 5.2)
+      observer (~> 0.1)
+      railties (>= 5.2)
+      thread-local (>= 1.1.0)
     capybara (3.40.0)
       addressable
       matrix
@@ -208,6 +215,9 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.2-x86_64-linux)
       racc (~> 1.4)
+    nokogiri-html5-inference (0.3.0)
+      nokogiri (~> 1.14)
+    observer (0.1.2)
     open-uri (0.4.1)
       stringio
       time
@@ -273,6 +283,10 @@ GEM
       i18n
     rdoc (6.6.2)
       psych (>= 4.0.0)
+    redis (5.2.0)
+      redis-client (>= 0.22.0)
+    redis-client (0.22.1)
+      connection_pool
     regexp_parser (2.9.0)
     reline (0.4.3)
       io-console (~> 0.5)
@@ -319,6 +333,9 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    simple_form (5.3.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -328,8 +345,20 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
+    stimulus_reflex (3.5.1)
+      actioncable (>= 5.2, < 8)
+      actionpack (>= 5.2, < 8)
+      actionview (>= 5.2, < 8)
+      activesupport (>= 5.2, < 8)
+      cable_ready (~> 5.0)
+      nokogiri (~> 1.0)
+      nokogiri-html5-inference (~> 0.3)
+      rack (>= 2, < 4)
+      railties (>= 5.2, < 8)
+      redis (>= 4.0, < 6.0)
     stringio (3.1.0)
     thor (1.3.1)
+    thread-local (1.1.0)
     tilt (2.3.0)
     time (0.3.0)
       date
@@ -384,14 +413,17 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.2)
   rails-i18n
+  redis (>= 4.0.1)
   rss
   rubocop
   rubocop-performance
   rubocop-rails
   sassc-rails
   selenium-webdriver
+  simple_form (~> 5.3)
   sprockets-rails
   stimulus-rails
+  stimulus_reflex (~> 3.4)
   turbo-rails
   tzinfo-data
   web-console

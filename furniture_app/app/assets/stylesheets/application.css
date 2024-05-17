@@ -16,9 +16,10 @@
  *= require category.css
  *
  *= require comments.css
-
-
+ *
+ *= require room.css
 */
+
 
 *{
     box-sizing: border-box;

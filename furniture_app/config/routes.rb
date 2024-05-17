@@ -83,5 +83,12 @@ Rails.application.routes.draw do
     end
 
     resources :comments, only: %i[index create destroy]
+
+    get 'rooms/index'
+    get '/rooms/:category_name', to: 'rooms#show', as: :room_show
+
+    resources :rooms do
+      resources :room_messages
+    end
   end
 end

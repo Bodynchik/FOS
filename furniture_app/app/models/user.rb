@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_many :chats
   has_many :comments, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_many :room_messages, dependent: :destroy
 
   def username
     "#{first_name} #{last_name}"

@@ -8,6 +8,11 @@ class CommentsController < ApplicationController
     @comments = Comment.all
     @comment = Comment.new
     @prod = Product.find(params[:product_id])
+    @user_type = if user_signed_in?
+                   'Користувач'
+                 else
+                   'Виробник'
+                 end
   end
 
   # POST /comments

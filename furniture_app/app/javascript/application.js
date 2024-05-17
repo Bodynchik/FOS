@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
+
 document.addEventListener("turbo:load", function() {
     // Категорії
     const personalDataCat = document.querySelector('#category .personal-data-cat');

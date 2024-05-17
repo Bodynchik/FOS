@@ -1,0 +1,10 @@
+<%= turbo_stream.append "messages" do %>
+  <%= render partial: "room_messages/room_message", locals: { room_message: @room_message } %>
+<% end %>
+
+
+<%= turbo_stream.after "messages" do %>
+  <%= javascript_tag do %>
+    document.getElementById('<%= dom_id(@room) %>').dispatchEvent(new CustomEvent('DOMNodeInserted'))
+  <% end %>
+<% end %>

@@ -18,15 +18,16 @@
 <%# end %>
 
 <section id="products">
-  <div class="products-container">
 
-    <div class="sorting-buttons">
-      <%= link_to t('.by_name'), products_path(sort: 'name', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
-      <%= link_to t('.by_price'), products_path(sort: 'price', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
-      <%= link_to t('.by_rating'), products_path(sort: 'average_rating', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
-      <%= link_to t('.by_comments'), products_path(sort: 'comments_count', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
-      <%= link_to t('.by_production_speed'), products_path(sort: 'production_days', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
-    </div>
+  <div class="sorting-buttons">
+    <%= link_to t('.by_name'), products_path(sort: 'name', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+    <%= link_to t('.by_price'), products_path(sort: 'price', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+    <%= link_to t('.by_rating'), products_path(sort: 'average_rating', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+    <%= link_to t('.by_comments'), products_path(sort: 'comments_count', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+    <%= link_to t('.by_production_speed'), products_path(sort: 'production_days', direction: @sort_direction, sub_category_id: params[:sub_category_id]), class: "sort-button" %>
+  </div>
+
+  <div class="products-container">
 
     <% @products.each do |product| %>
       <% furniture = Furniture.find(product.furniture_id) %>

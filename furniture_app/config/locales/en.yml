@@ -106,6 +106,7 @@ en:
       value: "Create"
   chats:
     show:
+      chat_title: "Chat"
       place: "Message..."
       send: "Send"
   comments:
@@ -192,6 +193,9 @@ en:
         sum_order: "Order amount"
         chat_with: "Chat with"
         currency: "Currency"
+        save: "Save"
+        delete: "Delete"
+        close: "Close"
   manufacturers:
     sessions:
       new:
@@ -202,6 +206,7 @@ en:
     profiles:
       show:
         view_prod: "View products"
+        export_to_csv: "Export to CSV"
   flash:
     users:
       errors:

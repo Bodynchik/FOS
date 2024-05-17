@@ -122,13 +122,13 @@
 .category-grid {
     display: flex;
     justify-content: center;
+    gap: 23px;
 }
 
 .category-column {
     display: flex;
     flex-direction: column;
     gap: 23px;
-    margin-right: 23px;
     margin-bottom: 90px;
 }
 

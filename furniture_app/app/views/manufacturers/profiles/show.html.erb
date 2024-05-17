@@ -80,7 +80,7 @@
 
     </div>
 
-    <div class="add-item" style="display: none">
+    <div class="add-item" id="add-item-id" style="display: none">
       <%= render 'products/form', product: @product %>
       <% if flash[:alert].present? %>
         <div class="flash alert">
@@ -90,28 +90,31 @@
     </div>
 
 
-    <div class="item-list" style="display: none">
-      <% @products.each do |product| %>
-        <% furniture = Furniture.find(product.furniture_id) %>
-        <div class="product-item" id="product-<%= product.id %>">
-          <%= link_to product_path(product), class: "product" do %>
-            <div class="grey-square">
-              <%= image_tag(product.product_image, class: 'image-div') if product.product_image.attached? %>
-            </div>
-            <div class="product-info">
-              <p class="product-name"><%= "#{furniture.name} (#{product.prod_model})" %></p>
-              <p class="product-price"><%= number_to_currency(product.price, unit: "₴") %></p>
-            </div>
-          <% end %>
+    <div class="item-list" id="item-list-id" style="display: none">
+      <div class="item-list-content">
+        <% @products.each do |product| %>
+          <% furniture = Furniture.find(product.furniture_id) %>
+          <div class="product-item" id="product-<%= product.id %>">
+            <%= link_to product_path(product), class: "product" do %>
+              <div class="grey-square">
+                <%= image_tag(product.product_image, class: 'image-div') if product.product_image.attached? %>
+              </div>
+              <div class="product-info">
+                <p class="product-name"><%= "#{furniture.name} (#{product.prod_model})" %></p>
+                <p class="product-price"><%= number_to_currency(product.price, unit: "₴") %></p>
+              </div>
+            <% end %>
 
-          <%= form_with(model: product, method: :delete, local: true) do %>
-            <%= submit_tag 'submit', class: 'delete-button', id: 'delete-option', value: 'Видалити' %>
-          <% end %>
-        </div>
-      <% end %>
+            <%= form_with(model: product, method: :delete, local: true) do %>
+              <%= submit_tag 'submit', class: 'delete-button',
+                             id: 'delete-option', value: t('users.profiles.show.delete') %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
 
       <div class="export-buttons">
-        <%= link_to "Експорт у CSV", export_csv_products_path(format: :csv), class: "csv-button" %>
+        <%= link_to t('.export_to_csv'), export_csv_products_path(format: :csv), class: "csv-button" %>
       </div>
     </div>
 

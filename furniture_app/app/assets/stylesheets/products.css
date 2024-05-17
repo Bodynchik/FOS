@@ -1,8 +1,9 @@
 /*Стилі для товарів index*/
 
 #products {
-    height: 100vh;
+    height: auto;
     padding: 25px;
+    /*min-height: 100vh;*/
 }
 
 .products-container {
@@ -63,6 +64,9 @@
 
 .sorting-buttons {
     gap: 10px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 25px;
 }
 
 .sort-button {
@@ -143,8 +147,7 @@
 
 .button-row {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+    gap: 10px;
 }
 
 .one-button {

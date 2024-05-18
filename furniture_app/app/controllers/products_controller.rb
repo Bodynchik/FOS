@@ -27,6 +27,15 @@ class ProductsController < ApplicationController
     @user = current_user
 
     convert_prices_to_user_currency
+
+    respond_to do |format|
+      format.html
+      format.json
+      format.rss do
+        rss_feed = RssFeedService.new(@products, self).call
+        render xml: rss_feed
+      end
+    end
   end
 
   def acceptable_image

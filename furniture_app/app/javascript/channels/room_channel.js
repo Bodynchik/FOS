@@ -4,11 +4,12 @@ let subscription;
 
 document.addEventListener("turbo:load", function () {
     const roomMessages = document.getElementById("room-messages");
+    const roomMessage = document.getElementById("room-message");
     const roomId = roomMessages.dataset.roomId;
     const userId = roomMessages.dataset.userId;
 
     function scrollToBottom() {
-        const lastMessage = roomMessages.lastElementChild;
+        const lastMessage = roomMessage.lastElementChild;
         if (lastMessage) {
             lastMessage.scrollIntoView({ behavior: 'smooth' });
         }
@@ -39,12 +40,12 @@ document.addEventListener("turbo:load", function () {
 document.addEventListener("turbo:load", function () {
     const roomMessageForm = document.getElementById("room-message-form");
     const roomMessageInput = document.getElementById("room-message-input");
-    console.log(roomMessageInput);
+    const roomMessage = document.getElementById("room-message");
     const roomMessages = document.getElementById("room-messages");
     const roomId = roomMessages.dataset.roomId;
 
     function scrollToBottom() {
-        const lastMessage = roomMessages.lastElementChild;
+        const lastMessage = roomMessage.lastElementChild;
         if (lastMessage) {
             lastMessage.scrollIntoView({ behavior: 'smooth' });
         }

@@ -7,9 +7,13 @@ class SortQuery
     when 'price'
       products.order(price: direction.to_sym)
     when 'average_rating'
-      products.joins(:comments)
+      products.left_joins(:comments)
               .group('products.id')
-              .order("AVG(comments.rating) #{sort_direction}")
+              .order(Arel.sql("COALESCE(AVG(comments.rating), 0) #{sort_direction}"))
+    # when 'average_rating'
+    #   products.joins(:comments)
+    #           .group('products.id')
+    #           .order("AVG(comments.rating) #{sort_direction}")
     when 'comments_count'
       products.left_joins(:comments)
               .group('products.id')

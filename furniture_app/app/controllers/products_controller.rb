@@ -106,7 +106,7 @@ class ProductsController < ApplicationController
       flash[:error] = "Товар '#{@product.prod_model}' не може бути видалений, оскільки він або міститься у сетах, або в замовленнях, або до нього написнао коментарі."
     else
       @product.destroy!
-      flash[:notice] = "Product was successfully destroyed."
+      flash[:notice] = 'Product was successfully destroyed.'
     end
 
     respond_to do |format|
@@ -128,7 +128,7 @@ class ProductsController < ApplicationController
   private
 
   def prod_sets_contain_product?(product_id)
-    ProdSet.where("prod_data @> hstore(:product_id::text, '1')", product_id: product_id.to_s).exists?
+    ProdSet.exists?(["prod_data @> hstore(:product_id::text, '1')", { product_id: product_id.to_s }])
   end
 
   def set_manufacturer

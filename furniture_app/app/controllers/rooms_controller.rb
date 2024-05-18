@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
   def show
     @category_name = params[:category_name]
     @room = Room.find_or_create_by(category_name: params[:category_name])
-    @messages = @room.room_messages #.order(created_at: :desc)
+    @messages = @room.room_messages # .order(created_at: :desc)
     @user = current_user
   end
 

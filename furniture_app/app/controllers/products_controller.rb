@@ -75,12 +75,12 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.errors.empty? && @product.save
-        format.html { redirect_to '/profiles' }
+        format.html { redirect_back fallback_location: root_path }
         format.json { render :show, status: :created, location: @product }
       else
         format.html do
           flash[:alert] = @product.errors.full_messages.join(', ')
-          redirect_to '/profiles'
+          redirect_back fallback_location: root_path
         end
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
@@ -102,10 +102,15 @@ class ProductsController < ApplicationController
 
   # DELETE /products/1 or /products/1.json
   def destroy
-    @product.destroy!
+    if @product.orders.exists? || prod_sets_contain_product?(@product.id) || @product.comments.exists?
+      flash[:error] = "Товар '#{@product.prod_model}' не може бути видалений, оскільки він або міститься у сетах, або в замовленнях, або до нього написнао коментарі."
+    else
+      @product.destroy!
+      flash[:notice] = "Product was successfully destroyed."
+    end
 
     respond_to do |format|
-      format.html { redirect_to manufacturers_profiles_url(current_manufacturer), notice: 'Product was successfully destroyed.' }
+      format.html { redirect_back fallback_location: root_path }
       format.json { head :no_content }
     end
   end
@@ -121,6 +126,10 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  def prod_sets_contain_product?(product_id)
+    ProdSet.where("prod_data @> hstore(:product_id::text, '1')", product_id: product_id.to_s).exists?
+  end
 
   def set_manufacturer
     @manufacturer = current_manufacturer

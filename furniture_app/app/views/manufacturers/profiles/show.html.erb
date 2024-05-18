@@ -91,6 +91,13 @@
 
 
     <div class="item-list" id="item-list-id" style="display: none">
+
+      <% if flash[:error].present? %>
+        <div class="alert alert-success">
+          <%= flash[:error] %>
+        </div>
+      <% end %>
+
       <div class="item-list-content">
         <% @products.each do |product| %>
           <% furniture = Furniture.find(product.furniture_id) %>

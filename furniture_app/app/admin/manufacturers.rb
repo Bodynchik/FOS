@@ -5,7 +5,7 @@ ActiveAdmin.register Manufacturer do
   # Uncomment all parameters which should be permitted for assignment
   #
   permit_params :email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :person_name, :person_last_name, :person_middle_name,
-                :title_manufacturer, :phone_number
+                :title_manufacturer, :phone_number, :password
   #
   # or
   #
@@ -44,8 +44,7 @@ ActiveAdmin.register Manufacturer do
       f.input :title_manufacturer
       f.input :phone_number
       f.input :email
-      # f.input :password
-      # f.input :password_confirmation
+      f.input :password
     end
     f.actions
   end

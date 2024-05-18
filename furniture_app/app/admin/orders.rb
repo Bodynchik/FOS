@@ -18,7 +18,7 @@ ActiveAdmin.register Order do
     selectable_column
     id_column
     column :product_id do |order|
-      order.product.furniture.name
+      "#{order.product.prod_model} (#{order.product.manufacturer.title_manufacturer})"
     end
     column :quantity
     column :total_price
@@ -30,7 +30,7 @@ ActiveAdmin.register Order do
     actions
   end
 
-  filter :product_id, as: :select, collection: Product.all.map { |f| [f.furniture.name, f.id] }
+  filter :product_id, as: :select, collection: Product.all.map { |p| ["#{p.prod_model} (#{p.manufacturer.title_manufacturer})", p.id] }
   filter :user_id, as: :select, collection: User.all.map { |u| [u.username, u.id] }
   filter :quantity
   filter :total_price
@@ -39,7 +39,7 @@ ActiveAdmin.register Order do
 
   form do |f|
     f.inputs do
-      f.input :product_id, as: :select, collection: Product.all.map { |f| [f.furniture.name, f.id] }
+      f.input :product_id, as: :select, collection: Product.all.map { |p| ["#{p.prod_model} (#{p.manufacturer.title_manufacturer})", p.id] }
       f.input :user_id, as: :select, collection: User.all.map { |u| [u.username, u.id] }
       f.input :quantity
       f.input :total_price

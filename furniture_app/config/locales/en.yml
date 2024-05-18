@@ -93,6 +93,15 @@ en:
       close: "Close"
       average_rating: "Average rating:"
       days: "days"
+    _form:
+      days_of_week:
+        Понеділок: "Monday"
+        Вівторок: "Tuesday"
+        Середа: "Wednesday"
+        Четвер: "Thursday"
+        П'ятниця: "Friday"
+        Субота: "Saturday"
+        Неділя: "Sunday"
   orders:
     new:
       order: "Ordering a product"

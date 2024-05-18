@@ -59,7 +59,7 @@
     <div id="delivery-days">
       <% %w[Понеділок Вівторок Середа Четвер П'ятниця Субота Неділя].each do |day| %>
         <%= check_box_tag 'product[delivery_days][]', day, @product.delivery_days.include?(day), id: day.parameterize %>
-        <%= label_tag day, day, for: day.parameterize, style: "margin-right: 10px;" %>
+        <%= label_tag day, t("products._form.days_of_week.#{day}"), for: day, style: "margin-right: 10px;" %>
       <% end %>
     </div>
   </div>

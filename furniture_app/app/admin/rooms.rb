@@ -25,7 +25,7 @@ ActiveAdmin.register Room do
 
   form do |f|
     f.inputs do
-      f.input :category_name
+      f.input :category_name, as: :select, collection: Category.pluck(:cat_name)
     end
     f.actions
   end

@@ -5,7 +5,7 @@ ActiveAdmin.register User do
   # Uncomment all parameters which should be permitted for assignment
   #
   permit_params :email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :confirmation_token, :confirmed_at, :confirmation_sent_at,
-                :first_name, :last_name, :middle_name, :phone_number, :unconfirmed_email, :currency
+                :first_name, :last_name, :middle_name, :phone_number, :unconfirmed_email, :currency, :password
   #
   # or
   #
@@ -43,9 +43,8 @@ ActiveAdmin.register User do
       f.input :middle_name
       f.input :phone_number
       f.input :email
-      f.input :currency
-      # f.input :password
-      # f.input :password_confirmation
+      f.input :currency, as: :select, collection: ['UAH', 'USD', 'EUR']
+      f.input :password
     end
     f.actions
   end

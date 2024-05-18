@@ -51,7 +51,7 @@ ActiveAdmin.register Product do
       f.input :manufacturer_id, as: :select, collection: Manufacturer.all.map { |m| [m.title_manufacturer, m.id] }
       f.input :sub_category_id, as: :select, collection: SubCategory.all.map { |c| [c.subcat_name, c.id] }
       f.input :prod_model
-      f.input :price
+      f.input :price, min: 0
       f.input :description
       f.input :delivery_days
       f.input :production_days

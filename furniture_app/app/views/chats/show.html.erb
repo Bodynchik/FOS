@@ -5,7 +5,7 @@
 
       <div id="chat-messages" class="chat-messages" data-manufacturer-id="<%= @manufacturer.id %>" data-user-id="<%= @user.id %>" data-user-type="<%= @user_type %>" data-chat-id="<%= @chat.id %>">
         <% @messages.each do |message| %>
-          <div class="message">
+          <div class="chat-message">
             <% if message.user_id.present? %>
               <strong><%= "#{message.user.username}:" %></strong>
             <% elsif message.manufacturer_id.present? %>

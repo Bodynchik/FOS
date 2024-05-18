@@ -33,7 +33,7 @@ document.addEventListener("turbo:load", function () {
       },
       received(data) {
         const chatMessages = document.getElementById("chat-messages");
-        chatMessages.insertAdjacentHTML("beforeend", `<div class="message"><strong>${data.username}:</strong> ${data.message}</div>`);
+        chatMessages.insertAdjacentHTML("beforeend", `<div class="chat-message"><strong>${data.username}:</strong> ${data.message}</div>`);
         scrollToBottom();
       },
       send_message(message) {

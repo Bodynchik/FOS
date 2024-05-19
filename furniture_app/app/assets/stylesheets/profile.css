@@ -501,3 +501,85 @@ dialog form {
 .order-details {
     padding-left: 20px;
 }
+
+/*Стилі для сторінки виробника для юзерів*/
+
+#manufacturer-prods-profile {
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+    justify-content: center;
+    padding: 40px;
+    /*background-color: #f5f5f5;*/
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.manufacturer-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    max-height: fit-content;
+    align-self: flex-start
+}
+
+.manufacturer-details h2 {
+    font-weight: 800;
+    font-size: 28px;
+    color: #6a6460;
+    border-bottom: 2px solid #6a6460;
+    padding-bottom: 10px;
+}
+
+.manufacturer-details p {
+    font-weight: 400;
+    font-size: 18px;
+    color: #666;
+}
+
+.manufacturer-details h2, .manufacturer-details p {
+    margin: 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 25px;
+    gap: 20px;
+}
+
+.pagination li {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #f0f0f0;
+}
+
+.pagination .active a {
+    background-color: #6a6460;
+    color: white;
+}
+
+.pagination .disabled a {
+    pointer-events: none;
+    opacity: 0.5;
+}

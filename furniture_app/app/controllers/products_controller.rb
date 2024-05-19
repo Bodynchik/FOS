@@ -28,6 +28,8 @@ class ProductsController < ApplicationController
 
     convert_prices_to_user_currency
 
+    @products = @products.page(params[:page]).per(10)
+
     respond_to do |format|
       format.html
       format.json

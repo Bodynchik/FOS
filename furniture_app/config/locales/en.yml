@@ -93,6 +93,7 @@ en:
       close: "Close"
       average_rating: "Average rating:"
       days: "days"
+      manufacturer: "Manufacturer"
     _form:
       days_of_week:
         Понеділок: "Monday"
@@ -216,6 +217,7 @@ en:
       show:
         view_prod: "View products"
         export_to_csv: "Export to CSV"
+        number_of_prods: "Number of products"
   flash:
     users:
       errors:

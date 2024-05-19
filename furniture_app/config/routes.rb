@@ -53,7 +53,7 @@ Rails.application.routes.draw do
       get '/profiles', to: 'profiles#show'
     end
 
-    resources :manufacturers do
+    resources :manufacturers, only: [:show] do
       resources :products, only: [:index], controller: 'products'
     end
 

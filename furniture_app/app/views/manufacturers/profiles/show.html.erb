@@ -104,7 +104,7 @@
           <div class="product-item" id="product-<%= product.id %>">
             <%= link_to product_path(product), class: "product" do %>
               <div class="grey-square">
-                <%= image_tag(product.product_image, class: 'image-div') if product.product_image.attached? %>
+                <%#= image_tag(product.product_image, class: 'image-div', loading: 'lazy') if product.product_image.attached? %>
               </div>
               <div class="product-info">
                 <p class="product-name"><%= "#{furniture.name} (#{product.prod_model})" %></p>

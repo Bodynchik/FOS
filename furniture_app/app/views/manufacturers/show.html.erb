@@ -1,0 +1,47 @@
+<section id="manufacturer-prods-profile">
+  <div class="manufacturer-details">
+    <h2><%= @manufacturer.title_manufacturer %></h2>
+    <p><%= t('users.sessions.new.email_f') %>: <%= @manufacturer.email %></p>
+    <p><%= t('users.registrations.new.phone') %>: <%= @manufacturer.phone_number %></p>
+    <p><%= t('manufacturers.profiles.show.number_of_prods') %>: <%= @manufacturer.products.count %></p>
+  </div>
+
+  <div id="products">
+    <div class="sorting-buttons">
+      <%= link_to t('products.index.by_name'), manufacturer_path(@manufacturer, sort: 'prod_model', direction: @sort_direction), class: "sort-button" %>
+      <%= link_to t('products.index.by_price'), manufacturer_path(@manufacturer, sort: 'price', direction: @sort_direction), class: "sort-button" %>
+      <%= link_to t('products.index.by_rating'), manufacturer_path(@manufacturer, sort: 'average_rating', direction: @sort_direction), class: "sort-button" %>
+      <%= link_to t('products.index.by_comments'), manufacturer_path(@manufacturer, sort: 'comments_count', direction: @sort_direction), class: "sort-button" %>
+      <%= link_to t('products.index.by_production_speed'), manufacturer_path(@manufacturer, sort: 'production_days', direction: @sort_direction), class: "sort-button" %>
+    </div>
+
+    <div class="products-container">
+      <% @products.each do |product| %>
+        <%= link_to product_path(product), class: "product" do %>
+          <div class="grey-square">
+            <%= image_tag(product.product_image, class: 'image-div') if product.product_image.attached? %>
+          </div>
+          <div class="product-info">
+            <p class="product-name">
+              <%= "#{product.prod_model}" %>
+              <% if product.average_rating %>
+                <%= "<span class='product-price'>- #{t('.rating')}: #{product.average_rating.round(1)}</span>".html_safe %>
+              <% else %>
+                <%= "<span class='product-price'>- Немає оцінок</span>".html_safe %>
+              <% end %>
+            </p>
+            <% if current_user %>
+              <p class="product-price"><%= "#{product.price} #{current_user.currency}" %></p>
+            <% else %>
+              <p class="product-price"><%= "#{product.price} UAH" %></p>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="pagination">
+      <%= paginate @products %>
+    </div>
+  </div>
+</section>

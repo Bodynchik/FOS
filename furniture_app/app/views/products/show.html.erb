@@ -62,6 +62,9 @@
     <div class="description-container">
       <h1><%= t('.title') %></h1>
       <p class="description" id="description-text"><%= @product.description %></p>
+      <p class="description" id="description-text">
+        <%= t('products.show.manufacturer') %>: <%= link_to @product.manufacturer.title_manufacturer, manufacturer_path(@product.manufacturer), style: "text-decoration: none" %>
+      </p>
       <p class="description" id="last-description"><%= t('.average_rating') %> <%= @product.average_rating %></p>
       <p class="description"><%= t('.man_prod') %> <%= @product.production_days %> <%= t('.days') %> </p>
       <p class="description"><%= t('.delivery') %> <%= @product.delivery_days.join(', ') %></p>

@@ -67,6 +67,7 @@ uk:
       close: "Закрити"
       average_rating: "Середній рейтинг:"
       days: "днів"
+      manufacturer: "Виробник"
     _form:
       days_of_week:
         Понеділок: "Понеділок"
@@ -191,6 +192,7 @@ uk:
       show:
         view_prod: "Переглянути товари"
         export_to_csv: "Експорт у CSV"
+        number_of_prods: "Кількість товарів"
   flash:
     users:
       errors:

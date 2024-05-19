@@ -9,6 +9,10 @@ class Product < ApplicationRecord
   validates :prod_model, :production_days, presence: true
   validate :delivery_days_presence
 
+  def average_rating
+    comments.average(:rating).to_f.round(2)
+  end
+
   private
 
   def delivery_days_presence
@@ -23,9 +27,5 @@ class Product < ApplicationRecord
   def self.ransackable_attributes(_auth_object = nil)
     %w[created_at delivery_days description furniture_id id id_value manufacturer_id price prod_model production_days sub_category_id
        updated_at]
-  end
-
-  def average_rating
-    comments.average(:rating).to_f.round(2)
   end
 end

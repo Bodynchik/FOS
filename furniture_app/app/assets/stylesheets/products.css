@@ -3,7 +3,7 @@
 #products {
     height: auto;
     padding: 25px;
-    /*min-height: 100vh;*/
+    min-height: calc(100vh - 68px - 250px);
 }
 
 .products-container {

@@ -1,6 +1,7 @@
-<div class = "room-header">
-  <h3><%= t('rooms.show.chatroom') %><%= t("rooms.show.#{@category_name}") %></h3>
-</div>
+<section class="room-section">
+  <div class = "room-header">
+    <h3><%= t('rooms.show.chatroom') %><%= t("rooms.show.#{@category_name}") %></h3>
+  </div>
   <div class="room_wrapper">
     <div id="room-messages" data-room-id="<%= @room.id %>" data-room-category="<%= @room.category_name %>"
          data-user-id="<%= @user.id %>" class="room-container" data-controller="room_messages">
@@ -23,4 +24,5 @@
         <a href="<%= rooms_path() %>" data-method="post" class="chat-submit"><%= t('rooms.index.rooms') %></a>
       </form>
     </div>
-</div>
+  </div>
+</section>

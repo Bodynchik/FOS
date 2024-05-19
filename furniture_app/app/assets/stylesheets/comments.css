@@ -3,7 +3,7 @@
     padding: 40px 20px;
     display: flex;
     justify-content: center;
-    height: 600px;
+    min-height: calc(100vh - 68px - 250px);
 }
 
 .comm-container {

@@ -1,3 +1,7 @@
+.room-section {
+    min-height: calc(100vh - 68px - 250px);
+}
+
 .room_wrapper {
     padding: 40px 20px;
     display: flex;

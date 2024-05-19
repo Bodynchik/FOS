@@ -46,6 +46,8 @@
             <% end %>
           </p>
           <% if current_user %>
+            <% service = PrivatbankService.new(nil, current_user) %>
+            <% service.convert_prod_price_to_user_currency(product) %>
             <p class="product-price"><%= "#{product.price} #{current_user.currency}" %></p>
           <% else %>
             <p class="product-price"><%= "#{product.price} UAH" %></p>

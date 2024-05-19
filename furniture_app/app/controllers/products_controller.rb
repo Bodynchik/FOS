@@ -105,10 +105,10 @@ class ProductsController < ApplicationController
   # DELETE /products/1 or /products/1.json
   def destroy
     if @product.orders.exists? || prod_sets_contain_product?(@product.id) || @product.comments.exists?
-      flash[:error] = "Товар '#{@product.prod_model}' не може бути видалений, оскільки він або міститься у сетах, або в замовленнях, або до нього написнао коментарі."
+      flash[:error] = t('products.destroy.error', prod_model: @product.prod_model)
     else
       @product.destroy!
-      flash[:notice] = 'Product was successfully destroyed.'
+      flash[:notice] = t('products.destroy.success')
     end
 
     respond_to do |format|

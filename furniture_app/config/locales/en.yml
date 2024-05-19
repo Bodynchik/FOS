@@ -103,6 +103,9 @@ en:
         П'ятниця: "Friday"
         Субота: "Saturday"
         Неділя: "Sunday"
+    destroy:
+      error: "The product '%{prod_model}' cannot be deleted because it is either contained in sets, orders, or has comments."
+      success: "Product was successfully destroyed."
   orders:
     new:
       order: "Ordering a product"
@@ -229,3 +232,4 @@ en:
         email_check: "Registration is available only with the karazin.ua domain"
         name: "This company name is already registered"
         phone: "This phone number is already registered"
+        delivery_days: "must have at least one day selected"

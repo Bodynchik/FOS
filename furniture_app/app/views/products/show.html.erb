@@ -19,7 +19,9 @@
       <%= form_tag(add_product_to_set_path, method: :post, remote: true) do %>
         <%= hidden_field_tag :product_id, @product.id %>
         <label for="prod_set"><%= t('.ch_set') %></label>
-        <%= select_tag(:prod_set, options_for_select(ProdSet.all.map { |ps| [ps.set_name, ps.id] })) %>
+        <% if current_user%>
+          <%= select_tag(:prod_set, options_for_select(current_user.prod_sets.map { |ps| [ps.set_name, ps.id] })) %>
+        <% end %>
         <br>
         <label for="quantity"><%= t('.amount_prod') %></label>
         <%= number_field_tag :quantity, 1, min: 1 %>

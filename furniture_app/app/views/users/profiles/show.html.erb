@@ -134,7 +134,9 @@
                   <% prod_set.prod_data.each do |product_id, quantity| %>
                     <% product = Product.find(product_id) %>
                     <div class="prod">
-                      <p><%= product.prod_model %> x<%= quantity %></p>
+                      <p>
+                        <%= product.prod_model %>. <%= product.description.split[0..1].join(' ') %> x<%= quantity %>
+                      </p>
                     </div>
                   <% end %>
                   <div class="change-container">
@@ -243,7 +245,9 @@
         <div class="order">
           <p class="order-header"><%= t('.num_info') %> №<%= order.id %></p>
           <div class="order-details">
-            <p><%= order.product.prod_model %> x<%= order.quantity %></p>
+            <p>
+              <%= order.product.prod_model %>. <%= order.product.description.split[0..1].join(' ') %> x<%= order.quantity %>
+            </p>
             <% service = PrivatbankService.new(nil, current_user) %>
             <% service.convert_order_price_to_user_currency(order) %>
             <p><%= t('.sum_order') %>: <%= "#{order.total_price} #{current_user.currency}" %></p>

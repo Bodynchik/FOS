@@ -6,6 +6,15 @@ class Product < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one_attached :product_image, dependent: :destroy
   validates :price, numericality: { greater_than: 0 }
+  validates :prod_model, :production_days, presence: true
+  validate :delivery_days_presence
+
+  private
+
+  def delivery_days_presence
+    errors.add(:delivery_days, I18n.t('flash.manufacturers.errors.delivery_days')) if delivery_days.blank?
+    # errors.add(:delivery_days, "must have at least one day selected") if delivery_days.blank?
+  end
 
   def self.ransackable_associations(_auth_object = nil)
     %w[furniture manufacturer orders sub_category]

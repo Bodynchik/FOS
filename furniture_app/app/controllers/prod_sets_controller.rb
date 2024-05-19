@@ -39,7 +39,6 @@ class ProdSetsController < ApplicationController
     quantity = params[:quantity].to_i
 
     prod_set = ProdSet.find(params[:prod_set])
-
     prod_set.prod_data ||= {}
     prod_set.prod_data.merge!({ product_id.to_s => quantity })
 
